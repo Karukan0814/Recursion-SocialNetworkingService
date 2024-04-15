@@ -1,17 +1,21 @@
 import { useState } from "react";
 import "./App.css";
-import Sidebar from "./component/Sidebar";
-import Feed from "./component/Feed";
-import Widgets from "./component/Widgets";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <div className="app">
-      <Sidebar />
-      <Feed />
-      <Widgets />
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          {/* <Route path="*" element={<NotFoundPage />} /> */}
+        </Routes>
+      </Router>
     </div>
   );
 }

@@ -1,0 +1,63 @@
+.login-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  gap: 10rem;
+  /* background-color: #f5f8fa; */
+}
+
+.image-container {
+  width: 400px;
+  height: 400px;
+  overflow: hidden; /* はみ出した部分を隠す */
+  display: flex; /* 中央揃えのための設定 */
+  justify-content: center; /* 水平方向の中央揃え */
+  align-items: center; /* 垂直方向の中央揃え */
+}
+
+.responsive-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* コンテナに収まるように調整しつつアスペクト比を保持 */
+}
+
+.login-title {
+  font-size: 4rem;
+  margin: 3rem 0;
+}
+
+.login-subtitle {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.login-text {
+  font-size: 1rem;
+  margin: 3rem 0 1rem;
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .image-container {
+    width: 300px;
+    height: 300px;
+  }
+  .login-title {
+    font-size: 2rem;
+  }
+
+  .login-subtitle {
+    font-size: 1.5rem;
+  }
+
+  .login-text {
+    font-size: 0.875rem;
+    margin: 1rem 0;
+  }
+}
