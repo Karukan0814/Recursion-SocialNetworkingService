@@ -35,3 +35,10 @@
   font-size: 18px;
   font-weight: 700;
 }
+
+/* 小さいスクリーンの場合 ※widgtsの幅が３２０px以下になる場合、widgets__widgetContainerのwidth300pxが変更できないので*/
+@media (max-width: 1066px) {
+  .widgets {
+    display: none;
+  }
+}

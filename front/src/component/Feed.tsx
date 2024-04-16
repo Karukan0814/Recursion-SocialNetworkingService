@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import TweetBox from "./TweetBox";
+import PostBox from "./PostBox";
 import Post from "./Post";
 import "../style/Feed.css";
 import { PostInfo } from "../types/PostType";
@@ -27,7 +27,7 @@ const Feed = () => {
         </Tabs>
       </div>
 
-      <TweetBox />
+      <PostBox />
       {activeTab === "trend" && (
         <div className="feed__content">
           {posts.map((post) => (

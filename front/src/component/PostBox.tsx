@@ -2,7 +2,7 @@ import { Avatar, Button } from "@mui/material";
 import { useState } from "react";
 import "../style/TweetBox.css";
 
-const TweetBox = () => {
+const PostBox = () => {
   const [tweetMessage, setTweetMessage] = useState("");
   const [tweetImage, setTweetImage] = useState("");
 
@@ -39,11 +39,11 @@ const TweetBox = () => {
           type="submit"
           className="tweetBox__button"
         >
-          Tweet
+          Post
         </Button>
       </form>
     </div>
   );
 };
 
-export default TweetBox;
+export default PostBox;

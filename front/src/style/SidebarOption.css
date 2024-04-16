@@ -12,11 +12,28 @@
 .sidebarOption > .MuiSvgIcon-root {
   padding: 20px;
 }
-.sidebarOption > h2 {
+.sidebarOptionTile {
   font-weight: 700;
   font-size: 20px;
   margin-right: 20px;
 }
+
 .sidebarOption--active {
   color: var(--twitter-color);
+}
+
+/* 小さいスクリーンの場合 */
+@media (max-width: 768px) {
+  .sidebarOptionTile {
+    display: none;
+  }
+
+  .sidebarOption > .MuiSvgIcon-root {
+    padding: 12px; /* モバイル用にパディングを調整 */
+    margin: 0 auto; /* アイコンを中央に配置 */
+  }
+
+  .sidebarOption {
+    justify-content: center; /* フレックスボックス内のアイテムを中央に揃える */
+  }
 }

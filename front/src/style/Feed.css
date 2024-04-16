@@ -1,10 +1,11 @@
 .feed {
-  flex: 0.4;
+  flex: 0.5;
   border-right: var(--twitter-background) 1px solid;
   min-width: fit-content;
   overflow-y: scroll;
 }
 .feed__header {
+  display: flex;
   position: sticky;
   top: 0;
   background-color: white;
@@ -20,8 +21,17 @@
 }
 
 .feed__tab {
-  flex-grow: 1;
+  /* flex-grow: 1; 各タブが利用可能なスペースを均等に使うように設定 */
+  display: flex;
+  justify-content: center; /* テキストとアイコンがタブの中央に来るように */
+  flex: 0.5;
 }
 .feed::-webkit-scrollbar {
   display: none;
+}
+
+@media (max-width: 1066px) {
+  .feed {
+    flex: 1; /* 真ん中のコンポーネントをできる限り大きくする */
+  }
 }

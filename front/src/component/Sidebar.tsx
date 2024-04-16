@@ -17,19 +17,23 @@ import {
 function Sidebar() {
   return (
     <div className="sidebar">
-      <Twitter className="sidebar__twitterIcon" />
-      <SidebarOption Icon={Home} text="Home" active={true} />
-      <SidebarOption Icon={Search} text="Explore" />
-      <SidebarOption Icon={NotificationsNone} text="Notifications" />
-      <SidebarOption Icon={MailOutline} text="Messages" />
-      <SidebarOption Icon={BookmarkBorder} text="Bookmarks" />
-      <SidebarOption Icon={ListAlt} text="Lists" />
-      <SidebarOption Icon={PermIdentity} text="Profile" />
-      <SidebarOption Icon={MoreHoriz} text="More" />
-      <Home></Home>
-      <Button variant="outlined" className="sidebar__tweet" fullWidth>
+      <div className="sidebar__icon">
+        <img src="/assets/karukan_icon.svg" alt="icon" />
+        <h1>Karukan SNS</h1>
+      </div>
+      <SidebarOption Icon={Home} text="Home" active={true} path="/" />
+      <SidebarOption Icon={Search} text="Explore" path="/search" />
+      <SidebarOption
+        Icon={NotificationsNone}
+        text="Notifications"
+        path="/notification"
+      />
+      <SidebarOption Icon={MailOutline} text="Messages" path="/message" />
+      <SidebarOption Icon={PermIdentity} text="Profile" path="/profile" />
+      {/* 
+      <Button variant="outlined" className="sidebar__tweet">
         Tweet
-      </Button>
+      </Button> */}
     </div>
   );
 }

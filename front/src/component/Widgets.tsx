@@ -1,4 +1,4 @@
-import { Search } from "@mui/icons-material";
+import { Search, WidthFull } from "@mui/icons-material";
 import React from "react";
 import {
   TwitterShareButton,
