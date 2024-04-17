@@ -3,6 +3,7 @@ import { useState } from "react";
 import "../style/PostBox.css";
 import { PhotoCamera } from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
+import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 
 const PostBox = () => {
   const [tweetMessage, setTweetMessage] = useState("");
@@ -37,12 +38,21 @@ const PostBox = () => {
       <form>
         <div className="postBox__input">
           <Avatar src="https://scontent-bom1-1.xx.fbcdn.net/v/t1.0-1/c0.33.200.200a/p200x200/51099653_766820610355014_8315780769297465344_o.jpg?_nc_cat=101&_nc_sid=7206a8&_nc_ohc=c1qBHkwAgVsAX8KynKU&_nc_ht=scontent-bom1-1.xx&oh=340b05bea693dd1671296e0c2d004bb3&oe=5F84CA62" />
-          <input
+
+          <TextareaAutosize
             value={tweetMessage}
-            onChange={(e) => setTweetMessage(e.target.value)}
+            onChange={(e) => setTweetMessage(e.target.value.substring(0, 200))}
+            maxRows={4}
             placeholder="What's happening?"
-            type="text"
-            accept="image/*"
+            maxLength={200} // 最大文字数を200に制限
+            style={{
+              width: "100%", // 幅を100%に設定
+              border: "none", // 枠線を削除
+              outline: "none", // フォーカス時のアウトラインを削除
+              padding: "10px", // パディングを適用
+              boxSizing: "border-box", // パディングと境界線の幅を要素の総幅に含める
+              resize: "none", // リサイズを無効にする
+            }}
           />
         </div>
         <div className="photo__preview__container">

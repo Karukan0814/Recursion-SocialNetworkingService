@@ -20,6 +20,13 @@
 .postBox__input > input:focus {
   outline: none;
 }
+
+.postBox__input__textarea {
+  width: "100%";
+  height: "100px";
+  resize: "none";
+  overflow: "auto";
+}
 .photo__preview__container {
   width: fit-content;
   display: flex;
