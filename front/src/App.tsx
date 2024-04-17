@@ -6,6 +6,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import ProfilePage from "./pages/ProfilePage";
 import MessagePage from "./pages/MessagePage";
 import NotificationPage from "./pages/NotificationPage";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/search" element={<SearchPage />} />
+
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/message" element={<MessagePage />} />
           <Route path="/notification" element={<NotificationPage />} />

@@ -8,10 +8,13 @@ import {
 import "../style/Widgets.css";
 import SearchInput from "./SearchInput";
 
-const Widgets = () => {
+type Props = {
+  searchFlag?: boolean;
+};
+const Widgets = ({ searchFlag = true }: Props) => {
   return (
     <div className="widgets">
-      <SearchInput />
+      {searchFlag && <SearchInput />}
 
       <div className="widgets__widgetContainer">
         <h2>What's happening</h2>
