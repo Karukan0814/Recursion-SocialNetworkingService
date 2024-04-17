@@ -1,0 +1,9 @@
+.notifications_container {
+  flex: 0.5;
+}
+
+@media (max-width: 1066px) {
+  .notifications_container {
+    flex: 1; /* 真ん中のコンポーネントをできる限り大きくする */
+  }
+}
