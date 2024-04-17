@@ -22,7 +22,7 @@ const LoginPage = () => {
       </ModalPopup>
       <div className="image-container">
         <img
-          src="/assets/karukanProfile.jpg"
+          src="/assets/karukan_icon.svg"
           className="responsive-img"
           alt="icon"
         />
