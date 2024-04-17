@@ -6,14 +6,12 @@ import {
   TwitterTweetEmbed,
 } from "react-twitter-embed";
 import "../style/Widgets.css";
+import SearchInput from "./SearchInput";
 
 const Widgets = () => {
   return (
     <div className="widgets">
-      <div className="widgets__input">
-        <Search className="widgets__searchIcon" />
-        <input placeholder="Search Twitter" type="text" />
-      </div>
+      <SearchInput />
 
       <div className="widgets__widgetContainer">
         <h2>What's happening</h2>

@@ -1,0 +1,19 @@
+.search__input {
+  display: flex;
+  align-items: center;
+  background-color: var(--twitter-background);
+  padding: 10px;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+.search__input > input {
+  border: none;
+  background-color: var(--twitter-background);
+}
+.search__input > input:focus {
+  outline: none;
+}
+.search__searchIcon {
+  color: gray;
+}
