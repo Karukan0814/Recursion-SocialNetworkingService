@@ -42,16 +42,16 @@ const PostBox = () => {
           <TextareaAutosize
             value={tweetMessage}
             onChange={(e) => setTweetMessage(e.target.value.substring(0, 200))}
-            maxRows={4}
+            maxRows={10}
             placeholder="What's happening?"
             maxLength={200} // 最大文字数を200に制限
             style={{
-              width: "100%", // 幅を100%に設定
-              border: "none", // 枠線を削除
-              outline: "none", // フォーカス時のアウトラインを削除
-              padding: "10px", // パディングを適用
-              boxSizing: "border-box", // パディングと境界線の幅を要素の総幅に含める
-              resize: "none", // リサイズを無効にする
+              width: "100%",
+              border: "none",
+              outline: "none",
+              padding: "10px",
+              boxSizing: "border-box",
+              resize: "none",
             }}
           />
         </div>
