@@ -1,0 +1,75 @@
+.postBox {
+  padding-bottom: 10px;
+  border-bottom: 8px solid var(--twitter-background);
+  padding-right: 10px;
+}
+.postBox > form {
+  display: flex;
+  flex-direction: column;
+}
+.postBox__input {
+  display: flex;
+  padding: 20px;
+}
+.postBox__input > input {
+  flex: 1;
+  margin-left: 20px;
+  font-size: 20px;
+  border: none;
+}
+.postBox__input > input:focus {
+  outline: none;
+}
+.photo__preview__container {
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin: 0 auto;
+}
+
+.photo__preview__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: white;
+  background-color: rgba(236, 234, 234, 0.5);
+  border-radius: 50%;
+}
+
+.photo__preview {
+  min-width: 150px;
+  max-width: 200px;
+  min-height: 150px;
+  max-height: 200px;
+}
+
+.postButton__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.postBox__button {
+  flex: 2;
+  background-color: var(--twitter-color) !important;
+  border: none !important;
+  color: white !important;
+  font-weight: 700 !important;
+  text-transform: inherit !important;
+  border-radius: 20px !important;
+  height: 45px !important;
+  width: 70%;
+  margin: 20px auto 0 !important;
+}
+
+.photo__button {
+  flex: 1;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 20px auto 0 !important;
+
+  color: var(--twitter-color);
+  background-color: transparent;
+  border: none;
+}
