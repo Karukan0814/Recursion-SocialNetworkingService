@@ -7,7 +7,7 @@ import "../style/NotificationPage.css";
 const NotificationPage = () => {
   return (
     <>
-      <Sidebar />
+      <Sidebar currentPage="notification" />
       <div className="notifications_container">
         <div className="notificationsTitle__container">
           <h2 className="notificationsTitle__text">Notifications</h2>

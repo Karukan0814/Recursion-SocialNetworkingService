@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../style/SidebarOption.css";
 import { useNavigate } from "react-router-dom";
 type Props = {
@@ -10,14 +10,19 @@ type Props = {
 function SidebarOption({ text, Icon, active = false, path }: Props) {
   const navigate = useNavigate();
 
+  const [siderbarOptionActive, setSiderbarOptionActive] = useState(active);
+
   const handleClick = () => {
+    setSiderbarOptionActive(true);
     if (path) {
       navigate(path); // 指定のパスに遷移
     }
   };
   return (
     <div
-      className={`sidebarOption  ${active && "sidebarOption--active"}`}
+      className={`sidebarOption  ${
+        siderbarOptionActive && "sidebarOption--active"
+      }`}
       onClick={handleClick}
     >
       <Icon className="sidebarOptionIcon" />

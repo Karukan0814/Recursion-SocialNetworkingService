@@ -11,7 +11,7 @@ const NotFoundPage = () => {
 
   return (
     <>
-      <Sidebar />
+      <Sidebar currentPage="notfound" />
       <div className="notfound_container">
         <p className="notfound_text">
           This page does not exist. Please search other words.

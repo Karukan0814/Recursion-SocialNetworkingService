@@ -7,7 +7,7 @@ import Widgets from "../component/Widgets";
 const SearchPage = () => {
   return (
     <>
-      <Sidebar />
+      <Sidebar currentPage="search" />
       <div className="search__container">
         <SearchInput />
         <div className="search__results">

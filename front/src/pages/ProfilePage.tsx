@@ -6,7 +6,7 @@ import Profile from "../component/Profile";
 const ProfilePage = () => {
   return (
     <>
-      <Sidebar />
+      <Sidebar currentPage="profile" />
       <Profile />
       <Widgets />
     </>

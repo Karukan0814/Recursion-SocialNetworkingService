@@ -6,7 +6,7 @@ import Widgets from "../component/Widgets";
 const HomePage = () => {
   return (
     <>
-      <Sidebar />
+      <Sidebar currentPage="home" />
       <Feed />
       <Widgets />
     </>
