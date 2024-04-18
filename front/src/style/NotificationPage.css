@@ -1,5 +1,19 @@
 .notifications_container {
   flex: 0.5;
+  border: 0.5px var(--twitter-background) solid;
+}
+.notificationsTitle__container {
+  height: 80px;
+  width: 100%;
+  border-bottom: 0.5px var(--twitter-background) solid;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.notificationsTitle__text {
+  font-size: 20px;
+  padding: 10px 20px;
 }
 
 @media (max-width: 1066px) {
