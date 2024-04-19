@@ -1,0 +1,60 @@
+.conversation {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.conversation__userInfo {
+  height: 200px;
+  border-bottom: 0.5px var(--twitter-background) solid;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.conversation__userInfo__img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.conversation__userInfo__name {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.conversation-messages {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.conversation-form {
+  display: flex;
+  align-items: center;
+  background-color: var(--twitter-background);
+  padding: 10px;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+.conversation-form > input {
+  border: none;
+  background-color: var(--twitter-background);
+  flex-grow: 1;
+}
+.conversation-form > input:focus {
+  outline: none;
+}
+
+.conversation__sendIconButton {
+  width: min-content;
+  height: min-content;
+}
+.conversation__sendIcon {
+  color: var(--twitter-color) !important;
+}

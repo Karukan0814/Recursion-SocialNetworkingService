@@ -1,0 +1,13 @@
+.speech {
+  max-width: 60%;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: var(--twitter-background);
+  align-self: flex-start;
+}
+
+.speech.mine {
+  background-color: var(--twitter-color);
+  align-self: flex-end;
+}

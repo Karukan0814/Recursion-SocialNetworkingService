@@ -1,0 +1,49 @@
+.message_container {
+  flex: 1; /* 真ん中のコンポーネントをできる限り大きくする */
+  border-right: 0.5px var(--twitter-background) solid;
+  /* overflow-y: scroll; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.messageList_container {
+  flex: 0.5;
+  border-right: 0.5px var(--twitter-background) solid;
+}
+
+.sectionTitle__container {
+  height: 80px;
+  border-bottom: 0.5px var(--twitter-background) solid;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sectionTitle__text {
+  font-size: 20px;
+  padding: 10px 20px;
+}
+
+.sectionMessages_container {
+  height: 100%;
+}
+
+.sectionMessages_list {
+  flex: 0.5;
+  /* border-right: 0.5px var(--twitter-background) solid; */
+  height: 100%;
+}
+.sectionMessages_conversation {
+  flex: 0.5;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.add__messageButton {
+  width: min-content;
+  height: min-content;
+}
+.add__messageIcon {
+  color: var(--twitter-color) !important;
+}

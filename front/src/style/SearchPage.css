@@ -1,8 +1,6 @@
 .search__container {
   flex: 0.5;
 }
-.search__results {
-}
 
 @media (max-width: 1066px) {
   .search__container {
