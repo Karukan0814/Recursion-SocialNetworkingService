@@ -1,0 +1,101 @@
+.replyForm__container {
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin: 0 auto;
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.post__body > img {
+  border-radius: 20px;
+  width: 100%;
+}
+.post {
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--twitter-background);
+  text-decoration: none; /* 下線を消す */
+  background-color: initial;
+}
+.post__footer {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  margin-top: 10px;
+}
+.post__badge {
+  font-size: 14px !important;
+  color: var(--twitter-color);
+}
+.post__headerSpecial {
+  font-weight: 600;
+  font-size: 12px;
+  color: gray;
+}
+.time {
+  font-size: 8px;
+}
+.post__headerText {
+  display: flex;
+  justify-content: flex-start;
+  gap: 5px;
+}
+.post__headerText > h3 {
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+.post__headerDescription {
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+.post__body {
+  flex: 1;
+  padding: 10px;
+}
+.post__avatar {
+  padding: 20px;
+}
+
+.post__iconButton {
+  width: min-content;
+  height: min-content;
+}
+
+.replyForm {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.replyForm__textArea {
+  width: 100%;
+  height: 100%;
+  margin: 5px 8px;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  resize: none;
+  text-align: start;
+}
+
+.replyForm__Button__container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+.replyForm__Button {
+  background-color: var(--twitter-color) !important;
+  border: none !important;
+  color: white !important;
+  font-weight: 700 !important;
+  text-transform: inherit !important;
+  border-radius: 20px !important;
+  height: 45px !important;
+  width: max-content;
+}
