@@ -6,8 +6,35 @@ import { PostInfo } from "../types/PostType";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 
+const testPosts: PostInfo[] = [
+  {
+    id: "1",
+    username: "testuser1",
+    text: "testposttestposttestposttestposttestposttestpost",
+    avatar: "/assets/default_profile_400x400.png",
+    createDateTime: new Date(),
+    updateDateTime: new Date(),
+  },
+  {
+    id: "2",
+    username: "testuser2",
+    text: "testposttestposttestposttestposttestposttestpost",
+    avatar: "/assets/default_profile_400x400.png",
+    createDateTime: new Date("2024-04-016T12:34:56Z"),
+    updateDateTime: new Date("2024-04-019T12:34:56Z"),
+  },
+  {
+    id: "3",
+    username: "testuser3",
+    text: "testposttestposttestposttestposttestposttestpost",
+    avatar: "/assets/default_profile_400x400.png",
+    createDateTime: new Date("2024-04-017T12:34:56Z"),
+    updateDateTime: new Date("2024-04-019T12:34:56Z"),
+  },
+];
+
 const Feed = () => {
-  const [posts, setPosts] = useState<PostInfo[]>([]);
+  const [posts, setPosts] = useState<PostInfo[]>(testPosts);
   const [activeTab, setActiveTab] = useState("trend");
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setActiveTab(newValue);
