@@ -10,7 +10,7 @@ const testPosts: PostInfo[] = [
   {
     id: "1",
     username: "testuser1",
-    text: "testposttestposttestposttestposttestposttestpost",
+    text: "testposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestpost",
     avatar: "/assets/default_profile_400x400.png",
     createDateTime: new Date(),
     updateDateTime: new Date(),

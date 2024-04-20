@@ -1,7 +1,7 @@
 .feed {
   flex: 0.5;
   border-right: var(--twitter-background) 1px solid;
-  min-width: fit-content;
+  /* min-width: fit-content; */
   overflow-y: scroll;
 }
 .feed__header {
