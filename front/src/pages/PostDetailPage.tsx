@@ -7,6 +7,7 @@ import Widgets from "../component/Widgets";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { IconButton } from "@mui/material";
 import "../style/PostDetail.css";
+import { useNavigate } from "react-router-dom";
 const testPosts: PostInfo[] = [
   {
     id: "1",
@@ -46,6 +47,10 @@ const parentPost = {
 const PostDetailPage = () => {
   const { postId } = useParams();
   const [reply, setReply] = useState("");
+  const navigate = useNavigate();
+  const handleBack = () => {
+    navigate(-1); // 一つ前のページに戻る
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // ページの再読み込みを防ぐ
@@ -60,7 +65,7 @@ const PostDetailPage = () => {
       <Sidebar currentPage="post" />
       <div className="postDetail__container">
         <div className="postDetail__header">
-          <IconButton className="iconButton">
+          <IconButton className="iconButton" onClick={handleBack}>
             <ArrowBackIcon />
           </IconButton>
         </div>
