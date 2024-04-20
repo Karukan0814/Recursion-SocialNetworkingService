@@ -7,6 +7,7 @@ import ProfilePage from "./pages/ProfilePage";
 import MessagePage from "./pages/MessagePage";
 import NotificationPage from "./pages/NotificationPage";
 import SearchPage from "./pages/SearchPage";
+import PostDetailPage from "./pages/PostDetailPage";
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/post/:postId" element={<PostDetailPage />} />
+
           <Route path="/login" element={<LoginPage />} />
           <Route path="/search" element={<SearchPage />} />
 

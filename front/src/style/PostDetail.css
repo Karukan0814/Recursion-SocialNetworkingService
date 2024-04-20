@@ -1,0 +1,59 @@
+.postDetail__container {
+  flex: 0.5;
+  border-right: 1px solid var(--twitter-background);
+}
+@media (max-width: 1066px) {
+  .postDetail__container {
+    /* flex: 1; 真ん中のコンポーネントをできる限り大きくする */
+    flex-grow: 1;
+  }
+}
+
+.postDetail__header {
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 1px solid var(--twitter-background);
+}
+
+.iconButton {
+  width: min-content;
+  height: min-content;
+}
+.replyForm {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* margin: 5px 10px; */
+  border-bottom: 1px solid var(--twitter-background);
+}
+
+.replyForm__textArea {
+  width: 95%;
+  height: 100%;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  resize: none;
+  text-align: start;
+}
+
+.replyForm__Button__container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+.replyForm__Button {
+  background-color: var(--twitter-color) !important;
+  border: none !important;
+  color: white !important;
+  font-weight: 700 !important;
+  text-transform: inherit !important;
+  border-radius: 20px !important;
+  height: 45px !important;
+  width: max-content;
+  margin-right: 50px;
+  margin-bottom: 10px;
+}
