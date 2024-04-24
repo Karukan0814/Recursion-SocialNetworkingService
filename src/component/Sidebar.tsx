@@ -1,7 +1,7 @@
 import React from "react";
 import "../style/Sidebar.css";
 import SidebarOption from "./SidebarOption";
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import {
   BookmarkBorder,
   Home,
@@ -13,6 +13,7 @@ import {
   Search,
   Twitter,
 } from "@mui/icons-material";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 type Props = {
   currentPage: string;
@@ -55,6 +56,9 @@ function Sidebar({ currentPage }: Props) {
         path="/profile"
         active={currentPage === "profile" ? true : false}
       />
+      <IconButton>
+        <LogoutIcon />
+      </IconButton>
       {/* 
       <Button variant="outlined" className="sidebar__tweet">
         Tweet

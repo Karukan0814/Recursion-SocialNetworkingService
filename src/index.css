@@ -6,3 +6,8 @@
 .errMsg {
   color: red;
 }
+
+.iconButton {
+  width: min-content;
+  height: min-content;
+}
