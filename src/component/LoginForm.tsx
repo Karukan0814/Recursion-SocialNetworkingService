@@ -3,80 +3,164 @@ import "../style/LoginForm.css";
 import useLogin from "../hooks/useLogin";
 import { Button } from "@mui/material";
 import PrimaryButton from "./PrimaryButton";
+import { useForm } from "react-hook-form";
 
 type Props = {
   signUpFlag: boolean;
 };
+type FormData = {
+  email: string;
+  password: string;
+  confirmPassword: string;
+  name: string;
+};
 const LoginForm = ({ signUpFlag }: Props) => {
   const { login, loading, errorMsg } = useLogin();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const handleLogin = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    console.log("handleLogin", loading);
-    e.preventDefault();
-    await login(email, password);
-    console.log(loading);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm<FormData>();
+  const password = watch("password"); // パスワードの値を監視
+
+  const onSubmit = async (data: FormData) => {
+    console.log({ data });
+    if (signUpFlag) {
+      console.log("handleSignUp", loading);
+      // e.preventDefault();
+      // await login(email, password);
+      console.log(loading);
+    } else {
+      console.log("handleLogin", loading);
+
+      await login(data.email, data.password);
+      console.log(loading);
+    }
   };
+
   return (
     <>
       <div className="login-form">
         {signUpFlag ? (
-          <>
-            <h1>Create your account</h1>
-            {errorMsg && <p className="errMsg">{errorMsg}</p>}
-
-            <form>
-              <div className="input-group">
-                <input type="email" placeholder="email" />
-              </div>
-
-              <div className="input-group">
-                <input type="text" placeholder="name" />
-              </div>
-              <div className="input-group">
-                <input type="password" placeholder="Password" />
-              </div>
-              <div className="input-group">
-                <input type="password" placeholder="Confirm Password" />
-              </div>
-              <button type="submit">Sign up</button>
-            </form>
-          </>
+          <h1>Create your account</h1>
         ) : (
-          <>
-            <h1>Log in to KarukanSNS</h1>
-            {errorMsg && <p className="errMsg">{errorMsg}</p>}
-            {loading}
-            <form>
-              <div className="input-group">
-                <input
-                  type="text"
-                  placeholder="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div className="input-group">
-                <input
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <div className="loginButton_container">
-                <PrimaryButton
-                  loading={loading}
-                  text="Log in"
-                  onClick={handleLogin}
-                />
-              </div>
-            </form>
-          </>
+          <h1>Log in to KarukanSNS</h1>
         )}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {signUpFlag ? (
+            <>
+              {errorMsg && <p className="errMsg">{errorMsg}</p>}
+
+              <div className="input-group">
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="email"
+                  {...register("email", {
+                    required: "Email is required",
+                    maxLength: {
+                      value: 255,
+                      message: "Email must be less than 255 characters long",
+                    },
+                  })}
+                />
+                {errors.email && (
+                  <p className="errMsg">{errors.email.message}</p>
+                )}
+              </div>
+
+              <div className="input-group">
+                <input
+                  id="name"
+                  type="text"
+                  placeholder="name"
+                  {...register("name", {
+                    required: "Username is required",
+                    maxLength: {
+                      value: 25,
+                      message: "username must be less than 25 characters long",
+                    },
+                  })}
+                />
+                {errors.name && <p className="errMsg">{errors.name.message}</p>}
+              </div>
+              <div className="input-group">
+                <input
+                  id="password"
+                  type="password"
+                  placeholder="password"
+                  {...register("password", {
+                    required: "password is required",
+                    minLength: {
+                      value: 8,
+                      message: "Password must be at least 8 characters long",
+                    },
+                    maxLength: {
+                      value: 30,
+                      message: "Password must be less than 30 characters long",
+                    },
+                  })}
+                />
+                {errors.password && (
+                  <p className="errMsg">{errors.password.message}</p>
+                )}
+              </div>
+              <div className="input-group">
+                <input
+                  id="confirmPassword"
+                  type="password"
+                  placeholder="confirmPassword"
+                  {...register("confirmPassword", {
+                    required: "confirmPassword is required",
+                    validate: (value) =>
+                      value === password || "The passwords do not match",
+                  })}
+                />
+                {errors.confirmPassword && (
+                  <p className="errMsg">{errors.confirmPassword.message}</p>
+                )}
+              </div>
+            </>
+          ) : (
+            <>
+              {errorMsg && <p className="errMsg">{errorMsg}</p>}
+              <div className="input-group">
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="email"
+                  {...register("email", { required: "Email is required" })}
+                />
+                {errors.email && (
+                  <p className="errMsg">{errors.email.message}</p>
+                )}
+              </div>
+              <div className="input-group">
+                <input
+                  id="password"
+                  type="password"
+                  placeholder="password"
+                  {...register("password", {
+                    required: "Password is required",
+                  })}
+                />
+                {errors.password && (
+                  <p className="errMsg">{errors.password.message}</p>
+                )}
+              </div>
+            </>
+          )}
+
+          <div className="loginButton_container">
+            <PrimaryButton
+              loading={loading}
+              text={signUpFlag ? "Sign Up" : "Log in"}
+              onClick={handleSubmit(onSubmit)}
+            />
+          </div>
+        </form>
       </div>
     </>
   );
