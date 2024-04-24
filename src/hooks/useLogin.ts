@@ -2,12 +2,13 @@ import { useAtom } from "jotai";
 import { useState } from "react";
 import { jotaiInitialValue, userInfoAtom } from "../lib/jotai/atoms/user";
 import { useNavigate } from "react-router-dom";
+import { loginAPI } from "../lib/database/User";
 
 const useLogin = () => {
   const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
 
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [errorMsg, setErrorMsg] = useState("");
 
   let navigate = useNavigate();
 
@@ -27,28 +28,33 @@ const useLogin = () => {
 
   const login = async (email: string, password: string) => {
     setLoading(true);
-    setError(null);
+    console.log("useLogin_login", { loading });
+    setErrorMsg("");
     try {
-      // APIエンドポイントにログインリクエストを送信
-      const response = await fetch("https://yourapi.com/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      if (!email || !password) {
+        throw new Error("email and password are necessary to log in.");
+      }
+      const data = await loginAPI(email, password);
+      console.log({ loading });
 
-      if (!response.ok) {
-        throw new Error("Login failed");
+      if (data?.error) {
+        console.log(data.error);
+        throw new Error(data.error);
       }
 
-      const data = await response.json();
+      if (!data || !data.token || !data.user) {
+        throw new Error("Something wrong with login API");
+      }
 
-      //登録結果をjotaiに入れる
-      setuserInfoJotai(data.userInfo);
+      //ログイン成功時はユーザー情報をjotaiに入れる
+      setuserInfoJotai(data.user);
       localStorage.setItem("authToken", data.token); // トークンをローカルストレージに保存
+
+      //home画面に移動
+      navigate("/");
     } catch (error: any) {
-      setError(error.message);
+      setErrorMsg(error.message);
+      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -95,7 +101,7 @@ const useLogin = () => {
   return {
     loading,
     signUp,
-    error,
+    errorMsg,
     login,
     logout,
     blockUnauthorizedUser,

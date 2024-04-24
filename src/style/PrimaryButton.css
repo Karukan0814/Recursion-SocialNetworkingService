@@ -1,0 +1,16 @@
+.primary_button {
+  flex: 2;
+  background-color: var(--twitter-color) !important;
+  border: none !important;
+  color: white !important;
+  font-weight: 700 !important;
+  text-transform: inherit !important;
+  border-radius: 20px !important;
+  height: 45px !important;
+  width: 70%;
+  margin: 20px auto 0 !important;
+}
+
+.primary_button_disabled {
+  opacity: 0.5;
+}
