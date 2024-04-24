@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Sidebar from "../component/Sidebar";
 import Widgets from "../component/Widgets";
 import NotificationCard from "../component/NotificationCard";
 import "../style/NotificationPage.css";
+import useLogin from "../hooks/useLogin";
 
 const NotificationPage = () => {
+  const { blockUnauthorizedUser } = useLogin();
+  useEffect(() => {
+    //初回表示時、ログインしていないユーザーをブロックする
+    blockUnauthorizedUser();
+  }, []);
   return (
     <>
       <Sidebar currentPage="notification" />

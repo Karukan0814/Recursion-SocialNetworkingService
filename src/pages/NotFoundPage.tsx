@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Sidebar from "../component/Sidebar";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import "../style/NotFound.css";
+import useLogin from "../hooks/useLogin";
 
 const NotFoundPage = () => {
-  //TODO　ログインチェック入れる（このページはログイン前提）
+  const { blockUnauthorizedUser } = useLogin();
+  useEffect(() => {
+    //初回表示時、ログインしていないユーザーをブロックする
+    blockUnauthorizedUser();
+  }, []);
 
   let navigate = useNavigate();
 

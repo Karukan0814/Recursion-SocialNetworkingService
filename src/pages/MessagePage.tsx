@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../component/Sidebar";
 import "../style/MessagePage.css";
 import MessageCard from "../component/MessageCard";
 import Conversation from "../component/Conversation";
 import AddIcon from "@mui/icons-material/Add";
 import { IconButton } from "@mui/material";
+import useLogin from "../hooks/useLogin";
 
 const MessagePage = () => {
   //TODO クリックしたメッセージカードの内容をConversationコンポーネントに表示する
@@ -13,6 +14,12 @@ const MessagePage = () => {
   const handleAddMessage = () => {
     //TODO 新たなメッセージの作成機能作成
   };
+
+  const { blockUnauthorizedUser } = useLogin();
+  useEffect(() => {
+    //初回表示時、ログインしていないユーザーをブロックする
+    blockUnauthorizedUser();
+  }, []);
   return (
     <>
       <Sidebar currentPage="message" />

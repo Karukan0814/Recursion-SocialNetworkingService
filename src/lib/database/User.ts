@@ -11,9 +11,6 @@ type ResponseFromAPI = {
 // ユーザー情報取得
 export async function loginAPI(email: string, password: string) {
   try {
-    console.log("loginAPI");
-    console.log("loginAPI", { email, password });
-
     // クエリパラメータを用意
     const params: { [key: string]: any } = { email, password };
     if (!email || !password) {
@@ -26,12 +23,6 @@ export async function loginAPI(email: string, password: string) {
 
       params
     );
-    // if (response.status !== 200) {
-    //   // This will activate the closest `error.js` Error Boundary
-    //   //   throw new Error(response.data.errMsg);
-    //   throw new Error("Error");
-    // }
-    console.log(response.data);
 
     return response.data as ResponseFromAPI;
   } catch (error: any) {
@@ -41,5 +32,38 @@ export async function loginAPI(email: string, password: string) {
     }
 
     return null;
+  }
+}
+// トークン有効確認機能
+export async function checkTokenAPI(token: string | undefined | null) {
+  try {
+    if (!token) {
+      throw new Error("トークンがありません");
+    }
+
+    // リクエストヘッダーにJWTを含める
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+
+    // トークンを登録する
+    const response = await apiClient.post("/user/checkToken", {}, { headers });
+
+    if (response.status === 200) {
+      // トークン有効
+      console.log("トークン有効");
+      return true;
+    } else {
+      //トークン無効
+      console.log("トークン無効");
+
+      return false;
+    }
+  } catch (error: any) {
+    console.error("Error check token:", error);
+    if (isAxiosError(error)) {
+      console.error("Error check token:", error.response?.data);
+    }
+    return false;
   }
 }

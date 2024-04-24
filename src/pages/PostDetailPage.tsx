@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Sidebar from "../component/Sidebar";
 import { PostInfo } from "../types/PostType";
@@ -8,6 +8,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { IconButton } from "@mui/material";
 import "../style/PostDetail.css";
 import { useNavigate } from "react-router-dom";
+import useLogin from "../hooks/useLogin";
 const testPosts: PostInfo[] = [
   {
     id: "1",
@@ -45,6 +46,11 @@ const parentPost = {
 };
 
 const PostDetailPage = () => {
+  const { blockUnauthorizedUser } = useLogin();
+  useEffect(() => {
+    //初回表示時、ログインしていないユーザーをブロックする
+    blockUnauthorizedUser();
+  }, []);
   const { postId } = useParams();
   const [reply, setReply] = useState("");
   const navigate = useNavigate();

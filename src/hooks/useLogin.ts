@@ -2,7 +2,7 @@ import { useAtom } from "jotai";
 import { useState } from "react";
 import { jotaiInitialValue, userInfoAtom } from "../lib/jotai/atoms/user";
 import { useNavigate } from "react-router-dom";
-import { loginAPI } from "../lib/database/User";
+import { checkTokenAPI, loginAPI } from "../lib/database/User";
 
 const useLogin = () => {
   const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
@@ -74,8 +74,7 @@ const useLogin = () => {
   //TODO トークンの有効期限を確認する処理
   const validateToken = async (token: string | undefined | null) => {
     //TODO トークンの有効期限確認処理←サーバー
-    // const isValid = await checkToken(token);
-    const isValid = true; //TODO　サーバー側作成後、消す
+    const isValid = await checkTokenAPI(token);
 
     if (token && !isValid) {
       //クッキーにトークンがあり、かつ無効の場合、ログアウト処理する

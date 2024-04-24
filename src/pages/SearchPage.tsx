@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Sidebar from "../component/Sidebar";
 import SearchInput from "../component/SearchInput";
 import "../style/SearchPage.css";
 import Widgets from "../component/Widgets";
+import useLogin from "../hooks/useLogin";
 
 const SearchPage = () => {
+  const { blockUnauthorizedUser } = useLogin();
+  useEffect(() => {
+    //初回表示時、ログインしていないユーザーをブロックする
+    blockUnauthorizedUser();
+  }, []);
   return (
     <>
       <Sidebar currentPage="search" />
