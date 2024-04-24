@@ -14,11 +14,18 @@ import {
   Twitter,
 } from "@mui/icons-material";
 import LogoutIcon from "@mui/icons-material/Logout";
+import useLogin from "../hooks/useLogin";
 
 type Props = {
   currentPage: string;
 };
 function Sidebar({ currentPage }: Props) {
+  const { logout } = useLogin();
+
+  const handleLogout = () => {
+    console.log("handleLogout");
+    logout();
+  };
   return (
     <div className="sidebar">
       <div className="sidebar__icon">
@@ -56,9 +63,12 @@ function Sidebar({ currentPage }: Props) {
         path="/profile"
         active={currentPage === "profile" ? true : false}
       />
-      <IconButton>
-        <LogoutIcon />
-      </IconButton>
+
+      <div className="logoutButton_container">
+        <IconButton className="iconButton" onClick={logout}>
+          <LogoutIcon />
+        </IconButton>
+      </div>
       {/* 
       <Button variant="outlined" className="sidebar__tweet">
         Tweet

@@ -66,6 +66,9 @@ const useLogin = () => {
     resetJotai(); //グローバルステート初期化
     localStorage.removeItem("authToken"); // トークンをローカルストレージから削除
     setLoading(false);
+
+    //login画面に移動
+    navigate("/login");
   };
 
   //TODO トークンの有効期限を確認する処理

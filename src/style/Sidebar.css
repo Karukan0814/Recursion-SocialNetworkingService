@@ -40,6 +40,12 @@
   object-fit: contain; /* アスペクト比を維持する */
 }
 
+.logoutButton_container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
 /* 小さいスクリーンの場合 */
 @media (max-width: 768px) {
   .sidebar {
