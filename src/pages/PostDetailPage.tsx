@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Sidebar from "../component/Sidebar";
-import { PostInfo } from "../types/PostType";
+import { PostInfo } from "../lib/type/PostType";
 import Post from "../component/Post";
 import Widgets from "../component/Widgets";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";

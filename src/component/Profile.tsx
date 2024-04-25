@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import PostBox from "./PostBox";
 import Post from "./Post";
 import "../style/Profile.css";
-import { PostInfo } from "../types/PostType";
+import { PostInfo } from "../lib/type/PostType";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { Button } from "@mui/material";

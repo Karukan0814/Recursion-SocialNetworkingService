@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Post from "./Post";
-import { PostInfo } from "../types/PostType";
+import { PostInfo } from "../lib/type/PostType";
 import { Avatar } from "@mui/material";
 import "../style/ReplyForm.css";
 

@@ -8,7 +8,7 @@ import {
 } from "@mui/icons-material";
 import { Avatar, IconButton } from "@mui/material";
 import "../style/Post.css";
-import { PostInfo } from "../types/PostType";
+import { PostInfo } from "../lib/type/PostType";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import ModalPopup from "./ModalPopup";
