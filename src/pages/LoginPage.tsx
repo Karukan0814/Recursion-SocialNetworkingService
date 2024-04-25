@@ -18,7 +18,10 @@ const LoginPage = () => {
         open={loginFormOpen}
         handleClose={() => setLoginFormOpen(false)}
       >
-        <LoginForm signUpFlag={signUpFlag} />
+        <LoginForm
+          signUpFlag={signUpFlag}
+          handleClose={() => setLoginFormOpen(false)}
+        />
       </ModalPopup>
       <div className="image-container">
         <img

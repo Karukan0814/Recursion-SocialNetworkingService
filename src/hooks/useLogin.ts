@@ -2,7 +2,12 @@ import { useAtom } from "jotai";
 import { useState } from "react";
 import { jotaiInitialValue, userInfoAtom } from "../lib/jotai/atoms/user";
 import { useNavigate } from "react-router-dom";
-import { checkTokenAPI, loginAPI } from "../lib/database/User";
+import {
+  checkTokenAPI,
+  loginAPI,
+  signUpAPI,
+  verifyEmailAPI,
+} from "../lib/database/User";
 
 const useLogin = () => {
   const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
@@ -12,18 +17,84 @@ const useLogin = () => {
 
   let navigate = useNavigate();
 
-  const signUp = (
+  const signUp = async (
     name: string,
     email: string,
     password: string,
     confirmPass: string
   ) => {
-    //TODO 引数のバリデーション
-    //TODO　サーバー側に登録処理
-    //TODO　サーバーからトークンとユーザー情報受け取り
-    //TODO　トークンをlocalStorageに格納
-    //TODO　ユーザー情報をjotaiに格納
-    //TODO　エラー時の処理
+    try {
+      setLoading(true);
+      //引数のバリデーション
+      if (!email) {
+        throw new Error("email is necessary to log in.");
+      }
+      if (!name) {
+        throw new Error("name is necessary to log in.");
+      }
+      if (!password) {
+        throw new Error("password is necessary to log in.");
+      }
+      if (!confirmPass) {
+        throw new Error("confirmPass is necessary to log in.");
+      }
+      if (email.length > 255) {
+        throw new Error("email should be less than 255");
+      }
+      if (name.length > 25) {
+        throw new Error("name should be less than 25");
+      }
+      if (password.length < 8 || password.length > 30) {
+        throw new Error("password should be less than 30 and more than 8");
+      }
+
+      if (password !== confirmPass) {
+        throw new Error("password and confirmPass should be the same");
+      }
+      //サーバー側で登録処理
+
+      await signUpAPI(name, email, password);
+
+      //メール送信した旨、画面に表示
+      alert(
+        "Verification Mail was sent to your email. Please click the link in the mail."
+      );
+    } catch (e: any) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const verifiyEmail = async (token: string) => {
+    try {
+      if (!token) {
+        throw new Error("token is necessary to verify.");
+      }
+
+      const data = await verifyEmailAPI(token);
+      if (data?.error) {
+        console.log(data.error);
+        throw new Error(data.error);
+      }
+
+      if (!data || !data.token || !data.user) {
+        throw new Error("Something wrong with login API");
+      }
+
+      //認証成功時はユーザー情報をjotaiに入れる
+      setuserInfoJotai(data.user);
+      localStorage.setItem("authToken", data.token); // トークンをローカルストレージに保存
+
+      alert("Verification Success!");
+
+      //home画面に移動
+      navigate("/");
+    } catch (error: any) {
+      setErrorMsg(error.message);
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const login = async (email: string, password: string) => {
@@ -35,7 +106,6 @@ const useLogin = () => {
         throw new Error("email and password are necessary to log in.");
       }
       const data = await loginAPI(email, password);
-      console.log({ loading });
 
       if (data?.error) {
         console.log(data.error);
@@ -71,9 +141,7 @@ const useLogin = () => {
     navigate("/login");
   };
 
-  //TODO トークンの有効期限を確認する処理
   const validateToken = async (token: string | undefined | null) => {
-    //TODO トークンの有効期限確認処理←サーバー
     const isValid = await checkTokenAPI(token);
 
     if (token && !isValid) {
@@ -107,6 +175,7 @@ const useLogin = () => {
     login,
     logout,
     blockUnauthorizedUser,
+    verifiyEmail,
   };
 };
 

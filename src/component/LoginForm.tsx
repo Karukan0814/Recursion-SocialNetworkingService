@@ -4,9 +4,11 @@ import useLogin from "../hooks/useLogin";
 import { Button } from "@mui/material";
 import PrimaryButton from "./PrimaryButton";
 import { useForm } from "react-hook-form";
+import { signUpAPI } from "../lib/database/User";
 
 type Props = {
   signUpFlag: boolean;
+  handleClose: () => void;
 };
 type FormData = {
   email: string;
@@ -14,8 +16,8 @@ type FormData = {
   confirmPassword: string;
   name: string;
 };
-const LoginForm = ({ signUpFlag }: Props) => {
-  const { login, loading, errorMsg } = useLogin();
+const LoginForm = ({ signUpFlag, handleClose }: Props) => {
+  const { login, signUp, loading, errorMsg } = useLogin();
 
   const {
     register,
@@ -28,15 +30,10 @@ const LoginForm = ({ signUpFlag }: Props) => {
   const onSubmit = async (data: FormData) => {
     console.log({ data });
     if (signUpFlag) {
-      console.log("handleSignUp", loading);
-      // e.preventDefault();
-      // await login(email, password);
-      console.log(loading);
+      await signUp(data.name, data.email, data.password, data.confirmPassword);
+      handleClose();
     } else {
-      console.log("handleLogin", loading);
-
       await login(data.email, data.password);
-      console.log(loading);
     }
   };
 

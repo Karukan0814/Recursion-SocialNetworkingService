@@ -8,21 +8,41 @@ type ResponseFromAPI = {
   error?: string;
 };
 
+export async function signUpAPI(
+  userName: string,
+  email: string,
+  password: string
+) {
+  try {
+    // クエリパラメータを用意
+    const params: { [key: string]: any } = { userName, email, password };
+    if (!userName || !email || !password) {
+      throw new Error("userName, email and password are necessary.");
+    }
+    // データを送信する
+    const response = await apiClient.post("/user/register", params);
+
+    return response.data as ResponseFromAPI;
+  } catch (error: any) {
+    console.error("Error fetching data:", error);
+    if (isAxiosError(error)) {
+      return error.response?.data;
+    }
+
+    return null;
+  }
+}
+
 // ユーザー情報取得
 export async function loginAPI(email: string, password: string) {
   try {
     // クエリパラメータを用意
     const params: { [key: string]: any } = { email, password };
     if (!email || !password) {
-      1;
       throw new Error("email and password are necessary.");
     }
     // データを取得する
-    const response = await apiClient.post(
-      "/user/login",
-
-      params
-    );
+    const response = await apiClient.post("/user/login", params);
 
     return response.data as ResponseFromAPI;
   } catch (error: any) {
@@ -65,5 +85,27 @@ export async function checkTokenAPI(token: string | undefined | null) {
       console.error("Error check token:", error.response?.data);
     }
     return false;
+  }
+}
+
+export async function verifyEmailAPI(token: string) {
+  try {
+    console.log("verifyEmailAPI");
+    // クエリパラメータを用意
+    const params: { [key: string]: any } = { token };
+    if (!token) {
+      throw new Error("token is necessary.");
+    }
+    // データを送信する
+    const response = await apiClient.post("/user/verify", params);
+
+    return response.data as ResponseFromAPI;
+  } catch (error: any) {
+    console.error("Error fetching data:", error);
+    if (isAxiosError(error)) {
+      return error.response?.data;
+    }
+
+    return null;
   }
 }

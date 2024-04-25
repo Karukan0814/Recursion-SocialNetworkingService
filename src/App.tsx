@@ -8,6 +8,7 @@ import MessagePage from "./pages/MessagePage";
 import NotificationPage from "./pages/NotificationPage";
 import SearchPage from "./pages/SearchPage";
 import PostDetailPage from "./pages/PostDetailPage";
+import VerifyPage from "./pages/VerifyPage";
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/message" element={<MessagePage />} />
           <Route path="/notification" element={<NotificationPage />} />
+          <Route path="/verify" element={<VerifyPage />} />
+
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>

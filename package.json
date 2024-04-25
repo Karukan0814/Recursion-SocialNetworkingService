@@ -16,6 +16,7 @@
     "@mui/material": "^5.15.15",
     "axios": "^1.6.8",
     "jotai": "^2.8.0",
+    "nodemailer": "^6.9.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.3",
