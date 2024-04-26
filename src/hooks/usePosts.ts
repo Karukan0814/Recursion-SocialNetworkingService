@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { getTrendPostList, registerPostAPI } from "../lib/database/Post";
+import {
+  getFollowingsPostList,
+  getTrendPostList,
+  registerPostAPI,
+} from "../lib/database/Post";
 import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
 import { PostInfo } from "../lib/type/PostType";
@@ -36,9 +40,12 @@ const usePosts = () => {
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [trendPosts, setTrendPosts] = useState<PostInfo[]>([]);
+  const [followingsPosts, setFollowingsPosts] = useState<PostInfo[]>([]);
+
   useEffect(() => {
     console.log("usePosts _ useEffect");
     getRecentPosts();
+    getFollowingsPosts();
   }, []);
 
   const registerPost = async (text: string, img: File | null) => {
@@ -66,7 +73,9 @@ const usePosts = () => {
 
   const getRecentPosts = async () => {
     try {
-      const recentPosts = await getTrendPostList();
+      const token = localStorage.getItem("authToken");
+
+      const recentPosts = await getTrendPostList(token);
       console.log(recentPosts);
       if (recentPosts) {
         setTrendPosts(recentPosts);
@@ -77,12 +86,20 @@ const usePosts = () => {
     }
   };
 
-  const getFollowersPosts = async () => {
+  const getFollowingsPosts = async () => {
     try {
-      const followersPosts = await getTrendPostList();
-      console.log(followersPosts);
-      if (followersPosts) {
-        setTrendPosts(followersPosts);
+      console.log("getFollowingsPosts");
+      const token = localStorage.getItem("authToken");
+      const userId = userInfoJotai.id;
+      console.log(userId);
+      if (!userId) {
+        throw new Error("userId couldn't be extracted from storage.");
+      }
+
+      const followingsPostsList = await getFollowingsPostList(token, userId);
+      console.log({ followingsPostsList });
+      if (followingsPostsList) {
+        setFollowingsPosts(followingsPostsList);
       }
     } catch (error: any) {
       setErrorMsg(error.message);
@@ -92,10 +109,12 @@ const usePosts = () => {
 
   return {
     getRecentPosts,
+    getFollowingsPosts,
     loading,
     errorMsg,
     registerPost,
-    newPosts: trendPosts,
+    trendPosts,
+    followingsPosts,
   };
 };
 

@@ -26,8 +26,16 @@ import apiClient from "./apiClient";
 //   }
 // }
 
-export async function getTrendPostList(count: number = 6, page: number = 1) {
+export async function getTrendPostList(
+  token: string | undefined | null,
+  count: number = 6,
+  page: number = 1
+) {
   try {
+    if (!token) {
+      throw new Error("トークンがありません");
+    }
+
     // クエリパラメータを用意
     const params: { [key: string]: any } = { count };
 
@@ -35,8 +43,14 @@ export async function getTrendPostList(count: number = 6, page: number = 1) {
     if (page) {
       params.page = page;
     }
+
+    // リクエストヘッダーにJWTを含める
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
     // データを取得する
     const response = await apiClient.get("/post/search/trend", {
+      headers,
       params,
     });
     if (response.status !== 200) {
@@ -51,7 +65,9 @@ export async function getTrendPostList(count: number = 6, page: number = 1) {
   }
 }
 
-export async function getFollowersPostList(
+export async function getFollowingsPostList(
+  token: string | undefined | null,
+  userId: number,
   count: number = 6,
   page: number = 1
 ) {
@@ -59,12 +75,31 @@ export async function getFollowersPostList(
     // クエリパラメータを用意
     const params: { [key: string]: any } = { count };
 
-    // ページ番号が指定されていればパラメータに設定
+    if (!token) {
+      throw new Error("token is required");
+    }
+    //  各パラメータを設定
+    if (!userId) {
+      throw new Error("userId is required");
+    } else {
+      params.userId = userId;
+    }
+
     if (page) {
       params.page = page;
     }
+
+    if (count) {
+      params.count = count;
+    }
+
+    // リクエストヘッダーにJWTを含める
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
     // データを取得する
-    const response = await apiClient.get("/post/search/trend", {
+    const response = await apiClient.get("/post/search/followings", {
+      headers,
       params,
     });
     if (response.status !== 200) {

@@ -11,12 +11,18 @@ const Feed = () => {
   // const [posts, setPosts] = useState<PostInfo[]>(testPosts);
   const [activeTab, setActiveTab] = useState("trend");
 
-  const { newPosts, getRecentPosts, registerPost } = usePosts();
+  const {
+    trendPosts,
+    getRecentPosts,
+    registerPost,
+    followingsPosts,
+    getFollowingsPosts,
+  } = usePosts();
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setActiveTab(newValue);
   };
 
-  console.log(newPosts);
+  console.log(trendPosts, followingsPosts);
   return (
     <div className="feed">
       <div className="feed__header">
@@ -32,22 +38,29 @@ const Feed = () => {
             className="feed__tab"
             onClick={getRecentPosts}
           />
-          <Tab label="Followers" value="followers" className="feed__tab" />
+          <Tab
+            label="Followings"
+            value="followings"
+            className="feed__tab"
+            onClick={getFollowingsPosts}
+          />
         </Tabs>
       </div>
 
       <PostBox registerPost={registerPost} />
       {activeTab === "trend" && (
         <div className="feed__content">
-          {newPosts.map((post) => (
+          {trendPosts.map((post) => (
             <Post key={post.id} post={post} />
           ))}
         </div>
       )}
 
-      {activeTab === "followers" && (
+      {activeTab === "followings" && (
         <div className="feed__content">
-          {/* フォロワーのコンテンツをここに表示 */}
+          {followingsPosts.map((post) => (
+            <Post key={post.id} post={post} />
+          ))}
         </div>
       )}
     </div>
