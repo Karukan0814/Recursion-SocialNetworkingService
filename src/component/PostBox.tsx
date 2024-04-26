@@ -4,47 +4,62 @@ import "../style/PostBox.css";
 import { PhotoCamera } from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
 import { TextareaAutosize } from "@mui/base/TextareaAutosize";
+import PrimaryButton from "./PrimaryButton";
+import { useForm } from "react-hook-form";
+import usePosts from "../hooks/usePosts";
 
-const PostBox = () => {
-  const [tweetMessage, setTweetMessage] = useState("");
-  const [tweetImage, setTweetImage] = useState<File | null>(null);
+type FormData = {
+  postMessage: string;
+  postImage: File | null;
+};
+type Props = {
+  registerPost: (text: string, img: File | null) => void;
+};
+
+const PostBox = ({ registerPost }: Props) => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm<FormData>();
+  const tweetImage = watch("postImage");
 
   const [imagePreviewUrl, setImagePreviewUrl] = useState("");
 
-  const sendTweet = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-
-    //サーバーにtweetを送信する処理
-
-    setTweetMessage("");
-    setTweetImage(null);
+  const onSubmit = async (data: FormData) => {
+    //TODO サーバーにPostデータを登録
+    registerPost(data.postMessage, data.postImage);
   };
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files && event.target.files[0];
-    if (file) {
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      setValue("postImage", file); // react-hook-formにファイルを設定
       const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreviewUrl(reader.result as string);
+      reader.onload = () => {
+        const previewUrl = reader.result as string;
+        setImagePreviewUrl(previewUrl);
       };
       reader.readAsDataURL(file);
     }
   };
 
   const handleRemoveImage = () => {
+    setValue("postImage", null);
     setImagePreviewUrl(""); // 画像URLをクリアしてプレビューを削除
   };
   return (
     <div className="postBox">
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="postBox__input">
           <Avatar src="https://scontent-bom1-1.xx.fbcdn.net/v/t1.0-1/c0.33.200.200a/p200x200/51099653_766820610355014_8315780769297465344_o.jpg?_nc_cat=101&_nc_sid=7206a8&_nc_ohc=c1qBHkwAgVsAX8KynKU&_nc_ht=scontent-bom1-1.xx&oh=340b05bea693dd1671296e0c2d004bb3&oe=5F84CA62" />
 
           <TextareaAutosize
-            value={tweetMessage}
-            onChange={(e) => setTweetMessage(e.target.value.substring(0, 200))}
+            {...register("postMessage", { required: true, maxLength: 200 })}
             maxRows={10}
             placeholder="What's happening?"
-            maxLength={200} // 最大文字数を200に制限
             style={{
               width: "100%",
               border: "none",
@@ -54,6 +69,7 @@ const PostBox = () => {
               resize: "none",
             }}
           />
+          {errors.postMessage && <p>Your message is required</p>}
         </div>
         <div className="photo__preview__container">
           {imagePreviewUrl && (
@@ -81,6 +97,7 @@ const PostBox = () => {
           >
             <PhotoCamera />
             <input
+              {...register("postImage")}
               type="file"
               hidden // ファイル入力を隠す
               accept="image/*" // 画像ファイルのみ受け入れる
@@ -88,13 +105,13 @@ const PostBox = () => {
             />
             Upload
           </Button>
-          <Button
-            onClick={(e) => sendTweet(e)}
-            type="submit"
-            className="postBox__button"
-          >
-            Post
-          </Button>
+
+          <PrimaryButton
+            loading={false} //todo loadingの変数作成
+            text={"Post"}
+            onClick={handleSubmit(onSubmit)}
+          />
+          <div className="loginButton_container"></div>
         </div>
       </form>
     </div>

@@ -4,6 +4,6 @@ export type PostInfo = {
   text: string;
   image?: string;
   avatar: string;
-  createDateTime: Date;
-  updateDateTime: Date;
+  createdAt: Date;
+  updatedAt: Date;
 };

@@ -2,44 +2,22 @@ import React, { useEffect, useState } from "react";
 import PostBox from "./PostBox";
 import Post from "./Post";
 import "../style/Feed.css";
-import { PostInfo } from "../types/PostType";
+import { PostInfo } from "../lib/type/PostType";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-
-const testPosts: PostInfo[] = [
-  {
-    id: "1",
-    username: "testuser1",
-    text: "testposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestpost",
-    avatar: "/assets/default_profile_400x400.png",
-    createDateTime: new Date(),
-    updateDateTime: new Date(),
-  },
-  {
-    id: "2",
-    username: "testuser2",
-    text: "testposttestposttestposttestposttestposttestpost",
-    avatar: "/assets/default_profile_400x400.png",
-    createDateTime: new Date("2024-04-016T12:34:56Z"),
-    updateDateTime: new Date("2024-04-019T12:34:56Z"),
-  },
-  {
-    id: "3",
-    username: "testuser3",
-    text: "testposttestposttestposttestposttestposttestpost",
-    avatar: "/assets/default_profile_400x400.png",
-    createDateTime: new Date("2024-04-017T12:34:56Z"),
-    updateDateTime: new Date("2024-04-019T12:34:56Z"),
-  },
-];
+import usePosts from "../hooks/usePosts";
+import { PlaylistAddCheckCircleRounded } from "@mui/icons-material";
 
 const Feed = () => {
-  const [posts, setPosts] = useState<PostInfo[]>(testPosts);
+  // const [posts, setPosts] = useState<PostInfo[]>(testPosts);
   const [activeTab, setActiveTab] = useState("trend");
+
+  const { posts, setRecentPosts, addNewPost, registerPost } = usePosts();
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setActiveTab(newValue);
   };
 
+  console.log(posts);
   return (
     <div className="feed">
       <div className="feed__header">
@@ -54,7 +32,7 @@ const Feed = () => {
         </Tabs>
       </div>
 
-      <PostBox />
+      <PostBox registerPost={registerPost} />
       {activeTab === "trend" && (
         <div className="feed__content">
           {posts.map((post) => (
