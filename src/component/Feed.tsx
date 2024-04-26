@@ -6,18 +6,17 @@ import { PostInfo } from "../lib/type/PostType";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import usePosts from "../hooks/usePosts";
-import { PlaylistAddCheckCircleRounded } from "@mui/icons-material";
 
 const Feed = () => {
   // const [posts, setPosts] = useState<PostInfo[]>(testPosts);
   const [activeTab, setActiveTab] = useState("trend");
 
-  const { posts, setRecentPosts, addNewPost, registerPost } = usePosts();
+  const { newPosts, getRecentPosts, registerPost } = usePosts();
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setActiveTab(newValue);
   };
 
-  console.log(posts);
+  console.log(newPosts);
   return (
     <div className="feed">
       <div className="feed__header">
@@ -27,7 +26,12 @@ const Feed = () => {
           centered
           className="feed__tabs"
         >
-          <Tab label="Trend" value="trend" className="feed__tab" />
+          <Tab
+            label="Trend"
+            value="trend"
+            className="feed__tab"
+            onClick={getRecentPosts}
+          />
           <Tab label="Followers" value="followers" className="feed__tab" />
         </Tabs>
       </div>
@@ -35,7 +39,7 @@ const Feed = () => {
       <PostBox registerPost={registerPost} />
       {activeTab === "trend" && (
         <div className="feed__content">
-          {posts.map((post) => (
+          {newPosts.map((post) => (
             <Post key={post.id} post={post} />
           ))}
         </div>

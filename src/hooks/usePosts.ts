@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getPostList, registerPostAPI } from "../lib/database/Post";
+import { getTrendPostList, registerPostAPI } from "../lib/database/Post";
 import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
 import { PostInfo } from "../lib/type/PostType";
@@ -35,10 +35,10 @@ const usePosts = () => {
 
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  const [posts, setPosts] = useState<PostInfo[]>([]);
+  const [trendPosts, setTrendPosts] = useState<PostInfo[]>([]);
   useEffect(() => {
     console.log("usePosts _ useEffect");
-    setRecentPosts();
+    getRecentPosts();
   }, []);
 
   const registerPost = async (text: string, img: File | null) => {
@@ -54,8 +54,8 @@ const usePosts = () => {
       if (!newPost) {
         throw new Error("Something wrong with registering new post");
       }
-      setPosts([newPost, ...posts]);
-      console.log({ posts });
+      setTrendPosts([newPost, ...trendPosts]);
+      console.log({ posts: trendPosts });
     } catch (error: any) {
       setErrorMsg(error.message);
       console.log(error);
@@ -63,15 +63,26 @@ const usePosts = () => {
       setLoading(false);
     }
   };
-  const addNewPost = (newPost: PostInfo) => {
-    setPosts([newPost, ...posts]);
-  };
-  const setRecentPosts = async () => {
+
+  const getRecentPosts = async () => {
     try {
-      const recentPosts = await getPostList();
+      const recentPosts = await getTrendPostList();
       console.log(recentPosts);
       if (recentPosts) {
-        setPosts(recentPosts);
+        setTrendPosts(recentPosts);
+      }
+    } catch (error: any) {
+      setErrorMsg(error.message);
+      console.log(error);
+    }
+  };
+
+  const getFollowersPosts = async () => {
+    try {
+      const followersPosts = await getTrendPostList();
+      console.log(followersPosts);
+      if (followersPosts) {
+        setTrendPosts(followersPosts);
       }
     } catch (error: any) {
       setErrorMsg(error.message);
@@ -80,12 +91,11 @@ const usePosts = () => {
   };
 
   return {
-    addNewPost,
-    setRecentPosts,
+    getRecentPosts,
     loading,
     errorMsg,
     registerPost,
-    posts,
+    newPosts: trendPosts,
   };
 };
 
