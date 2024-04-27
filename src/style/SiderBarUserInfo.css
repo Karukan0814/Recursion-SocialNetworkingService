@@ -1,0 +1,29 @@
+.sidebar_userInfo__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  margin: 30px auto;
+}
+
+.sidebar_userInfo__name {
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.5rem; /* 折り返しを考慮して行間を広げる */
+  word-break: break-word;
+}
+
+.logoutButton_container {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .sidebar_userInfo__container {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .sidebar_userInfo__name {
+    display: none;
+  }
+}

@@ -15,6 +15,7 @@ import {
 } from "@mui/icons-material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import useLogin from "../hooks/useLogin";
+import SiderBarUserInfo from "./SiderBarUserInfo";
 
 type Props = {
   currentPage: string;
@@ -63,16 +64,7 @@ function Sidebar({ currentPage }: Props) {
         path="/profile"
         active={currentPage === "profile" ? true : false}
       />
-
-      <div className="logoutButton_container">
-        <IconButton className="iconButton" onClick={logout}>
-          <LogoutIcon />
-        </IconButton>
-      </div>
-      {/* 
-      <Button variant="outlined" className="sidebar__tweet">
-        Tweet
-      </Button> */}
+      <SiderBarUserInfo />
     </div>
   );
 }
