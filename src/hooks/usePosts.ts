@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   getFollowingsPostList,
   getTrendPostList,
@@ -34,19 +34,16 @@ const testPosts: PostInfo[] = [
   },
 ];
 
-const usePosts = () => {
+const usePosts = (tabName: string) => {
   const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
 
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  const [trendPosts, setTrendPosts] = useState<PostInfo[]>([]);
-  const [followingsPosts, setFollowingsPosts] = useState<PostInfo[]>([]);
+  const [postList, setPostList] = useState<PostInfo[]>([]);
+  const [hasMore, setHasMore] = useState(true); //再読み込み判定
 
-  useEffect(() => {
-    console.log("usePosts _ useEffect");
-    getRecentPosts();
-    getFollowingsPosts();
-  }, []);
+  const sleep = (sec: number) =>
+    new Promise((resolve) => setTimeout(resolve, sec * 1000)); // ← ③
 
   const registerPost = async (text: string, img: File | null) => {
     try {
@@ -61,8 +58,8 @@ const usePosts = () => {
       if (!newPost) {
         throw new Error("Something wrong with registering new post");
       }
-      setTrendPosts([newPost, ...trendPosts]);
-      console.log({ posts: trendPosts });
+
+      setPostList([newPost, ...postList]);
     } catch (error: any) {
       setErrorMsg(error.message);
       console.log(error);
@@ -71,36 +68,28 @@ const usePosts = () => {
     }
   };
 
-  const getRecentPosts = async () => {
+  const setNextPost = async (page: number) => {
     try {
-      const token = localStorage.getItem("authToken");
-
-      const recentPosts = await getTrendPostList(token);
-      console.log(recentPosts);
-      if (recentPosts) {
-        setTrendPosts(recentPosts);
-      }
-    } catch (error: any) {
-      setErrorMsg(error.message);
-      console.log(error);
-    }
-  };
-
-  const getFollowingsPosts = async () => {
-    try {
-      console.log("getFollowingsPosts");
       const token = localStorage.getItem("authToken");
       const userId = userInfoJotai.id;
-      console.log(userId);
       if (!userId) {
         throw new Error("userId couldn't be extracted from storage.");
       }
-
-      const followingsPostsList = await getFollowingsPostList(token, userId);
-      console.log({ followingsPostsList });
-      if (followingsPostsList) {
-        setFollowingsPosts(followingsPostsList);
+      await sleep(1.0);
+      let newPosts: any[] | null;
+      if (tabName === "trend") {
+        newPosts = await getTrendPostList(token, 20, page);
+      } else {
+        newPosts = await getFollowingsPostList(token, userId, 20, page);
       }
+      console.log(newPosts);
+      if (!newPosts) {
+        newPosts = [];
+      }
+
+      setHasMore(newPosts.length > 0);
+
+      setPostList([...postList, ...newPosts]);
     } catch (error: any) {
       setErrorMsg(error.message);
       console.log(error);
@@ -108,13 +97,12 @@ const usePosts = () => {
   };
 
   return {
-    getRecentPosts,
-    getFollowingsPosts,
     loading,
     errorMsg,
     registerPost,
-    trendPosts,
-    followingsPosts,
+    postList,
+    setNextPost,
+    hasMore,
   };
 };
 
