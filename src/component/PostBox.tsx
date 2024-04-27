@@ -23,14 +23,15 @@ const PostBox = ({ registerPost }: Props) => {
     watch,
     setValue,
     formState: { errors },
+    reset,
   } = useForm<FormData>();
   const tweetImage = watch("postImage");
 
   const [imagePreviewUrl, setImagePreviewUrl] = useState("");
 
   const onSubmit = async (data: FormData) => {
-    //TODO サーバーにPostデータを登録
     registerPost(data.postMessage, data.postImage);
+    reset();
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
