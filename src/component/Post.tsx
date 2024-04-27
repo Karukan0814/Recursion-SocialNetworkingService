@@ -18,7 +18,6 @@ type Props = {
   displayFooter?: boolean;
 };
 const Post = ({ post, displayFooter = true }: Props) => {
-  console.log(post);
   const formattedTime = post.createdAt.toLocaleString();
   const [liked, setLiked] = useState(false);
   const [openReply, setOpenReply] = useState(false);

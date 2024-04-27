@@ -1,0 +1,13 @@
+.tab__content {
+  overflow: auto;
+  height: calc(100vh - 240px);
+}
+
+.posts_loading_container {
+  display: flex;
+  justify-content: center;
+}
+
+.posts_loading_icon {
+  margin: 20px auto;
+}

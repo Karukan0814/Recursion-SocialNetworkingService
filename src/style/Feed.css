@@ -30,15 +30,6 @@
   display: none;
 }
 
-.posts_loading_container {
-  /* visibility: hidden; */
-  display: flex;
-  justify-content: center;
-}
-
-.posts_loading_icon {
-  margin-top: 20px;
-}
 @media (max-width: 1066px) {
   .feed {
     flex: 1; /* 真ん中のコンポーネントをできる限り大きくする */
