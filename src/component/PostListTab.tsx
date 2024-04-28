@@ -5,6 +5,7 @@ import { CircularProgress } from "@mui/material";
 import Post from "./Post";
 import usePosts from "../hooks/usePosts";
 import "../style/PostListTab.css";
+import Loading from "./Loading";
 
 type Props = {
   tabName: string;
@@ -29,11 +30,7 @@ const PostListTab = ({ tabName }: Props) => {
         <InfiniteScroll
           pageStart={0}
           loadMore={loadNextList}
-          loader={
-            <div className="posts_loading_container">
-              <CircularProgress className="posts_loading_icon" />
-            </div>
-          }
+          loader={<Loading />}
           hasMore={hasMore}
           useWindow={false}
         >

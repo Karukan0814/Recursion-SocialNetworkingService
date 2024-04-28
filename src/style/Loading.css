@@ -1,0 +1,8 @@
+.loading_container {
+  display: flex;
+  justify-content: center;
+}
+
+.loading_icon {
+  margin: 20px auto;
+}
