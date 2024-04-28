@@ -25,35 +25,29 @@ const PostDetailPage = () => {
   const navigate = useNavigate();
   const { postId } = useParams();
   const [parentPost, setParentPost] = useState<PostInfo | null>(null);
-  // const [replies, setReplies] = useState<PostInfo[]>([]);
-  console.log(postId);
-  if (!postId) {
-    navigate("/notfound");
-  }
-  let replyToId = parseInt(postId!);
+
+  let replyToId = 0;
   const { registerPost, postList } = usePosts(PostType.detail);
 
   const token = localStorage.getItem("authToken"); // トークンをローカルストレージに保存
 
   useEffect(() => {
-    //初回表示時、ログインしていないユーザーをブロックする
     blockUnauthorizedUser();
+    if (!postId) {
+      navigate("/notfound");
+      return;
+    } else {
+      replyToId = parseInt(postId);
+    }
 
-    const searchPostInfo = async (postId: string) => {
+    const fetchPostInfo = async () => {
+      const token = localStorage.getItem("authToken");
       const postInfo = await getPostInfo(postId, token);
-      console.log(postInfo);
       setParentPost(postInfo);
     };
 
-    if (!postId) {
-      navigate("/notfound");
-    } else {
-      replyToId = parseInt(postId);
-      searchPostInfo(postId);
-    }
-  }, [postId]);
-  //TODO postIdから当該ポストの最新情報を取得
-  const [reply, setReply] = useState("");
+    fetchPostInfo();
+  }, []);
   const handleBack = () => {
     navigate(-1); // 一つ前のページに戻る
   };
