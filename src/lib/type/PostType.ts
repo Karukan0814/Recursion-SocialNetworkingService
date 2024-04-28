@@ -1,5 +1,5 @@
 export type PostInfo = {
-  id: string;
+  id: number;
   username: string;
   text: string;
   image?: string;
@@ -7,3 +7,9 @@ export type PostInfo = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export enum PostType {
+  "trend",
+  "followings",
+  "detail",
+}

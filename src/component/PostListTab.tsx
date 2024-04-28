@@ -1,16 +1,16 @@
-import React from "react";
 import PostBox from "./PostBox";
 import InfiniteScroll from "react-infinite-scroller";
-import { CircularProgress } from "@mui/material";
 import Post from "./Post";
 import usePosts from "../hooks/usePosts";
 import "../style/PostListTab.css";
 import Loading from "./Loading";
+import { PostType } from "../lib/type/PostType";
 
 type Props = {
-  tabName: string;
+  tabName: PostType;
+  replyToId?: number;
 };
-const PostListTab = ({ tabName }: Props) => {
+const PostListTab = ({ tabName, replyToId }: Props) => {
   const {
     postList,
     registerPost,
@@ -20,12 +20,12 @@ const PostListTab = ({ tabName }: Props) => {
   } = usePosts(tabName);
 
   const loadNextList = async (page: number) => {
-    setNextPost(page);
+    setNextPost(page, replyToId);
   };
 
   return (
     <>
-      <PostBox registerPost={registerPost} />
+      <PostBox registerPost={registerPost} replyToId={replyToId} />
       <div className="tab__content">
         <InfiniteScroll
           pageStart={0}
@@ -36,7 +36,7 @@ const PostListTab = ({ tabName }: Props) => {
         >
           {/* {hasMore ? "true" : "false"} */}
           {postList.map((post) => (
-            <Post key={`trend_${post.id}`} post={post} />
+            <Post key={`${tabName}_${post.id}`} post={post} />
           ))}
         </InfiniteScroll>
       </div>

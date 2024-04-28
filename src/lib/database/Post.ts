@@ -113,6 +113,103 @@ export async function getFollowingsPostList(
     return null;
   }
 }
+
+export async function getReplyPostList(
+  token: string | undefined | null,
+  userId: number,
+  count: number = 20,
+  page: number = 1,
+  replyToId?: number
+) {
+  try {
+    // クエリパラメータを用意
+    const params: { [key: string]: any } = { count };
+
+    if (!token) {
+      throw new Error("token is required");
+    }
+    //  各パラメータを設定
+    if (!userId) {
+      throw new Error("userId is required");
+    } else {
+      params.userId = userId;
+    }
+
+    if (!replyToId) {
+      throw new Error("replyToId is required");
+    } else {
+      params.replyToId = replyToId;
+    }
+
+    if (page) {
+      params.page = page;
+    }
+
+    if (count) {
+      params.count = count;
+    }
+
+    // リクエストヘッダーにJWTを含める
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+
+    console.log("getReplyPostList", params);
+    // データを取得する
+    const response = await apiClient.get("/post/search/replies", {
+      headers,
+      params,
+    });
+    if (response.status !== 200) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error("Failed to fetch data");
+    }
+    return response.data as PostInfo[];
+  } catch (error) {
+    console.error("Error fetching data:", error);
+
+    return null;
+  }
+}
+export async function getPostInfo(
+  postId: string,
+  token: string | undefined | null
+) {
+  try {
+    console.log("getPostInfo", { postId, token });
+    // クエリパラメータを用意
+    const params: { [key: string]: any } = {};
+
+    if (!token) {
+      throw new Error("token is required");
+    }
+
+    if (postId) {
+      params.postId = postId;
+    } else {
+      throw new Error("postId is required.");
+    }
+
+    // リクエストヘッダーにJWTを含める
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    // データを取得する
+    const response = await apiClient.get("/post/search/postById", {
+      headers,
+      params,
+    });
+    if (response.status !== 200) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error("Failed to fetch data");
+    }
+    return response.data as PostInfo;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+
+    return null;
+  }
+}
 // export async function getArticleByCategoryId(categoryId: number) {
 //   try {
 //     // クエリパラメータを用意
@@ -250,13 +347,15 @@ export async function getFollowingsPostList(
 export async function registerPostAPI(
   userId: number,
   img: string,
-  text: string
+  text: string,
+  replyToId?: number
 ) {
   try {
     console.log("registerPost", {
       userId,
       text,
       img,
+      replyToId,
     });
 
     // TODO Postの画像データをどこに保存するか問題
@@ -267,6 +366,7 @@ export async function registerPostAPI(
       img: "/assets/food_sushi_pack.png",
 
       userId,
+      replyToId,
     };
 
     // リクエストヘッダーにJWTを含める

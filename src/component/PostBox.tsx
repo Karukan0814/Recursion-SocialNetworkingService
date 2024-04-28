@@ -14,10 +14,11 @@ type FormData = {
   postImage: File | null;
 };
 type Props = {
-  registerPost: (text: string, img: File | null) => void;
+  registerPost: (text: string, img: File | null, replyToId?: number) => void;
+  replyToId?: number;
 };
 
-const PostBox = ({ registerPost }: Props) => {
+const PostBox = ({ registerPost, replyToId }: Props) => {
   const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
   const {
     register,
@@ -32,7 +33,7 @@ const PostBox = ({ registerPost }: Props) => {
   const [imagePreviewUrl, setImagePreviewUrl] = useState("");
 
   const onSubmit = async (data: FormData) => {
-    registerPost(data.postMessage, data.postImage);
+    registerPost(data.postMessage, data.postImage, replyToId);
     reset();
   };
 

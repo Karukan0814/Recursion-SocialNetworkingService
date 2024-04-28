@@ -1,40 +1,15 @@
 import { useState } from "react";
 import {
   getFollowingsPostList,
+  getReplyPostList,
   getTrendPostList,
   registerPostAPI,
 } from "../lib/database/Post";
 import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
-import { PostInfo } from "../lib/type/PostType";
-const testPosts: PostInfo[] = [
-  {
-    id: "1",
-    username: "testuser1",
-    text: "testposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestposttestpost",
-    avatar: "/assets/default_profile_400x400.png",
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-  {
-    id: "2",
-    username: "testuser2",
-    text: "testposttestposttestposttestposttestposttestpost",
-    avatar: "/assets/default_profile_400x400.png",
-    createdAt: new Date("2024-04-016T12:34:56Z"),
-    updatedAt: new Date("2024-04-019T12:34:56Z"),
-  },
-  {
-    id: "3",
-    username: "testuser3",
-    text: "testposttestposttestposttestposttestposttestpost",
-    avatar: "/assets/default_profile_400x400.png",
-    createdAt: new Date("2024-04-017T12:34:56Z"),
-    updatedAt: new Date("2024-04-019T12:34:56Z"),
-  },
-];
+import { PostInfo, PostType } from "../lib/type/PostType";
 
-const usePosts = (tabName: string) => {
+const usePosts = (tabName: PostType) => {
   const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
 
   const [loading, setLoading] = useState(false);
@@ -45,16 +20,25 @@ const usePosts = (tabName: string) => {
   const sleep = (sec: number) =>
     new Promise((resolve) => setTimeout(resolve, sec * 1000)); // ← ③
 
-  const registerPost = async (text: string, img: File | null) => {
+  const registerPost = async (
+    text: string,
+    img: File | null,
+    replyToId?: number
+  ) => {
     try {
       setLoading(true);
-      console.log({ userInfoJotai });
+      console.log({ replyToId });
 
       if (!text || text.length === 0 || text.length > 200) {
         throw new Error("text should be less than 200");
       }
       const testImg = "/assets/food_fruit_sandwich_ichigo.png";
-      const newPost = await registerPostAPI(userInfoJotai.id!, testImg, text);
+      const newPost = await registerPostAPI(
+        userInfoJotai.id!,
+        testImg,
+        text,
+        replyToId
+      );
       if (!newPost) {
         throw new Error("Something wrong with registering new post");
       }
@@ -68,7 +52,7 @@ const usePosts = (tabName: string) => {
     }
   };
 
-  const setNextPost = async (page: number) => {
+  const setNextPost = async (page: number, replyToId?: number) => {
     try {
       const token = localStorage.getItem("authToken");
       const userId = userInfoJotai.id;
@@ -77,10 +61,15 @@ const usePosts = (tabName: string) => {
       }
       await sleep(1.0);
       let newPosts: any[] | null;
-      if (tabName === "trend") {
+      if (tabName === PostType.trend) {
         newPosts = await getTrendPostList(token, 20, page);
-      } else {
+      } else if (tabName === PostType.followings) {
         newPosts = await getFollowingsPostList(token, userId, 20, page);
+      } else if (tabName === PostType.detail) {
+        //TODO 次のリプライを取得する処理
+        newPosts = await getReplyPostList(token, userId, 20, page, replyToId);
+      } else {
+        newPosts = [];
       }
       console.log(newPosts);
       if (!newPosts) {

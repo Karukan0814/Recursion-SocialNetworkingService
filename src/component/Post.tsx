@@ -39,7 +39,9 @@ const Post = ({ post, displayFooter = true }: Props) => {
         <div className="post">
           <div className="post__content">
             <div className="post__avatar">
-              <Avatar src={post.avatar} />
+              <Avatar
+                src={post.avatar || "/assets/default_profile_400x400.png"}
+              />
             </div>
             <div className="post__body">
               <div className="post__header">

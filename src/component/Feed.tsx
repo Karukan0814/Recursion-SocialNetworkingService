@@ -4,6 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 
 import PostListTab from "./PostListTab";
+import { PostType } from "../lib/type/PostType";
 
 const Feed = () => {
   const [activeTab, setActiveTab] = useState("trend");
@@ -26,9 +27,11 @@ const Feed = () => {
         </Tabs>
       </div>
 
-      {activeTab === "trend" && <PostListTab tabName="trend" />}
+      {activeTab === "trend" && <PostListTab tabName={PostType.trend} />}
 
-      {activeTab === "followings" && <PostListTab tabName="followings" />}
+      {activeTab === "followings" && (
+        <PostListTab tabName={PostType.followings} />
+      )}
     </div>
   );
 };
