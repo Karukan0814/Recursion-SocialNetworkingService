@@ -26,7 +26,7 @@ const PostDetailPage = () => {
   const { postId } = useParams();
   const [parentPost, setParentPost] = useState<PostInfo | null>(null);
 
-  let replyToId = 0;
+  const [replyToId, setReplyToId] = useState<number>(0);
   const { registerPost, postList } = usePosts(PostType.detail);
 
   const token = localStorage.getItem("authToken"); // トークンをローカルストレージに保存
@@ -37,7 +37,7 @@ const PostDetailPage = () => {
       navigate("/notfound");
       return;
     } else {
-      replyToId = parseInt(postId);
+      setReplyToId(parseInt(postId));
     }
 
     const fetchPostInfo = async () => {
