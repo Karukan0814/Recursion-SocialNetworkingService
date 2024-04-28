@@ -6,6 +6,7 @@ export type PostInfo = {
   avatar: string;
   createdAt: Date;
   updatedAt: Date;
+  likes: LikesInfo[];
 };
 
 export enum PostType {
@@ -13,3 +14,9 @@ export enum PostType {
   "followings",
   "detail",
 }
+
+export type LikesInfo = {
+  id: number;
+  userId: number;
+  postId: number;
+};

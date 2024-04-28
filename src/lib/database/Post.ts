@@ -210,6 +210,54 @@ export async function getPostInfo(
     return null;
   }
 }
+
+export async function registerLike(
+  postId: number,
+  userId: number,
+  like: boolean,
+  token: string | undefined | null
+) {
+  try {
+    // クエリパラメータを用意
+    const params: { [key: string]: any } = { postId, userId, like };
+
+    if (!token) {
+      throw new Error("token is required");
+    }
+
+    if (postId) {
+      params.postId = postId;
+    } else {
+      throw new Error("postId is required.");
+    }
+
+    if (userId) {
+      params.userId = userId;
+    } else {
+      throw new Error("userId is required.");
+    }
+
+    params.like = like;
+
+    // リクエストヘッダーにJWTを含める
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    // データを取得する
+    const response = await apiClient.post("/post/like/register", params, {
+      headers,
+    });
+    if (response.status !== 200) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error("Something wrong with registering like state");
+    }
+    return response.data as number;
+  } catch (error) {
+    console.error("Error registering data:", error);
+
+    return null;
+  }
+}
 // export async function getArticleByCategoryId(categoryId: number) {
 //   try {
 //     // クエリパラメータを用意

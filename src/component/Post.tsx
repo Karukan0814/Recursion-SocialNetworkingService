@@ -13,6 +13,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import ModalPopup from "./ModalPopup";
 import ReplyForm from "./ReplyForm";
+import PostLikeButton from "./PostLikeButton";
 type Props = {
   post: PostInfo;
   displayFooter?: boolean;
@@ -28,11 +29,6 @@ const Post = ({ post, displayFooter = true }: Props) => {
     setOpenReply(true);
   };
 
-  const handleLike = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    console.log("handleLike");
-    setLiked(!liked);
-  };
   return (
     <>
       <Link to={`/post/${post.id}`} style={{ textDecoration: "none" }}>
@@ -70,7 +66,8 @@ const Post = ({ post, displayFooter = true }: Props) => {
               >
                 <ChatBubbleOutline fontSize="small" />
               </IconButton>
-              <IconButton
+              <PostLikeButton postInfo={post} />
+              {/* <IconButton
                 className="post__iconButton"
                 onClick={(e) => handleLike(e)}
               >
@@ -79,7 +76,7 @@ const Post = ({ post, displayFooter = true }: Props) => {
                 ) : (
                   <FavoriteBorder fontSize="small" />
                 )}
-              </IconButton>
+              </IconButton> */}
             </div>
           )}
         </div>
