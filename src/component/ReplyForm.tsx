@@ -30,7 +30,7 @@ const ReplyForm = ({ post, handleClose }: Props) => {
               </h3>
               <h3>
                 <span className="post__headerSpecial time">
-                  {post.createDateTime.toLocaleString()}
+                  {post.createdAt.toLocaleString()}
                 </span>
               </h3>
             </div>
