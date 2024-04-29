@@ -43,7 +43,7 @@ const PostListTab = ({ tabName, replyToId }: Props) => {
         <InfiniteScroll
           pageStart={1}
           loadMore={loadNextList}
-          loader={<Loading />}
+          // loader={}
           hasMore={hasMore}
           useWindow={false}
           initialLoad={false}

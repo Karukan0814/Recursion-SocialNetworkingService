@@ -1,4 +1,6 @@
 .tab__content {
-  overflow: auto;
-  height: calc(100vh - 240px);
+  flex-grow: 1; /* 残りのスペースを全て埋める */
+  overflow: auto; /* 必要に応じてスクロールを表示 */
+  /* height: 100%; */
+  /* TODO heightの動的設定 */
 }
