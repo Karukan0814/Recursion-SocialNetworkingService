@@ -5,24 +5,32 @@ import usePosts from "../hooks/usePosts";
 import "../style/PostListTab.css";
 import Loading from "./Loading";
 import { PostType } from "../lib/type/PostType";
+import { useEffect, useState } from "react";
 
 type Props = {
   tabName: PostType;
   replyToId?: number;
 };
 const PostListTab = ({ tabName, replyToId }: Props) => {
+  console.log(replyToId);
   const {
     postList,
     registerPost,
-
+    // initializePosts,
     setNextPost,
     hasMore,
-  } = usePosts(tabName);
-
+  } = usePosts(tabName, replyToId);
+  console.log(postList);
   const loadNextList = async (page: number) => {
     console.log("loadNextList", page, replyToId);
     setNextPost(page, replyToId);
   };
+
+  // useEffect(() => {
+  //   console.log("useEffect__postlisttab");
+  //   // setInitialLoad(true);
+  //   setNextPost(0, replyToId);
+  // }, [replyToId]);
 
   return (
     <>
@@ -33,13 +41,13 @@ const PostListTab = ({ tabName, replyToId }: Props) => {
       />
       <div className="tab__content">
         <InfiniteScroll
-          pageStart={0}
+          pageStart={1}
           loadMore={loadNextList}
           loader={<Loading />}
           hasMore={hasMore}
           useWindow={false}
+          initialLoad={false}
         >
-          {/* {hasMore ? "true" : "false"} */}
           {postList.map((post) => (
             <Post key={`${tabName}_${post.id}`} post={post} />
           ))}

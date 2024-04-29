@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   getFollowingsPostList,
   getReplyPostList,
@@ -9,7 +9,7 @@ import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
 import { PostInfo, PostType } from "../lib/type/PostType";
 
-const usePosts = (tabName: PostType) => {
+const usePosts = (tabName: PostType, parentId?: number) => {
   const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
 
   const [loading, setLoading] = useState(false);
@@ -17,6 +17,41 @@ const usePosts = (tabName: PostType) => {
   const [postList, setPostList] = useState<PostInfo[]>([]);
   const [hasMore, setHasMore] = useState(true); //再読み込み判定
 
+  const fetchInitialPosts = async () => {
+    try {
+      const token = localStorage.getItem("authToken");
+      const userId = userInfoJotai.id;
+      if (!userId) {
+        throw new Error("userId couldn't be extracted from storage.");
+      }
+      let newPosts: any[] | null;
+      let page = 1;
+      if (tabName === PostType.trend) {
+        newPosts = await getTrendPostList(token, 20, page);
+      } else if (tabName === PostType.followings) {
+        newPosts = await getFollowingsPostList(token, userId, 20, page);
+      } else if (tabName === PostType.detail) {
+        //TODO 次のリプライを取得する処理
+        console.log({ token, userId, page, parentId });
+        newPosts = await getReplyPostList(token, userId, 20, page, parentId);
+      } else {
+        newPosts = [];
+      }
+      console.log(newPosts);
+      if (!newPosts) {
+        newPosts = [];
+      }
+
+      setPostList(newPosts);
+    } catch (error: any) {
+      setErrorMsg(error.message);
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    console.log("useEffect___usePosts");
+    setNextPost(1, parentId);
+  }, [parentId]);
   const registerPost = async (
     text: string,
     img: File | null,
@@ -75,8 +110,11 @@ const usePosts = (tabName: PostType) => {
       }
 
       setHasMore(newPosts.length > 0);
-
-      setPostList([...postList, ...newPosts]);
+      if (page > 1) {
+        setPostList([...postList, ...newPosts]);
+      } else {
+        setPostList(newPosts);
+      }
     } catch (error: any) {
       setErrorMsg(error.message);
       console.log(error);

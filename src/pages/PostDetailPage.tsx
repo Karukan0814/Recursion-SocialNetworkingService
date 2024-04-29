@@ -29,8 +29,11 @@ const PostDetailPage = () => {
   if (!postId) {
     navigate("/notfound");
   }
-  const [replyToId, setReplyToId] = useState<number>(parseInt(postId!));
-  const { registerPost, postList } = usePosts(PostType.detail);
+  // const [replyToId, setReplyToId] = useState<number>(parseInt(postId!));
+  // const { registerPost, postList } = usePosts(
+  //   PostType.detail,
+  //   parseInt(postId!)
+  // );
 
   const token = localStorage.getItem("authToken"); // トークンをローカルストレージに保存
 
@@ -44,7 +47,8 @@ const PostDetailPage = () => {
     };
 
     fetchPostInfo();
-  }, []);
+    // setReplyToId(parseInt(postId!));
+  }, [postId]);
   const handleBack = () => {
     navigate(-1); // 一つ前のページに戻る
   };
@@ -67,7 +71,7 @@ const PostDetailPage = () => {
           )}
         </div>
 
-        <PostListTab tabName={PostType.detail} replyToId={replyToId} />
+        <PostListTab tabName={PostType.detail} replyToId={parseInt(postId!)} />
       </div>
       <Widgets />
     </>

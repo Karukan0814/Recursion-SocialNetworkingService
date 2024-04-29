@@ -61,12 +61,6 @@ const Post = ({ post, displayFooter = true }: Props) => {
           </div>
           {displayFooter && (
             <div className="post__footer">
-              {/* <IconButton
-                className="post__iconButton"
-                onClick={(e) => handleReply(e)}
-              >
-                <ChatBubbleOutline fontSize="small" />
-              </IconButton> */}
               <PostReplyButton
                 replyCount={replyCount}
                 setOpenReply={setOpenReply}
