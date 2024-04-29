@@ -14,14 +14,15 @@ import { Link } from "react-router-dom";
 import ModalPopup from "./ModalPopup";
 import ReplyForm from "./ReplyForm";
 import PostLikeButton from "./PostLikeButton";
+import PostReplyButton from "./PostReplyButton";
 type Props = {
   post: PostInfo;
   displayFooter?: boolean;
 };
 const Post = ({ post, displayFooter = true }: Props) => {
   const formattedTime = post.createdAt.toLocaleString();
-  const [liked, setLiked] = useState(false);
   const [openReply, setOpenReply] = useState(false);
+  const [replyCount, setReplyCount] = useState(post.replies.length);
 
   const handleReply = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -60,29 +61,27 @@ const Post = ({ post, displayFooter = true }: Props) => {
           </div>
           {displayFooter && (
             <div className="post__footer">
-              <IconButton
+              {/* <IconButton
                 className="post__iconButton"
                 onClick={(e) => handleReply(e)}
               >
                 <ChatBubbleOutline fontSize="small" />
-              </IconButton>
-              <PostLikeButton postInfo={post} />
-              {/* <IconButton
-                className="post__iconButton"
-                onClick={(e) => handleLike(e)}
-              >
-                {liked ? (
-                  <Favorite fontSize="small" color="secondary" />
-                ) : (
-                  <FavoriteBorder fontSize="small" />
-                )}
               </IconButton> */}
+              <PostReplyButton
+                replyCount={replyCount}
+                setOpenReply={setOpenReply}
+              />
+              <PostLikeButton postInfo={post} />
             </div>
           )}
         </div>
       </Link>
       <ModalPopup open={openReply} handleClose={() => setOpenReply(false)}>
-        <ReplyForm post={post} handleClose={() => setOpenReply(false)} />
+        <ReplyForm
+          post={post}
+          handleClose={() => setOpenReply(false)}
+          setReplyCount={setReplyCount}
+        />
       </ModalPopup>
     </>
   );

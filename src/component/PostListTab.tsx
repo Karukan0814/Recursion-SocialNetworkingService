@@ -20,12 +20,17 @@ const PostListTab = ({ tabName, replyToId }: Props) => {
   } = usePosts(tabName);
 
   const loadNextList = async (page: number) => {
+    console.log("loadNextList", page, replyToId);
     setNextPost(page, replyToId);
   };
 
   return (
     <>
-      <PostBox registerPost={registerPost} replyToId={replyToId} />
+      <PostBox
+        registerPost={registerPost}
+        replyToId={replyToId}
+        postType={tabName}
+      />
       <div className="tab__content">
         <InfiniteScroll
           pageStart={0}

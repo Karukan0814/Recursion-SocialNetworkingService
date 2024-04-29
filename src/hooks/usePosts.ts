@@ -17,9 +17,6 @@ const usePosts = (tabName: PostType) => {
   const [postList, setPostList] = useState<PostInfo[]>([]);
   const [hasMore, setHasMore] = useState(true); //再読み込み判定
 
-  const sleep = (sec: number) =>
-    new Promise((resolve) => setTimeout(resolve, sec * 1000)); // ← ③
-
   const registerPost = async (
     text: string,
     img: File | null,
@@ -39,6 +36,7 @@ const usePosts = (tabName: PostType) => {
         text,
         replyToId
       );
+      console.log(newPost);
       if (!newPost) {
         throw new Error("Something wrong with registering new post");
       }
@@ -59,7 +57,6 @@ const usePosts = (tabName: PostType) => {
       if (!userId) {
         throw new Error("userId couldn't be extracted from storage.");
       }
-      await sleep(1.0);
       let newPosts: any[] | null;
       if (tabName === PostType.trend) {
         newPosts = await getTrendPostList(token, 20, page);
@@ -67,6 +64,7 @@ const usePosts = (tabName: PostType) => {
         newPosts = await getFollowingsPostList(token, userId, 20, page);
       } else if (tabName === PostType.detail) {
         //TODO 次のリプライを取得する処理
+        console.log({ token, userId, page, replyToId });
         newPosts = await getReplyPostList(token, userId, 20, page, replyToId);
       } else {
         newPosts = [];

@@ -7,12 +7,14 @@ export type PostInfo = {
   createdAt: Date;
   updatedAt: Date;
   likes: LikesInfo[];
+  replies: PostInfo[];
 };
 
 export enum PostType {
   "trend",
   "followings",
   "detail",
+  "reply",
 }
 
 export type LikesInfo = {

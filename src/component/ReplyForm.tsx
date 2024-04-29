@@ -1,64 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Post from "./Post";
-import { PostInfo } from "../lib/type/PostType";
+import { PostInfo, PostType } from "../lib/type/PostType";
 import { Avatar } from "@mui/material";
 import "../style/ReplyForm.css";
+import PostBox from "./PostBox";
+import usePosts from "../hooks/usePosts";
 
 type Props = {
   post: PostInfo;
   handleClose: () => void;
+  setReplyCount: (value: React.SetStateAction<number>) => void;
 };
-const ReplyForm = ({ post, handleClose }: Props) => {
-  const [reply, setReply] = useState("");
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // ページの再読み込みを防ぐ
-    setReply(""); // 入力フィールドをクリア
-    handleClose();
-  };
+const ReplyForm = ({ post, handleClose, setReplyCount }: Props) => {
+  const { registerPost, postList } = usePosts(PostType.reply);
+  useEffect(() => {
+    if (postList.length > 0) {
+      setReplyCount((prev) => prev + 1);
+      handleClose();
+    }
+  }, [postList]);
   return (
     <div className="replyForm__container">
-      <div className="post">
-        <div className="post__avatar">
-          <Avatar src={post.avatar} />
-        </div>
-        <div className="post__body">
-          <div className="post__header">
-            <div className="post__headerText">
-              <h3>
-                <span className="post__headerSpecial">{post.username}</span>
-              </h3>
-              <h3>
-                <span className="post__headerSpecial time">
-                  {post.createdAt.toLocaleString()}
-                </span>
-              </h3>
-            </div>
-            <div className="post__headerDescription">
-              <p>{post.text}</p>
-            </div>
-          </div>
-          <img src={post.image} alt="" />
-        </div>
-      </div>
-      <form onSubmit={(e) => handleSubmit(e)} className="replyForm">
-        <textarea
-          value={reply}
-          onChange={(e) => setReply(e.target.value)}
-          placeholder="Tweet your reply..."
-          className="replyForm__textArea"
-          style={{ flexGrow: 1, marginRight: "10px", height: "50px" }}
-        />
-        <div className="replyForm__Button__container">
-          <button
-            type="submit"
-            disabled={!reply.trim()}
-            className="replyForm__Button"
-          >
-            Reply
-          </button>
-        </div>
-      </form>
+      <Post post={post} displayFooter={false} />
+      <PostBox
+        registerPost={registerPost}
+        postType={PostType.reply}
+        replyToId={post.id}
+      />
     </div>
   );
 };

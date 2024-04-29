@@ -26,23 +26,20 @@ const PostDetailPage = () => {
   const { postId } = useParams();
   const [parentPost, setParentPost] = useState<PostInfo | null>(null);
 
-  const [replyToId, setReplyToId] = useState<number>(0);
+  if (!postId) {
+    navigate("/notfound");
+  }
+  const [replyToId, setReplyToId] = useState<number>(parseInt(postId!));
   const { registerPost, postList } = usePosts(PostType.detail);
 
   const token = localStorage.getItem("authToken"); // トークンをローカルストレージに保存
 
   useEffect(() => {
     blockUnauthorizedUser();
-    if (!postId) {
-      navigate("/notfound");
-      return;
-    } else {
-      setReplyToId(parseInt(postId));
-    }
 
     const fetchPostInfo = async () => {
       const token = localStorage.getItem("authToken");
-      const postInfo = await getPostInfo(postId, token);
+      const postInfo = await getPostInfo(postId!, token);
       setParentPost(postInfo);
     };
 
@@ -62,7 +59,12 @@ const PostDetailPage = () => {
           </IconButton>
         </div>
         <div className="parentPost__conatiner">
-          {parentPost ? <Post post={parentPost} /> : <Loading />}
+          {/*TODO  post詳細画面でもフッター出した場合の挙動について */}
+          {parentPost ? (
+            <Post post={parentPost} displayFooter={false} />
+          ) : (
+            <Loading />
+          )}
         </div>
 
         <PostListTab tabName={PostType.detail} replyToId={replyToId} />

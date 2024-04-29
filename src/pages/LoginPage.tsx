@@ -3,8 +3,18 @@ import "../style/LoginPage.css";
 import { Button } from "@mui/material";
 import ModalPopup from "../component/ModalPopup";
 import LoginForm from "../component/LoginForm";
+import { useAtom } from "jotai";
+import { userInfoAtom } from "../lib/jotai/atoms/user";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
+  let navigate = useNavigate();
+
+  if (userInfoJotai && userInfoJotai.id) {
+    navigate("/");
+  }
+
   const [loginFormOpen, setLoginFormOpen] = useState(false);
   const [signUpFlag, setSignUpFlag] = useState(false);
 

@@ -8,6 +8,7 @@ import PrimaryButton from "./PrimaryButton";
 import { useForm } from "react-hook-form";
 import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
+import { PostType } from "../lib/type/PostType";
 
 type FormData = {
   postMessage: string;
@@ -16,9 +17,10 @@ type FormData = {
 type Props = {
   registerPost: (text: string, img: File | null, replyToId?: number) => void;
   replyToId?: number;
+  postType?: PostType;
 };
 
-const PostBox = ({ registerPost, replyToId }: Props) => {
+const PostBox = ({ registerPost, replyToId, postType }: Props) => {
   const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
   const {
     register,
@@ -65,7 +67,11 @@ const PostBox = ({ registerPost, replyToId }: Props) => {
           <TextareaAutosize
             {...register("postMessage", { required: true, maxLength: 200 })}
             maxRows={10}
-            placeholder="What's happening?"
+            placeholder={`${
+              postType === PostType.detail || postType === PostType.reply
+                ? "Reply to this message"
+                : "What's happening?"
+            }`}
             style={{
               width: "100%",
               border: "none",
@@ -114,7 +120,11 @@ const PostBox = ({ registerPost, replyToId }: Props) => {
 
           <PrimaryButton
             loading={false} //todo loadingの変数作成
-            text={"Post"}
+            text={`${
+              postType === PostType.detail || postType === PostType.reply
+                ? "Reply"
+                : "Post"
+            }`}
             onClick={handleSubmit(onSubmit)}
           />
           <div className="loginButton_container"></div>

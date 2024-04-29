@@ -1,6 +1,7 @@
 .postDetail__container {
   flex: 0.5;
   border-right: 1px solid var(--twitter-background);
+  overflow: hidden;
 }
 @media (max-width: 1066px) {
   .postDetail__container {
@@ -13,6 +14,12 @@
   display: flex;
   justify-content: flex-start;
   border-bottom: 1px solid var(--twitter-background);
+}
+
+.parentPost__conatiner {
+  white-space: normal; /* 折り返しを許可 */
+  overflow-wrap: break-word; /* 長い単語が端に達した場合に折り返す */
+  word-wrap: break-word; /* 長い単語を折り返す */
 }
 
 .replyForm {
