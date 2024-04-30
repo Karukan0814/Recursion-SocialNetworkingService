@@ -61,7 +61,7 @@
 }
 
 .profile__photo {
-  z-index: 999999;
+  z-index: 1000;
   width: 150px;
   height: 150px;
   object-fit: contain;
@@ -71,9 +71,10 @@
 
 .updateProfile_button {
   /* border-radius: 50% !important; */
-  z-index: 999999;
+  z-index: 1000;
 
   width: fit-content !important;
+  margin-right: 20px !important;
 }
 .profile__header {
   display: flex;

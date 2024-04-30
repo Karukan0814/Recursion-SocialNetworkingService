@@ -17,12 +17,9 @@ import { Link } from "react-router-dom";
 const Profile = () => {
   const [userInfoJotai] = useAtom(userInfoAtom);
 
-  const [posts, setPosts] = useState<PostInfo[]>([]);
   const [activeTab, setActiveTab] = useState("posts");
 
   const [updateFormOpen, setUpdateFormOpen] = useState(false);
-  const [followers, setFollowers] = useState([]);
-  const [followees, setFollowees] = useState([]);
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setActiveTab(newValue);
@@ -54,7 +51,7 @@ const Profile = () => {
             variant="outlined"
             className="updateProfile_button"
           >
-            Update Profile
+            Update
           </Button>
         </div>
         <div className="profile__info">
