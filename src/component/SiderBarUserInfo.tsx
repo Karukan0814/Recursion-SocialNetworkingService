@@ -13,9 +13,14 @@ const SiderBarUserInfo = () => {
   return (
     <div className="sidebar_userInfo__container">
       <Avatar
-        src={userInfoJotai.userImg || "/assets/default_profile_400x400.png"}
+        src={
+          userInfoJotai.userInfo?.userImg ||
+          "/assets/default_profile_400x400.png"
+        }
       />
-      <div className="sidebar_userInfo__name">{userInfoJotai.name}</div>
+      <div className="sidebar_userInfo__name">
+        {userInfoJotai.userInfo?.name}
+      </div>
       <div className="logoutButton_container">
         <IconButton className="iconButton" onClick={logout}>
           <LogoutIcon />

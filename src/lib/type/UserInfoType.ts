@@ -6,3 +6,8 @@ export type UserInfoType = {
   isAdmin?: boolean;
   introduction?: string;
 };
+
+export type UserInfoTypeJotai = {
+  userInfo?: UserInfoType;
+  authtoken?: string;
+};

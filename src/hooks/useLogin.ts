@@ -1,6 +1,4 @@
-import { useAtom } from "jotai";
 import { useState } from "react";
-import { jotaiInitialValue, userInfoAtom } from "../lib/jotai/atoms/user";
 import { useNavigate } from "react-router-dom";
 import {
   checkTokenAPI,
@@ -8,10 +6,12 @@ import {
   signUpAPI,
   verifyEmailAPI,
 } from "../lib/database/User";
+import { useAtom } from "jotai";
+import { jotaiInitialValue, userInfoAtom } from "../lib/jotai/atoms/user";
+import { UserInfoType } from "../lib/type/UserInfoType";
 
 const useLogin = () => {
   const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
-
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -82,8 +82,7 @@ const useLogin = () => {
       }
 
       //認証成功時はユーザー情報をjotaiに入れる
-      setuserInfoJotai(data.user);
-      localStorage.setItem("authToken", data.token); // トークンをローカルストレージに保存
+      setuserInfoJotai({ userInfo: data.user, authtoken: data.token });
 
       alert("Verification Success!");
 
@@ -99,7 +98,6 @@ const useLogin = () => {
 
   const login = async (email: string, password: string) => {
     setLoading(true);
-    console.log("useLogin_login", { loading });
     setErrorMsg("");
     try {
       if (!email || !password) {
@@ -115,10 +113,10 @@ const useLogin = () => {
       if (!data || !data.token || !data.user) {
         throw new Error("Something wrong with login API");
       }
-
+      const loginUser: UserInfoType = data.user;
       //ログイン成功時はユーザー情報をjotaiに入れる
-      setuserInfoJotai(data.user);
-      localStorage.setItem("authToken", data.token); // トークンをローカルストレージに保存
+      console.log("login", { userInfo: loginUser, authtoken: data.token });
+      setuserInfoJotai({ userInfo: loginUser, authtoken: data.token });
 
       //home画面に移動
       navigate("/");
@@ -134,7 +132,6 @@ const useLogin = () => {
   const logout = () => {
     setLoading(true);
     resetJotai(); //グローバルステート初期化
-    localStorage.removeItem("authToken"); // トークンをローカルストレージから削除
     setLoading(false);
 
     //login画面に移動
@@ -143,28 +140,27 @@ const useLogin = () => {
 
   const validateToken = async (token: string | undefined | null) => {
     const isValid = await checkTokenAPI(token);
-
+    console.log({ isValid });
     if (token && !isValid) {
-      //クッキーにトークンがあり、かつ無効の場合、ログアウト処理する
-      resetJotai(); //グローバルステート初期化
-      localStorage.removeItem("authToken"); // トークンをローカルストレージから削除
+      return false;
     }
     return isValid;
   };
   const checkLogin = async () => {
-    const token = localStorage.getItem("authToken");
+    const token = userInfoJotai.authtoken;
     const isValidToken = await validateToken(token);
-    const userInfo = userInfoJotai;
-    if (!isValidToken || !userInfo || !userInfo.id) {
+
+    if (
+      !isValidToken ||
+      !userInfoJotai ||
+      !userInfoJotai.userInfo ||
+      userInfoJotai.userInfo.id
+    ) {
+      resetJotai(); //グローバルステート初期化
+
       return false;
     } else {
       return true;
-    }
-  };
-
-  const blockUnauthorizedUser = async () => {
-    if (!(await checkLogin())) {
-      navigate("/login");
     }
   };
 
@@ -174,8 +170,8 @@ const useLogin = () => {
     errorMsg,
     login,
     logout,
-    blockUnauthorizedUser,
     verifiyEmail,
+    checkLogin,
   };
 };
 

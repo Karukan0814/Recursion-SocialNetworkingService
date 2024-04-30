@@ -5,18 +5,18 @@ import { userInfoAtom } from "../lib/jotai/atoms/user";
 import { registerLike } from "../lib/database/Post";
 
 export const useLikeState = (post: PostInfo) => {
-  const [userInfo] = useAtom(userInfoAtom); // ユーザー情報
+  const [userInfojotai] = useAtom(userInfoAtom); // ユーザー情報
   const [likeState, setLikeState] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
 
   useEffect(() => {
     const checkLikeState = () => {
-      console.log("checkLikeState");
+      // console.log("checkLikeState");
       // ログインユーザーのIDがlikes配列に存在するかどうかを確認
       const userLiked = post.likes.some(
-        (like: LikesInfo) => like.userId === userInfo.id
+        (like: LikesInfo) => like.userId === userInfojotai.userInfo?.id
       );
-      console.log(post.id, post.likes, userLiked);
+      // console.log(post.id, post.likes, userLiked);
       // チェックに基づいてlikeStateを更新
       setLikeState(userLiked);
     };
@@ -31,11 +31,10 @@ export const useLikeState = (post: PostInfo) => {
     });
 
     //サーバーにlikeの情報を登録する
-    const token = localStorage.getItem("authToken"); // トークンをローカルストレージに保存
-
+    const token = userInfojotai.authtoken;
     let newLikeCount = await registerLike(
       post.id,
-      userInfo.id!,
+      userInfojotai.userInfo?.id!,
       !likeState,
       token
     );

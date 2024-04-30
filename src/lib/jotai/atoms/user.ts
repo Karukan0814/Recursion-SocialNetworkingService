@@ -1,7 +1,6 @@
-import { atom, useAtom } from "jotai";
-import { atomWithStorage, createJSONStorage } from "jotai/utils";
-import { UserInfoType } from "../../type/UserInfoType";
+import { atomWithStorage } from "jotai/utils";
+import { UserInfoType, UserInfoTypeJotai } from "../../type/UserInfoType";
 
-export const jotaiInitialValue: UserInfoType = {};
+export const jotaiInitialValue: UserInfoTypeJotai = {};
 const userInfoAtom = atomWithStorage("userInfo", jotaiInitialValue);
 export { userInfoAtom };

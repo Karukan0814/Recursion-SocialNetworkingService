@@ -6,12 +6,6 @@ import "../style/NotFound.css";
 import useLogin from "../hooks/useLogin";
 
 const NotFoundPage = () => {
-  const { blockUnauthorizedUser } = useLogin();
-  useEffect(() => {
-    //初回表示時、ログインしていないユーザーをブロックする
-    blockUnauthorizedUser();
-  }, []);
-
   let navigate = useNavigate();
 
   return (

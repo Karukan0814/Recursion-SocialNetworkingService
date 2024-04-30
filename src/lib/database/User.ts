@@ -68,7 +68,6 @@ export async function checkTokenAPI(token: string | undefined | null) {
 
     // トークンを登録する
     const response = await apiClient.post("/user/checkToken", {}, { headers });
-
     if (response.status === 200) {
       // トークン有効
       console.log("トークン有効");

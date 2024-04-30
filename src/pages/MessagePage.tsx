@@ -15,11 +15,6 @@ const MessagePage = () => {
     //TODO 新たなメッセージの作成機能作成
   };
 
-  const { blockUnauthorizedUser } = useLogin();
-  useEffect(() => {
-    //初回表示時、ログインしていないユーザーをブロックする
-    blockUnauthorizedUser();
-  }, []);
   return (
     <>
       <Sidebar currentPage="message" />

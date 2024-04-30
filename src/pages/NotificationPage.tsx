@@ -6,11 +6,6 @@ import "../style/NotificationPage.css";
 import useLogin from "../hooks/useLogin";
 
 const NotificationPage = () => {
-  const { blockUnauthorizedUser } = useLogin();
-  useEffect(() => {
-    //初回表示時、ログインしていないユーザーをブロックする
-    blockUnauthorizedUser();
-  }, []);
   return (
     <>
       <Sidebar currentPage="notification" />

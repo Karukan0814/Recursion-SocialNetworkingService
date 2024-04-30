@@ -16,38 +16,6 @@ const usePosts = (tabName: PostType, parentId?: number) => {
   const [errorMsg, setErrorMsg] = useState("");
   const [postList, setPostList] = useState<PostInfo[]>([]);
   const [hasMore, setHasMore] = useState(true); //再読み込み判定
-
-  const fetchInitialPosts = async () => {
-    try {
-      const token = localStorage.getItem("authToken");
-      const userId = userInfoJotai.id;
-      if (!userId) {
-        throw new Error("userId couldn't be extracted from storage.");
-      }
-      let newPosts: any[] | null;
-      let page = 1;
-      if (tabName === PostType.trend) {
-        newPosts = await getTrendPostList(token, 20, page);
-      } else if (tabName === PostType.followings) {
-        newPosts = await getFollowingsPostList(token, userId, 20, page);
-      } else if (tabName === PostType.detail) {
-        //TODO 次のリプライを取得する処理
-        console.log({ token, userId, page, parentId });
-        newPosts = await getReplyPostList(token, userId, 20, page, parentId);
-      } else {
-        newPosts = [];
-      }
-      console.log(newPosts);
-      if (!newPosts) {
-        newPosts = [];
-      }
-
-      setPostList(newPosts);
-    } catch (error: any) {
-      setErrorMsg(error.message);
-      console.log(error);
-    }
-  };
   useEffect(() => {
     console.log("useEffect___usePosts");
     setNextPost(1, parentId);
@@ -66,7 +34,8 @@ const usePosts = (tabName: PostType, parentId?: number) => {
       }
       const testImg = "/assets/food_fruit_sandwich_ichigo.png";
       const newPost = await registerPostAPI(
-        userInfoJotai.id!,
+        userInfoJotai.userInfo?.id!,
+        userInfoJotai.authtoken!,
         testImg,
         text,
         replyToId
@@ -87,8 +56,8 @@ const usePosts = (tabName: PostType, parentId?: number) => {
 
   const setNextPost = async (page: number, replyToId?: number) => {
     try {
-      const token = localStorage.getItem("authToken");
-      const userId = userInfoJotai.id;
+      const token = userInfoJotai.authtoken;
+      const userId = userInfoJotai.userInfo?.id;
       if (!userId) {
         throw new Error("userId couldn't be extracted from storage.");
       }

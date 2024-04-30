@@ -5,11 +5,6 @@ import Profile from "../component/Profile";
 import useLogin from "../hooks/useLogin";
 
 const ProfilePage = () => {
-  const { blockUnauthorizedUser } = useLogin();
-  useEffect(() => {
-    //初回表示時、ログインしていないユーザーをブロックする
-    blockUnauthorizedUser();
-  }, []);
   return (
     <>
       <Sidebar currentPage="profile" />

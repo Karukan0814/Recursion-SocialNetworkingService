@@ -14,6 +14,8 @@ import Loading from "../component/Loading";
 import PostBox from "../component/PostBox";
 import usePosts from "../hooks/usePosts";
 import PostListTab from "../component/PostListTab";
+import { useAtom } from "jotai";
+import { userInfoAtom } from "../lib/jotai/atoms/user";
 
 type FormData = {
   replyMessage: string;
@@ -21,7 +23,8 @@ type FormData = {
 };
 
 const PostDetailPage = () => {
-  const { blockUnauthorizedUser } = useLogin();
+  const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
+
   const navigate = useNavigate();
   const { postId } = useParams();
   const [parentPost, setParentPost] = useState<PostInfo | null>(null);
@@ -29,19 +32,10 @@ const PostDetailPage = () => {
   if (!postId) {
     navigate("/notfound");
   }
-  // const [replyToId, setReplyToId] = useState<number>(parseInt(postId!));
-  // const { registerPost, postList } = usePosts(
-  //   PostType.detail,
-  //   parseInt(postId!)
-  // );
-
-  const token = localStorage.getItem("authToken"); // トークンをローカルストレージに保存
 
   useEffect(() => {
-    blockUnauthorizedUser();
-
     const fetchPostInfo = async () => {
-      const token = localStorage.getItem("authToken");
+      const token = userInfoJotai.authtoken;
       const postInfo = await getPostInfo(postId!, token);
       setParentPost(postInfo);
     };

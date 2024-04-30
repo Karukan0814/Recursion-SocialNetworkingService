@@ -394,6 +394,7 @@ export async function registerLike(
 
 export async function registerPostAPI(
   userId: number,
+  jwtToken: string,
   img: string,
   text: string,
   replyToId?: number
@@ -404,6 +405,7 @@ export async function registerPostAPI(
       text,
       img,
       replyToId,
+      jwtToken,
     });
 
     // TODO Postの画像データをどこに保存するか問題
@@ -418,7 +420,6 @@ export async function registerPostAPI(
     };
 
     // リクエストヘッダーにJWTを含める
-    const jwtToken = localStorage.getItem("authToken");
     const headers = {
       Authorization: `Bearer ${jwtToken}`,
     };

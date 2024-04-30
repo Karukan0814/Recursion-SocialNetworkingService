@@ -61,7 +61,10 @@ const PostBox = ({ registerPost, replyToId, postType }: Props) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="postBox__input">
           <Avatar
-            src={userInfoJotai.userImg || "/assets/default_profile_400x400.png"}
+            src={
+              userInfoJotai.userInfo?.userImg ||
+              "/assets/default_profile_400x400.png"
+            }
           />
 
           <TextareaAutosize
