@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import {
   getFollowingsPostList,
+  getLikeListByUserId,
+  getPostListByUserId,
+  getReplyListByUserId,
   getReplyPostList,
   getTrendPostList,
   registerPostAPI,
@@ -63,13 +66,31 @@ const usePosts = (tabName: PostType, parentId?: number) => {
       }
       let newPosts: any[] | null;
       if (tabName === PostType.trend) {
+        // トレンドのポストリストの取得
         newPosts = await getTrendPostList(token, 20, page);
       } else if (tabName === PostType.followings) {
+        // フォローしているユーザーのポストリストの取得
+
         newPosts = await getFollowingsPostList(token, userId, 20, page);
       } else if (tabName === PostType.detail) {
-        //TODO 次のリプライを取得する処理
-        console.log({ token, userId, page, replyToId });
+        // 選択したポストのリプライポストリストの取得
+
         newPosts = await getReplyPostList(token, userId, 20, page, replyToId);
+      } else if (tabName === PostType.self) {
+        //ユーザーの親ポストリストの取得
+
+        console.log("getPostListByUserId", { token, userId, page, replyToId });
+        newPosts = await getPostListByUserId(token, userId, 20, page);
+      } else if (tabName === PostType.selfReplies) {
+        //ユーザーのリプライポストリストの取得
+
+        console.log("getReplyListByUserId", { token, userId, page });
+        newPosts = await getReplyListByUserId(token, userId, 20, page);
+      } else if (tabName === PostType.likes) {
+        //ユーザーがLikeしたポストリストの取得
+
+        console.log("getLikeListByUserId", { token, userId, page });
+        newPosts = await getLikeListByUserId(token, userId, 20, page);
       } else {
         newPosts = [];
       }

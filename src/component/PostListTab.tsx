@@ -13,32 +13,36 @@ type Props = {
 };
 const PostListTab = ({ tabName, replyToId }: Props) => {
   console.log(replyToId);
-  const {
-    postList,
-    registerPost,
-    // initializePosts,
-    setNextPost,
-    hasMore,
-  } = usePosts(tabName, replyToId);
+  const { postList, registerPost, setNextPost, hasMore } = usePosts(
+    tabName,
+    replyToId
+  );
   console.log(postList);
   const loadNextList = async (page: number) => {
     console.log("loadNextList", page, replyToId);
     setNextPost(page, replyToId);
   };
 
-  // useEffect(() => {
-  //   console.log("useEffect__postlisttab");
-  //   // setInitialLoad(true);
-  //   setNextPost(0, replyToId);
-  // }, [replyToId]);
+  // 表示するタブ名を配列で定義
+  const validTabs = [
+    PostType.trend,
+    PostType.detail,
+    PostType.followings,
+    PostType.reply,
+  ];
+
+  // tabNameがvalidTabs配列に含まれているかチェック
+  const shouldDisplayPostBox = validTabs.includes(tabName);
 
   return (
     <>
-      <PostBox
-        registerPost={registerPost}
-        replyToId={replyToId}
-        postType={tabName}
-      />
+      {shouldDisplayPostBox && (
+        <PostBox
+          registerPost={registerPost}
+          replyToId={replyToId}
+          postType={tabName}
+        />
+      )}
       <div className="tab__content">
         <InfiniteScroll
           pageStart={1}

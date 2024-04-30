@@ -8,6 +8,7 @@ export type PostInfo = {
   updatedAt: Date;
   likes: LikesInfo[];
   replies: PostInfo[];
+  post: PostInfo; //リプライの場合の親ポスト
 };
 
 export enum PostType {
@@ -15,6 +16,9 @@ export enum PostType {
   "followings",
   "detail",
   "reply",
+  "self",
+  "selfReplies",
+  "likes",
 }
 
 export type LikesInfo = {

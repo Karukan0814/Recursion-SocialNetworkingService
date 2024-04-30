@@ -2,19 +2,27 @@ import React, { useEffect, useState } from "react";
 import PostBox from "./PostBox";
 import Post from "./Post";
 import "../style/Profile.css";
-import { PostInfo } from "../lib/type/PostType";
+import { PostInfo, PostType } from "../lib/type/PostType";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { Button } from "@mui/material";
 import ModalPopup from "./ModalPopup";
 import LoginForm from "./LoginForm";
 import { Place } from "@mui/icons-material";
+import { useAtom } from "jotai";
+import { userInfoAtom } from "../lib/jotai/atoms/user";
+import PostListTab from "./PostListTab";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
+  const [userInfoJotai] = useAtom(userInfoAtom);
+
   const [posts, setPosts] = useState<PostInfo[]>([]);
-  const [activeTab, setActiveTab] = useState("trend");
+  const [activeTab, setActiveTab] = useState("posts");
 
   const [updateFormOpen, setUpdateFormOpen] = useState(false);
+  const [followers, setFollowers] = useState([]);
+  const [followees, setFollowees] = useState([]);
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setActiveTab(newValue);
@@ -30,7 +38,8 @@ const Profile = () => {
         open={updateFormOpen}
         handleClose={() => setUpdateFormOpen(false)}
       >
-        <LoginForm signUpFlag={true} />
+        <div>updateForm</div>
+        {/* <LoginForm signUpFlag={true} /> */}
       </ModalPopup>
       <div className="profile__info__container">
         <div className="profilePhoto__container">
@@ -49,15 +58,25 @@ const Profile = () => {
           </Button>
         </div>
         <div className="profile__info">
-          <h3 className="profile__info__username">UserName</h3>
-          <p className="profile__info__introduction">Introduction</p>
-          <div className="profile__info__location">
+          <h3 className="profile__info__username">
+            {userInfoJotai.userInfo?.name}
+          </h3>
+          <p className="profile__info__introduction">
+            {userInfoJotai.userInfo?.introduction}
+          </p>
+          {/* <div className="profile__info__location">
             <Place className="placeIcon" />
             Location
-          </div>
+          </div> */}
           <div className="profile__info__follow">
-            <span>followee:20</span>
-            <span>follower:30</span>
+            <Link to={`/profile/${userInfoJotai.userInfo?.name}/following`}>
+              <span>
+                following:{userInfoJotai.userInfo?.followings?.length}
+              </span>
+            </Link>
+            <Link to={`/profile/${userInfoJotai.userInfo?.name}/follower`}>
+              <span>follower:{userInfoJotai.userInfo?.followers?.length}</span>
+            </Link>
           </div>
         </div>
       </div>
@@ -70,28 +89,16 @@ const Profile = () => {
         >
           <Tab label="Posts" value="posts" className="profile__tab" />
           <Tab label="Replies" value="replies" className="profile__tab" />
-          <Tab label="Likes" value="Likes" className="profile__tab" />
+          <Tab label="Likes" value="likes" className="profile__tab" />
         </Tabs>
       </div>
 
-      {activeTab === "posts" && (
-        <div className="profile__content">
-          {posts.map((post) => (
-            <Post key={post.id} post={post} />
-          ))}
-        </div>
-      )}
+      {activeTab === "posts" && <PostListTab tabName={PostType.self} />}
 
       {activeTab === "replies" && (
-        <div className="profile__content">
-          {/* フォロワーのコンテンツをここに表示 */}
-        </div>
+        <PostListTab tabName={PostType.selfReplies} />
       )}
-      {activeTab === "likes" && (
-        <div className="profile__content">
-          {/* フォロワーのコンテンツをここに表示 */}
-        </div>
-      )}
+      {activeTab === "likes" && <PostListTab tabName={PostType.likes} />}
     </div>
   );
 };

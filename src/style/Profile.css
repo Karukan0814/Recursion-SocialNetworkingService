@@ -24,6 +24,9 @@
   padding: 0 30px;
 }
 
+.profile__info__username {
+  margin-bottom: 20px;
+}
 .profile__info__location {
   color: var(--twitter-background2);
   display: flex;
@@ -34,6 +37,17 @@
   justify-content: flex-start;
   align-items: center;
   gap: 20px;
+}
+
+.profile__info__follow span {
+  color: var(--twitter-background2);
+  padding: 5px 8px;
+  border-radius: 5px;
+}
+
+.profile__info__follow span:hover {
+  background-color: var(--twitter-color);
+  opacity: 0.5;
 }
 
 .profilePhoto__container {
