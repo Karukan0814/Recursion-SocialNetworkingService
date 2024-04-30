@@ -5,6 +5,8 @@ export type UserInfoType = {
   email?: string;
   isAdmin?: boolean;
   introduction?: string;
+  followers?: number[];
+  followings?: number[];
 };
 
 export type UserInfoTypeJotai = {
