@@ -4,6 +4,7 @@ import {
   checkTokenAPI,
   loginAPI,
   signUpAPI,
+  updateUserInfoAPI,
   verifyEmailAPI,
 } from "../lib/database/User";
 import { useAtom } from "jotai";
@@ -164,6 +165,64 @@ const useLogin = () => {
     }
   };
 
+  const updateUserInfo = async (
+    name: string,
+    introduction: string,
+    userImg?: File | null
+  ) => {
+    setLoading(true);
+    setErrorMsg("");
+    try {
+      if (!name) {
+        throw new Error("name is necessary");
+      }
+      if (name.length > 25) {
+        throw new Error("name should be less than 25");
+      }
+      if (introduction.length > 255) {
+        throw new Error("introduction should be less than 255");
+      }
+      if (!userInfoJotai.userInfo?.id) {
+        throw new Error("no user id in storage");
+      }
+      const id = userInfoJotai.userInfo?.id;
+      if (!userInfoJotai.userInfo?.email) {
+        throw new Error("no email  in storage");
+      }
+      const email = userInfoJotai.userInfo?.email;
+      //TODO 画像の保存先決定後に修正
+      const testImg = "/assets/food_fruit_sandwich_ichigo.png";
+
+      const data = await updateUserInfoAPI(
+        id,
+        name,
+        email,
+        introduction,
+        testImg,
+        userInfoJotai.authtoken
+      );
+
+      if (!data) {
+        throw new Error("Something wrong with updateUserInfo API");
+      }
+      const updatedUserInfo: UserInfoType = data;
+      //アップデート成功時はユーザー情報をjotaiに入れる
+      console.log("update", { userInfo: updatedUserInfo });
+      setuserInfoJotai({
+        userInfo: updatedUserInfo,
+        authtoken: userInfoJotai.authtoken,
+      });
+
+      // //home画面に移動
+      // navigate();
+    } catch (error: any) {
+      setErrorMsg(error.message);
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return {
     loading,
     signUp,
@@ -172,6 +231,7 @@ const useLogin = () => {
     logout,
     verifiyEmail,
     checkLogin,
+    updateUserInfo,
   };
 };
 

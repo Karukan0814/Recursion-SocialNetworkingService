@@ -67,6 +67,7 @@
   object-fit: contain;
   border-radius: 50%;
   margin-left: 30px;
+  background-color: #ffff;
 }
 
 .updateProfile_button {
@@ -86,6 +87,17 @@
   padding: 15px 20px;
   width: 100%;
   flex-shrink: 0; /* ヘッダーの高さを固定 */
+}
+
+.profile__info__introduction {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  margin: 8px 0 20px;
+  padding: 0 16px;
+  line-height: 1.6;
+  text-align: justify;
+  max-width: 80%;
 }
 
 .profile__tabs {

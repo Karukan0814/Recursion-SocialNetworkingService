@@ -108,3 +108,46 @@ export async function verifyEmailAPI(token: string) {
     return null;
   }
 }
+
+export async function updateUserInfoAPI(
+  id: number,
+  name: string,
+  email: string,
+  introduction: string,
+  userImg: string,
+  token: string | undefined | null
+) {
+  try {
+    // クエリパラメータを用意
+    const params: { [key: string]: any } = {
+      id,
+      name,
+      email,
+      introduction,
+      userImg,
+    };
+    console.log(params);
+    if (!token) {
+      throw new Error("token is required");
+    }
+    if (!name) {
+      throw new Error("userName is required.");
+    }
+
+    // リクエストヘッダーにJWTを含める
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    // データを送信する
+    const response = await apiClient.put("/user/update", params, { headers });
+
+    return response.data as UserInfoType;
+  } catch (error: any) {
+    console.error("Error fetching data:", error);
+    if (isAxiosError(error)) {
+      return error.response?.data;
+    }
+
+    return null;
+  }
+}

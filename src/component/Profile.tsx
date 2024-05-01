@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from "react";
-import PostBox from "./PostBox";
-import Post from "./Post";
+import { useState } from "react";
 import "../style/Profile.css";
-import { PostInfo, PostType } from "../lib/type/PostType";
+import { PostType } from "../lib/type/PostType";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { Button } from "@mui/material";
 import ModalPopup from "./ModalPopup";
-import LoginForm from "./LoginForm";
 import { Place } from "@mui/icons-material";
 import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
 import PostListTab from "./PostListTab";
 import { Link } from "react-router-dom";
+import UpdateProfileForm from "./UpdateProfileForm";
 
 const Profile = () => {
   const [userInfoJotai] = useAtom(userInfoAtom);
@@ -35,15 +33,17 @@ const Profile = () => {
         open={updateFormOpen}
         handleClose={() => setUpdateFormOpen(false)}
       >
-        <div>updateForm</div>
-        {/* <LoginForm signUpFlag={true} /> */}
+        <UpdateProfileForm handleClose={() => setUpdateFormOpen(false)} />
       </ModalPopup>
       <div className="profile__info__container">
         <div className="profilePhoto__container">
           <span className="profile__bg"></span>
           <img
             className="profile__photo"
-            src="/assets/karukanProfile.jpg"
+            src={
+              userInfoJotai.userInfo?.userImg ||
+              "/assets/default_profile_400x400.png"
+            }
             alt="profilePhoto"
           />
           <Button
