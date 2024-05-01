@@ -10,6 +10,7 @@ import SearchPage from "./pages/SearchPage";
 import PostDetailPage from "./pages/PostDetailPage";
 import VerifyPage from "./pages/VerifyPage";
 import ProtectedRoute from "./component/ProtectedRoute";
+import FollowPage from "./pages/FollowPage";
 
 function App() {
   return (
@@ -64,6 +65,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <NotificationPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/follow/*"
+            element={
+              <ProtectedRoute>
+                <FollowPage />
               </ProtectedRoute>
             }
           />

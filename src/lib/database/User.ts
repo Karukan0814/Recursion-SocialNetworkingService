@@ -151,3 +151,91 @@ export async function updateUserInfoAPI(
     return null;
   }
 }
+
+export async function getFollowersList(
+  token: string | undefined | null,
+  count: number = 6,
+  page: number = 1,
+  userId: number
+) {
+  try {
+    if (!token) {
+      throw new Error("token is required");
+    }
+
+    if (!userId) {
+      throw new Error("userId is required");
+    }
+
+    // クエリパラメータを用意
+    const params: { [key: string]: any } = { count, userId };
+
+    // ページ番号が指定されていればパラメータに設定
+    if (page) {
+      params.page = page;
+    }
+
+    // リクエストヘッダーにJWTを含める
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    // データを取得する
+    const response = await apiClient.get("/user/follower", {
+      headers,
+      params,
+    });
+    if (response.status !== 200) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error("Failed to fetch data");
+    }
+    return response.data as UserInfoType[];
+  } catch (error) {
+    console.error("Error fetching data:", error);
+
+    return null;
+  }
+}
+
+export async function getFollowingList(
+  token: string | undefined | null,
+  count: number = 6,
+  page: number = 1,
+  userId: number
+) {
+  try {
+    if (!token) {
+      throw new Error("token is required");
+    }
+
+    if (!userId) {
+      throw new Error("userId is required");
+    }
+
+    // クエリパラメータを用意
+    const params: { [key: string]: any } = { count, userId };
+
+    // ページ番号が指定されていればパラメータに設定
+    if (page) {
+      params.page = page;
+    }
+
+    // リクエストヘッダーにJWTを含める
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    // データを取得する
+    const response = await apiClient.get("/user/following", {
+      headers,
+      params,
+    });
+    if (response.status !== 200) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error("Failed to fetch data");
+    }
+    return response.data as UserInfoType[];
+  } catch (error) {
+    console.error("Error fetching data:", error);
+
+    return null;
+  }
+}

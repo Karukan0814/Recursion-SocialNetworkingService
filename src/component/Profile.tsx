@@ -66,12 +66,10 @@ const Profile = () => {
             Location
           </div> */}
           <div className="profile__info__follow">
-            <Link to={`/profile/${userInfoJotai.userInfo?.name}/following`}>
+            <Link to={`/follow/${userInfoJotai.userInfo?.name}`}>
               <span>
                 following:{userInfoJotai.userInfo?.followings?.length}
               </span>
-            </Link>
-            <Link to={`/profile/${userInfoJotai.userInfo?.name}/follower`}>
               <span>follower:{userInfoJotai.userInfo?.followers?.length}</span>
             </Link>
           </div>

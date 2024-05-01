@@ -13,3 +13,8 @@ export type UserInfoTypeJotai = {
   userInfo?: UserInfoType;
   authtoken?: string;
 };
+
+export enum FollowType {
+  "follower",
+  "following",
+}
