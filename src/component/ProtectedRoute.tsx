@@ -10,7 +10,7 @@ type Props = {
 };
 
 const ProtectedRoute = ({ children }: Props) => {
-  const [userInfo] = useAtom(userInfoAtom);
+  const [userInfoJotai] = useAtom(userInfoAtom);
   const { checkLogin } = useLogin();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isChecking, setIsChecking] = useState(true);
@@ -21,14 +21,18 @@ const ProtectedRoute = ({ children }: Props) => {
       setIsAuthenticated(login);
       setIsChecking(false);
     };
-
-    if (!userInfo) {
+    if (
+      !userInfoJotai ||
+      !userInfoJotai.userInfo ||
+      !userInfoJotai.authtoken ||
+      !userInfoJotai.userInfo.id
+    ) {
       handleCheckLogin();
     } else {
       setIsAuthenticated(true);
       setIsChecking(false);
     }
-  }, [userInfo, checkLogin]);
+  }, [userInfoJotai, checkLogin]);
 
   if (isChecking) {
     return <div>Loading...</div>;
