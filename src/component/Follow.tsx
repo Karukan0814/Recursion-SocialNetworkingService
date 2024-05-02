@@ -6,11 +6,14 @@ import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import FollowListTab from "./FollowListTab";
 import { FollowType } from "../lib/type/UserInfoType";
-
-const Follow = () => {
+import "../style/Follow.css";
+type Props = {
+  userId: number;
+};
+const Follow = ({ userId }: Props) => {
   const navigate = useNavigate();
 
-  const [activeTab, setActiveTab] = useState("trend");
+  const [activeTab, setActiveTab] = useState("follower");
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setActiveTab(newValue);
@@ -19,30 +22,30 @@ const Follow = () => {
     navigate(-1); // 一つ前のページに戻る
   };
   return (
-    <div className="feed">
-      <div className="postDetail__header">
+    <div className="follow">
+      <div className="follow__header">
         <IconButton className="iconButton" onClick={handleBack}>
           <ArrowBackIcon />
         </IconButton>
       </div>
-      <div className="feed__header">
+      <div className="follow__header">
         <Tabs
           value={activeTab}
           onChange={handleChange}
           centered
-          className="feed__tabs"
+          className="follow__tabs"
         >
-          <Tab label="Followers" value="follower" className="feed__tab" />
-          <Tab label="Followings" value="following" className="feed__tab" />
+          <Tab label="Followers" value="follower" className="follow__tab" />
+          <Tab label="Followings" value="following" className="follow__tab" />
         </Tabs>
       </div>
 
       {activeTab === "follower" && (
-        <FollowListTab tabName={FollowType.follower} />
+        <FollowListTab tabName={FollowType.follower} userId={userId} />
       )}
 
       {activeTab === "following" && (
-        <FollowListTab tabName={FollowType.following} />
+        <FollowListTab tabName={FollowType.following} userId={userId} />
       )}
     </div>
   );

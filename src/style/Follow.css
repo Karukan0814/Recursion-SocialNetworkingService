@@ -1,0 +1,49 @@
+.follow {
+  flex: 0.5;
+  border-right: var(--twitter-background) 1px solid;
+  /* min-width: fit-content; */
+  overflow-y: scroll;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.follow__header {
+  display: flex;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 100;
+  border: 1px solid var(--twitter-background);
+  padding: 15px 20px;
+  width: 100%;
+  flex-shrink: 0; /* ヘッダーの高さを固定 */
+}
+
+.follow__tabs {
+  display: flex;
+  width: 100%;
+}
+
+.follow__tab {
+  /* flex-grow: 1; 各タブが利用可能なスペースを均等に使うように設定 */
+  display: flex;
+  justify-content: center; /* テキストとアイコンがタブの中央に来るように */
+  flex: 0.5;
+  flex-shrink: 0; /* ヘッダーの高さを固定 */
+}
+.follow::-webkit-scrollbar {
+  display: none;
+}
+
+.follow__header {
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 1px solid var(--twitter-background);
+  flex-shrink: 0; /* ヘッダーの高さを固定 */
+}
+
+@media (max-width: 1066px) {
+  .follow {
+    flex: 1; /* 真ん中のコンポーネントをできる限り大きくする */
+  }
+}

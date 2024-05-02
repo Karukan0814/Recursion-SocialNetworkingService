@@ -1,0 +1,83 @@
+.userCard__body > img {
+  border-radius: 20px;
+  width: 100%;
+}
+.userCard {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--twitter-background);
+}
+.userCard__content {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: initial;
+  text-decoration: none; /* 下線を消す */
+}
+
+.userCard__content__textBox {
+  display: flex;
+  align-items: flex-start;
+}
+.userCard__footer {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.userCard__body {
+  flex: 1;
+  padding: 10px;
+  width: calc(100% - 220px);
+  text-decoration: none;
+}
+.userCard__avatar {
+  padding: 20px;
+  width: 40px;
+  height: 40px;
+}
+.userCard__badge {
+  font-size: 14px !important;
+  color: var(--twitter-color);
+}
+.userCard__header {
+  /* width: 100%; */
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+}
+.userCard__headerSpecial {
+  font-weight: 600;
+  font-size: 1rem;
+}
+.time {
+  font-size: 8px;
+}
+.userCard__headerText {
+  display: flex;
+  justify-content: flex-start;
+  gap: 5px;
+}
+.userCard__headerText > h3 {
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+.userCard__headerDescription {
+  font-size: 15px;
+  margin-bottom: 20px;
+  /* width: 100%; */
+}
+.userCard__headerDescription p {
+  white-space: normal; /* デフォルトの空白の扱いを保証 */
+  overflow-wrap: break-word; /* 長い単語も折り返す */
+  word-wrap: break-word;
+  text-decoration: none;
+}
+
+.userCard__iconButton {
+  width: min-content;
+  height: min-content;
+}

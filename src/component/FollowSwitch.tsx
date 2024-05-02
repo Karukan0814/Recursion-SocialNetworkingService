@@ -3,6 +3,7 @@ import { useAtom } from "jotai";
 import React from "react";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
 import { changeFollowState } from "../lib/database/User";
+import "../style/FollowSwitch.css";
 
 type Props = {
   followFlag: boolean;
@@ -12,7 +13,7 @@ type Props = {
 const FollowSwitch = ({ followFlag, setFollowFlag, followUserId }: Props) => {
   const [userInfoJotai, setUserInfoJotai] = useAtom(userInfoAtom);
 
-  const handleFollowCheck = async () => {
+  const handleFollowCheck = async (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log("handleFollowCheck");
     const newFollowFlag = !followFlag;
 
@@ -35,8 +36,17 @@ const FollowSwitch = ({ followFlag, setFollowFlag, followUserId }: Props) => {
   };
   return (
     <FormControlLabel
-      control={<Switch checked={followFlag} onChange={handleFollowCheck} />}
+      control={
+        <Switch
+          checked={followFlag}
+          onChange={(e) => handleFollowCheck(e)}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        />
+      }
       label="Follow"
+      className="follow_switch"
     />
   );
 };

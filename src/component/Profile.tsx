@@ -119,7 +119,7 @@ const Profile = ({ userId }: Props) => {
             Location
           </div> */}
           <div className="profile__info__follow">
-            <Link to={`/follow/${userInfo?.name}`}>
+            <Link to={`/follow/${userInfo?.id}`}>
               <span>following:{userInfo?.followings?.length}</span>
               <span>follower:{userInfo?.followers?.length}</span>
             </Link>

@@ -12,9 +12,10 @@ import UserCard from "./UserCard";
 
 type Props = {
   tabName: FollowType;
+  userId: number;
 };
-const FollowListTab = ({ tabName }: Props) => {
-  const { userList, setNextUser, hasMore } = useFollow(tabName);
+const FollowListTab = ({ tabName, userId }: Props) => {
+  const { userList, setNextUser, hasMore } = useFollow(tabName, userId);
   console.log(userList);
   const loadNextList = async (page: number) => {
     console.log("loadNextList", page);

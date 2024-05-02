@@ -6,7 +6,7 @@ import { PostInfo, PostType } from "../lib/type/PostType";
 import { FollowType, UserInfoType } from "../lib/type/UserInfoType";
 import { getFollowersList, getFollowingList } from "../lib/database/User";
 
-const useFollow = (tabName: FollowType, parentId?: number) => {
+const useFollow = (tabName: FollowType, userId: number, parentId?: number) => {
   const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
 
   const [loading, setLoading] = useState(false);
@@ -28,7 +28,7 @@ const useFollow = (tabName: FollowType, parentId?: number) => {
       }
       const testImg = "/assets/food_fruit_sandwich_ichigo.png";
       const newPost = await registerPostAPI(
-        userInfoJotai.userInfo?.id!,
+        userId,
         userInfoJotai.authtoken!,
         testImg,
         text,
@@ -51,7 +51,7 @@ const useFollow = (tabName: FollowType, parentId?: number) => {
   const setNextUser = async (page: number, replyToId?: number) => {
     try {
       const token = userInfoJotai.authtoken;
-      const userId = userInfoJotai.userInfo?.id;
+      // const userId = userInfoJotai.userInfo?.id;
       if (!userId) {
         throw new Error("userId couldn't be extracted from storage.");
       }

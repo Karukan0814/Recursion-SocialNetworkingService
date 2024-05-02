@@ -69,7 +69,7 @@ function App() {
             }
           />
           <Route
-            path="/follow/*"
+            path="/follow/:id"
             element={
               <ProtectedRoute>
                 <FollowPage />
