@@ -3,7 +3,7 @@ import "../style/Profile.css";
 import { PostType } from "../lib/type/PostType";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import { Button, FormControlLabel, Switch } from "@mui/material";
+import { Button } from "@mui/material";
 import ModalPopup from "./ModalPopup";
 import { Place } from "@mui/icons-material";
 import { useAtom } from "jotai";
@@ -12,8 +12,8 @@ import PostListTab from "./PostListTab";
 import { Link, useNavigate } from "react-router-dom";
 import UpdateProfileForm from "./UpdateProfileForm";
 import { UserInfoType } from "../lib/type/UserInfoType";
-import { changeFollowState, getUserInfoById } from "../lib/database/User";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { getUserInfoById } from "../lib/database/User";
+import FollowSwitch from "./FollowSwitch";
 
 type Props = {
   userId?: number;
@@ -71,28 +71,6 @@ const Profile = ({ userId }: Props) => {
     handleUserInfo();
   }, [userId]);
 
-  const handleFollowCheck = async () => {
-    console.log("handleFollowCheck");
-    const newFollowFlag = !followFlag;
-
-    //サーバー側にフォローの状態変更を登録する
-    const newFollowings = await changeFollowState(
-      userInfoJotai.userInfo?.id!,
-      userInfo?.id!,
-      !followFlag
-    );
-
-    // const newFollowingList=
-    const { followings, ...userWithoutFollowings } = userInfoJotai.userInfo!;
-
-    setFollowFlag(newFollowFlag);
-    setUserInfoJotai({
-      userInfo: { ...userWithoutFollowings, followings: newFollowings },
-      authtoken: userInfoJotai.authtoken,
-    });
-    console.log(userInfoJotai);
-  };
-
   return (
     <div className="profile">
       <ModalPopup
@@ -118,11 +96,16 @@ const Profile = ({ userId }: Props) => {
               Update
             </Button>
           ) : (
-            <FormControlLabel
-              control={
-                <Switch checked={followFlag} onChange={handleFollowCheck} />
-              }
-              label="Follow"
+            // <FormControlLabel
+            //   control={
+            //     <Switch checked={followFlag} onChange={handleFollowCheck} />
+            //   }
+            //   label="Follow"
+            // />
+            <FollowSwitch
+              followFlag={followFlag}
+              setFollowFlag={setFollowFlag}
+              followUserId={userInfo?.id!}
             />
           )}
         </div>

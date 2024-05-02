@@ -27,7 +27,7 @@ const UserCard = ({ user }: Props) => {
 
   return (
     <>
-      <Link to={`/profile/${user.name}`} style={{ textDecoration: "none" }}>
+      <Link to={`/profile/${user.id}`} style={{ textDecoration: "none" }}>
         <div className="post">
           <div className="post__content">
             <div className="post__avatar">
