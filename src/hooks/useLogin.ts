@@ -179,8 +179,8 @@ const useLogin = () => {
       if (name.length > 25) {
         throw new Error("name should be less than 25");
       }
-      if (introduction.length > 255) {
-        throw new Error("introduction should be less than 255");
+      if (introduction.length > 200) {
+        throw new Error("introduction should be less than 200");
       }
       if (!userInfoJotai.userInfo?.id) {
         throw new Error("no user id in storage");

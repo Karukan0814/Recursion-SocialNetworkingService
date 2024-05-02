@@ -109,11 +109,11 @@ const UpdateProfileForm = ({ handleClose }: Props) => {
           </div>
           <div className="input-group">
             <TextareaAutosize
-              maxLength={255}
+              maxLength={200}
               {...register("introduction", {
                 required: true,
                 maxLength: {
-                  value: 255,
+                  value: 200,
                   message: "introduction must be less than 25 characters long",
                 },
               })}
