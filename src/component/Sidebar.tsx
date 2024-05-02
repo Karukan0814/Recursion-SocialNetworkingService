@@ -60,7 +60,9 @@ function Sidebar({ currentPage }: Props) {
         Icon={PermIdentity}
         text="Profile"
         path={`/profile/${userInfoJotai.userInfo?.id}`}
-        active={currentPage === "profile" ? true : false}
+        active={
+          currentPage === `profile/${userInfoJotai.userInfo?.id}` ? true : false
+        }
       />
       <SiderBarUserInfo />
     </div>

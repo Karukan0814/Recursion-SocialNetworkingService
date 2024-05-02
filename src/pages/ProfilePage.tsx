@@ -11,7 +11,7 @@ const ProfilePage = () => {
 
   return (
     <>
-      <Sidebar currentPage="profile" />
+      <Sidebar currentPage={`profile/${userId}`} />
       <Profile userId={parseInt(userId!)} />
       <Widgets />
     </>

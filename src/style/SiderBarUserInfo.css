@@ -5,7 +5,14 @@
   gap: 5px;
   margin: 30px auto;
 }
-
+.sidebar_userInfoLink__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  color: var(--twitter-background2);
+}
 .sidebar_userInfo__name {
   font-size: 1rem;
   text-align: center;
