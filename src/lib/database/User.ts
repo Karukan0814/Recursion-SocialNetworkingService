@@ -43,6 +43,7 @@ export async function loginAPI(email: string, password: string) {
     }
     // データを取得する
     const response = await apiClient.post("/user/login", params);
+    console.log(response.data);
 
     return response.data as ResponseFromAPI;
   } catch (error: any) {
@@ -235,6 +236,68 @@ export async function getFollowingList(
     return response.data as UserInfoType[];
   } catch (error) {
     console.error("Error fetching data:", error);
+
+    return null;
+  }
+}
+
+// ユーザー情報取得
+
+export async function getUserInfoById(
+  token: string | undefined | null,
+  userId: number
+) {
+  try {
+    // クエリパラメータを用意
+    if (!userId) {
+      throw new Error("userId is required");
+    }
+    const params: { [key: string]: any } = { userId };
+    // リクエストヘッダーにJWTを含める
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    // データを取得する
+    const response = await apiClient.get("/user/getUserInfoById", {
+      headers,
+      params,
+    });
+
+    return response.data as UserInfoType;
+  } catch (error: any) {
+    if (isAxiosError(error)) {
+      console.error("Error fetching data:", error.response?.data);
+    }
+    console.error("Error fetching data:", error);
+
+    return null;
+  }
+}
+
+export async function changeFollowState(
+  userId: number,
+  followUserId: number,
+  followState: boolean
+) {
+  try {
+    // クエリパラメータを用意
+    if (!userId || !followUserId) {
+      throw new Error("userId, and followUserId are necessary.");
+    }
+    const params: { [key: string]: any } = {
+      userId,
+      followUserId,
+      followState,
+    };
+    // データを送信する
+    const response = await apiClient.post("/user/follow", params);
+
+    return response.data as number[];
+  } catch (error: any) {
+    console.error("Error fetching data:", error);
+    if (isAxiosError(error)) {
+      return error.response?.data;
+    }
 
     return null;
   }

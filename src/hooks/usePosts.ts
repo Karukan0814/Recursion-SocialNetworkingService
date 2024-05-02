@@ -12,7 +12,11 @@ import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
 import { PostInfo, PostType } from "../lib/type/PostType";
 
-const usePosts = (tabName: PostType, parentId?: number) => {
+const usePosts = (
+  tabName: PostType,
+  parentId?: number,
+  profileUserId?: number
+) => {
   const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
 
   const [loading, setLoading] = useState(false);
@@ -22,7 +26,7 @@ const usePosts = (tabName: PostType, parentId?: number) => {
   useEffect(() => {
     console.log("useEffect___usePosts");
     setNextPost(1, parentId);
-  }, [parentId]);
+  }, [parentId, tabName, profileUserId]);
   const registerPost = async (
     text: string,
     img: File | null,
@@ -76,21 +80,33 @@ const usePosts = (tabName: PostType, parentId?: number) => {
         // 選択したポストのリプライポストリストの取得
 
         newPosts = await getReplyPostList(token, userId, 20, page, replyToId);
-      } else if (tabName === PostType.self) {
+      } else if (tabName === PostType.profilePosts) {
         //ユーザーの親ポストリストの取得
+        if (!profileUserId) {
+          throw new Error("profileUserId couldn't be extracted from storage.");
+        }
 
-        console.log("getPostListByUserId", { token, userId, page, replyToId });
-        newPosts = await getPostListByUserId(token, userId, 20, page);
-      } else if (tabName === PostType.selfReplies) {
+        console.log("getPostListByUserId", {
+          token,
+          profileUserId,
+          page,
+          replyToId,
+        });
+        newPosts = await getPostListByUserId(token, profileUserId, 20, page);
+      } else if (tabName === PostType.profileReplies) {
         //ユーザーのリプライポストリストの取得
-
-        console.log("getReplyListByUserId", { token, userId, page });
-        newPosts = await getReplyListByUserId(token, userId, 20, page);
-      } else if (tabName === PostType.likes) {
+        if (!profileUserId) {
+          throw new Error("profileUserId couldn't be extracted from storage.");
+        }
+        console.log("getReplyListByUserId", { token, profileUserId, page });
+        newPosts = await getReplyListByUserId(token, profileUserId, 20, page);
+      } else if (tabName === PostType.profileLikes) {
         //ユーザーがLikeしたポストリストの取得
-
-        console.log("getLikeListByUserId", { token, userId, page });
-        newPosts = await getLikeListByUserId(token, userId, 20, page);
+        if (!profileUserId) {
+          throw new Error("profileUserId couldn't be extracted from storage.");
+        }
+        console.log("getLikeListByUserId", { token, profileUserId, page });
+        newPosts = await getLikeListByUserId(token, profileUserId, 20, page);
       } else {
         newPosts = [];
       }

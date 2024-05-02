@@ -16,17 +16,15 @@ import {
 import LogoutIcon from "@mui/icons-material/Logout";
 import useLogin from "../hooks/useLogin";
 import SiderBarUserInfo from "./SiderBarUserInfo";
+import { useAtom } from "jotai";
+import { userInfoAtom } from "../lib/jotai/atoms/user";
 
 type Props = {
   currentPage: string;
 };
 function Sidebar({ currentPage }: Props) {
-  const { logout } = useLogin();
+  const [userInfoJotai] = useAtom(userInfoAtom);
 
-  const handleLogout = () => {
-    console.log("handleLogout");
-    logout();
-  };
   return (
     <div className="sidebar">
       <div className="sidebar__icon">
@@ -61,7 +59,7 @@ function Sidebar({ currentPage }: Props) {
       <SidebarOption
         Icon={PermIdentity}
         text="Profile"
-        path="/profile"
+        path={`/profile/${userInfoJotai.userInfo?.id}`}
         active={currentPage === "profile" ? true : false}
       />
       <SiderBarUserInfo />

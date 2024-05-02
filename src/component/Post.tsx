@@ -24,21 +24,19 @@ const Post = ({ post, displayFooter = true }: Props) => {
   const [openReply, setOpenReply] = useState(false);
   const [replyCount, setReplyCount] = useState(post.replies.length);
 
-  const handleReply = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    console.log("handleReply");
-    setOpenReply(true);
-  };
-
   return (
     <>
       <Link to={`/post/${post.id}`} style={{ textDecoration: "none" }}>
         <div className="post">
           <div className="post__content">
             <div className="post__avatar">
-              <Avatar
-                src={post.user.userImg ?? "/assets/default_profile_400x400.png"}
-              />
+              <Link to={`/profile/${post.user.id}`}>
+                <Avatar
+                  src={
+                    post.user.userImg ?? "/assets/default_profile_400x400.png"
+                  }
+                />
+              </Link>
             </div>
             <div className="post__body">
               <div className="post__header">

@@ -1,23 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../style/Profile.css";
 import { PostType } from "../lib/type/PostType";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import { Button } from "@mui/material";
+import { Button, FormControlLabel, Switch } from "@mui/material";
 import ModalPopup from "./ModalPopup";
 import { Place } from "@mui/icons-material";
 import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
 import PostListTab from "./PostListTab";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UpdateProfileForm from "./UpdateProfileForm";
+import { UserInfoType } from "../lib/type/UserInfoType";
+import { changeFollowState, getUserInfoById } from "../lib/database/User";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-const Profile = () => {
-  const [userInfoJotai] = useAtom(userInfoAtom);
+type Props = {
+  userId?: number;
+};
+
+const Profile = ({ userId }: Props) => {
+  console.log(userId);
+  const [userInfoJotai, setUserInfoJotai] = useAtom(userInfoAtom);
+  const navigate = useNavigate();
+  // const [id, setId] = useState(userId);
+  const [userInfo, setUserInfo] = useState<UserInfoType | null>(null);
 
   const [activeTab, setActiveTab] = useState("posts");
 
   const [updateFormOpen, setUpdateFormOpen] = useState(false);
+
+  const [followFlag, setFollowFlag] = useState(false);
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setActiveTab(newValue);
@@ -25,6 +38,59 @@ const Profile = () => {
 
   const handleUpdateProfilePopup = (flag: boolean) => {
     setUpdateFormOpen(true);
+  };
+
+  useEffect(() => {
+    if (!userId) {
+      navigate("/notfound");
+    }
+
+    const handleUserInfo = async () => {
+      console.log("handleUserInfo");
+      const res = await getUserInfoById(userInfoJotai.authtoken, userId!);
+      console.log(res);
+      if (!res || !res.id) {
+        navigate("/notfound");
+      }
+
+      //取得したユーザーがフォロー済みかどうかを確認する
+      const followingList = userInfoJotai.userInfo?.followings;
+      console.log("followingList", followingList);
+      if (!followingList) {
+        setFollowFlag(false);
+      } else {
+        const followed = followingList?.includes(res!.id!);
+
+        console.log(followed);
+        setFollowFlag(followed);
+      }
+
+      setUserInfo(res);
+    };
+    //ユーザー名をキーにユーザー情報を取得
+    handleUserInfo();
+  }, [userId]);
+
+  const handleFollowCheck = async () => {
+    console.log("handleFollowCheck");
+    const newFollowFlag = !followFlag;
+
+    //サーバー側にフォローの状態変更を登録する
+    const newFollowings = await changeFollowState(
+      userInfoJotai.userInfo?.id!,
+      userInfo?.id!,
+      !followFlag
+    );
+
+    // const newFollowingList=
+    const { followings, ...userWithoutFollowings } = userInfoJotai.userInfo!;
+
+    setFollowFlag(newFollowFlag);
+    setUserInfoJotai({
+      userInfo: { ...userWithoutFollowings, followings: newFollowings },
+      authtoken: userInfoJotai.authtoken,
+    });
+    console.log(userInfoJotai);
   };
 
   return (
@@ -40,37 +106,39 @@ const Profile = () => {
           <span className="profile__bg"></span>
           <img
             className="profile__photo"
-            src={
-              userInfoJotai.userInfo?.userImg ||
-              "/assets/default_profile_400x400.png"
-            }
+            src={userInfo?.userImg || "/assets/default_profile_400x400.png"}
             alt="profilePhoto"
           />
-          <Button
-            onClick={() => handleUpdateProfilePopup(false)}
-            variant="outlined"
-            className="updateProfile_button"
-          >
-            Update
-          </Button>
+          {userInfoJotai.userInfo?.id === userId ? (
+            <Button
+              onClick={() => handleUpdateProfilePopup(false)}
+              variant="outlined"
+              className="updateProfile_button"
+            >
+              Update
+            </Button>
+          ) : (
+            <FormControlLabel
+              control={
+                <Switch checked={followFlag} onChange={handleFollowCheck} />
+              }
+              label="Follow"
+            />
+          )}
         </div>
         <div className="profile__info">
-          <h3 className="profile__info__username">
-            {userInfoJotai.userInfo?.name}
-          </h3>
+          <h3 className="profile__info__username">{userInfo?.name}</h3>
           <p className="profile__info__introduction">
-            {userInfoJotai.userInfo?.introduction}
+            {userInfo?.introduction}
           </p>
           {/* <div className="profile__info__location">
             <Place className="placeIcon" />
             Location
           </div> */}
           <div className="profile__info__follow">
-            <Link to={`/follow/${userInfoJotai.userInfo?.name}`}>
-              <span>
-                following:{userInfoJotai.userInfo?.followings?.length}
-              </span>
-              <span>follower:{userInfoJotai.userInfo?.followers?.length}</span>
+            <Link to={`/follow/${userInfo?.name}`}>
+              <span>following:{userInfo?.followings?.length}</span>
+              <span>follower:{userInfo?.followers?.length}</span>
             </Link>
           </div>
         </div>
@@ -88,12 +156,16 @@ const Profile = () => {
         </Tabs>
       </div>
 
-      {activeTab === "posts" && <PostListTab tabName={PostType.self} />}
+      {activeTab === "posts" && (
+        <PostListTab tabName={PostType.profilePosts} profileUserId={userId} />
+      )}
 
       {activeTab === "replies" && (
-        <PostListTab tabName={PostType.selfReplies} />
+        <PostListTab tabName={PostType.profileReplies} profileUserId={userId} />
       )}
-      {activeTab === "likes" && <PostListTab tabName={PostType.likes} />}
+      {activeTab === "likes" && (
+        <PostListTab tabName={PostType.profileLikes} profileUserId={userId} />
+      )}
     </div>
   );
 };

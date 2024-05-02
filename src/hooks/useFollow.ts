@@ -1,13 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  getFollowingsPostList,
-  getLikeListByUserId,
-  getPostListByUserId,
-  getReplyListByUserId,
-  getReplyPostList,
-  getTrendPostList,
-  registerPostAPI,
-} from "../lib/database/Post";
+import { registerPostAPI } from "../lib/database/Post";
 import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
 import { PostInfo, PostType } from "../lib/type/PostType";
@@ -24,7 +16,7 @@ const useFollow = (tabName: FollowType, parentId?: number) => {
   useEffect(() => {
     console.log("useEffect___usePosts");
     setNextUser(1, parentId);
-  }, [parentId]);
+  }, [parentId, tabName]);
 
   const followUser = async (text: string, replyToId?: number) => {
     try {

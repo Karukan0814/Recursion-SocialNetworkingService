@@ -10,12 +10,14 @@ import { useEffect, useState } from "react";
 type Props = {
   tabName: PostType;
   replyToId?: number;
+  profileUserId?: number;
 };
-const PostListTab = ({ tabName, replyToId }: Props) => {
+const PostListTab = ({ tabName, replyToId, profileUserId }: Props) => {
   console.log(replyToId);
   const { postList, registerPost, setNextPost, hasMore } = usePosts(
     tabName,
-    replyToId
+    replyToId,
+    profileUserId
   );
   console.log(postList);
   const loadNextList = async (page: number) => {

@@ -18,9 +18,9 @@ export enum PostType {
   "followings",
   "detail",
   "reply",
-  "self",
-  "selfReplies",
-  "likes",
+  "profilePosts",
+  "profileReplies",
+  "profileLikes",
 }
 
 export type LikesInfo = {

@@ -73,7 +73,8 @@
 .updateProfile_button {
   /* border-radius: 50% !important; */
   z-index: 1000;
-
+  /* color: #ffff !important;
+  background-color: var(--twitter-color) !important; */
   width: fit-content !important;
   margin-right: 20px !important;
 }
