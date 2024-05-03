@@ -8,6 +8,7 @@
   margin-left: 20px;
 }
 .search__input > input {
+  flex: 1;
   border: none;
   background-color: var(--twitter-background);
 }

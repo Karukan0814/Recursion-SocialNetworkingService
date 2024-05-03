@@ -1,25 +1,14 @@
-import React, { useEffect } from "react";
 import Sidebar from "../component/Sidebar";
-import SearchInput from "../component/SearchInput";
 import "../style/SearchPage.css";
 import Widgets from "../component/Widgets";
-import useLogin from "../hooks/useLogin";
+import Search from "../component/Search";
 
 const SearchPage = () => {
   return (
     <>
       <Sidebar currentPage="search" />
-      <div className="search__container">
-        <SearchInput />
-        <div className="search__results">
-          <ul>
-            <li>post1</li>
-
-            <li>post2</li>
-          </ul>
-        </div>
-      </div>
-      <Widgets searchFlag={false} />
+      <Search />
+      <Widgets />
     </>
   );
 };

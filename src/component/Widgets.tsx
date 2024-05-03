@@ -9,12 +9,12 @@ import "../style/Widgets.css";
 import SearchInput from "./SearchInput";
 
 type Props = {
-  searchFlag?: boolean;
+  // searchFlag?: boolean;
 };
-const Widgets = ({ searchFlag = true }: Props) => {
+const Widgets = ({}: Props) => {
   return (
     <div className="widgets">
-      {searchFlag && <SearchInput />}
+      {/* {searchFlag && <SearchInput />} */}
 
       <div className="widgets__widgetContainer">
         <h2>What's happening</h2>

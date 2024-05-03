@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
   getFollowingsPostList,
   getLikeListByUserId,
+  getPostListByKeyword,
   getPostListByUserId,
   getReplyListByUserId,
   getReplyPostList,
@@ -15,7 +16,8 @@ import { PostInfo, PostType } from "../lib/type/PostType";
 const usePosts = (
   tabName: PostType,
   parentId?: number,
-  profileUserId?: number
+  profileUserId?: number,
+  keyword?: string
 ) => {
   const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
 
@@ -26,7 +28,7 @@ const usePosts = (
   useEffect(() => {
     console.log("useEffect___usePosts");
     setNextPost(1, parentId);
-  }, [parentId, tabName, profileUserId]);
+  }, [parentId, tabName, profileUserId, keyword]);
   const registerPost = async (
     text: string,
     img: File | null,
@@ -107,6 +109,19 @@ const usePosts = (
         }
         console.log("getLikeListByUserId", { token, profileUserId, page });
         newPosts = await getLikeListByUserId(token, profileUserId, 20, page);
+      } else if (tabName === PostType.search) {
+        //ユーザーが入力したキーワードに関連するポストリストの取得
+        if (!keyword) {
+          newPosts = [];
+        }
+        // else if (keyword[0] === "@") {
+        //   // 検索単語の頭に@が付いている場合、ユーザー名の検索
+        // }
+        else {
+          // それ以外の場合、Postのtextから検索
+          console.log("getPostListByKeyword", { token, profileUserId, page });
+          newPosts = await getPostListByKeyword(token, 20, page, keyword);
+        }
       } else {
         newPosts = [];
       }

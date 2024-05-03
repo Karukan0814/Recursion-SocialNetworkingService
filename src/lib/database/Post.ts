@@ -436,6 +436,58 @@ export async function getLikeListByUserId(
   }
 }
 
+export async function getPostListByKeyword(
+  token: string | undefined | null,
+  count: number = 20,
+  page: number = 1,
+  keyword: string
+) {
+  try {
+    console.log("getPostListByKeyword");
+    // クエリパラメータを用意
+    const params: { [key: string]: any } = { count };
+
+    if (!token) {
+      throw new Error("token is required");
+    }
+    //  各パラメータを設定
+    if (!keyword) {
+      throw new Error("keyword is required");
+    } else {
+      params.keyword = keyword;
+    }
+
+    if (page) {
+      params.page = page;
+    }
+
+    if (count) {
+      params.count = count;
+    }
+
+    // リクエストヘッダーにJWTを含める
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+
+    console.log("getPostListByKeyword", params);
+    // データを取得する
+    const response = await apiClient.get("/post/search/keyword", {
+      headers,
+      params,
+    });
+    if (response.status !== 200) {
+      throw new Error("Failed to fetch data");
+    }
+
+    return response.data as PostInfo[];
+  } catch (error) {
+    console.error("Error fetching data:", error);
+
+    return null;
+  }
+}
+
 // export async function getArticleByCategoryId(categoryId: number) {
 //   try {
 //     // クエリパラメータを用意

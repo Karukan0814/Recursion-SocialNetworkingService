@@ -11,13 +11,15 @@ type Props = {
   tabName: PostType;
   replyToId?: number;
   profileUserId?: number;
+  keyWord?: string;
 };
-const PostListTab = ({ tabName, replyToId, profileUserId }: Props) => {
+const PostListTab = ({ tabName, replyToId, profileUserId, keyWord }: Props) => {
   console.log(replyToId);
   const { postList, registerPost, setNextPost, hasMore } = usePosts(
     tabName,
     replyToId,
-    profileUserId
+    profileUserId,
+    keyWord
   );
   console.log(postList);
   const loadNextList = async (page: number) => {
@@ -54,8 +56,9 @@ const PostListTab = ({ tabName, replyToId, profileUserId }: Props) => {
           useWindow={false}
           initialLoad={false}
         >
-          {postList.map((post) => (
-            <Post key={`${tabName}_${post.id}`} post={post} />
+          {postList.map((post, i) => (
+            // <Post key={`${tabName}_${post.id}`} post={post} />
+            <Post key={i} post={post} />
           ))}
         </InfiniteScroll>
       </div>
