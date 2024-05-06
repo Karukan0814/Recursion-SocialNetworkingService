@@ -22,7 +22,8 @@
     "react-hook-form": "^7.51.3",
     "react-infinite-scroller": "^1.2.6",
     "react-router-dom": "^6.22.3",
-    "react-twitter-embed": "^4.0.4"
+    "react-twitter-embed": "^4.0.4",
+    "socket.io-client": "^4.7.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",

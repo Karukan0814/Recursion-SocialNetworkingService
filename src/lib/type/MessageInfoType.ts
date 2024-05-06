@@ -17,6 +17,8 @@ export type MessageInfoType = {
   id: number;
   text: string;
   conversationId: number;
+  senderId: number;
+
   sender: UserInfoType;
 
   createdAt: Date;

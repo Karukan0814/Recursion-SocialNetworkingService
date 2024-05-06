@@ -15,6 +15,7 @@ import {
 } from "../lib/type/MessageInfoType";
 import { UserInfoType } from "../lib/type/UserInfoType";
 import { useForm } from "react-hook-form";
+import { io } from "socket.io-client";
 
 type Message = {
   text: string;
@@ -38,8 +39,21 @@ type Props = {
 const Conversation = ({ activeConversationInfo }: Props) => {
   const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
 
+  const socket = io(import.meta.env.VITE_SOCKET_URL, {
+    auth: {
+      token: userInfoJotai.authtoken, // トークンをauthオブジェクト内に設定
+    },
+  });
+
+  socket.on("connection", () => {
+    console.log("Connected to server.");
+  });
+
+  socket.on("connect_error", (err: { message: any }) => {
+    console.log("Connection failed:", err.message); // 接続エラーの取り扱い
+  });
+
   const [messages, setMessages] = useState<MessageInfoType[]>([]);
-  const [input, setInput] = useState("");
   const [participant, setParticipant] = useState<UserInfoType>();
 
   const {
@@ -47,17 +61,22 @@ const Conversation = ({ activeConversationInfo }: Props) => {
     handleSubmit,
     formState: { errors },
     watch,
+    reset,
   } = useForm<FormData>();
 
   const sendMessage = async (data: FormData) => {
     // TODO サーバーにメッセージを送信する＋リアルタイム受信
     console.log({ data });
-    await registerMessageAPI(
-      userInfoJotai.authtoken,
-      activeConversationInfo?.id!,
-      userInfoJotai.userInfo?.id!,
-      data.text
+
+    // サーバーにメッセージを送信
+    socket.emit(
+      "sendMessage",
+      data.text,
+      activeConversationInfo?.id,
+      userInfoJotai.userInfo?.id!
     );
+
+    reset();
   };
 
   const handleGetConversationInfo = async () => {
@@ -74,17 +93,35 @@ const Conversation = ({ activeConversationInfo }: Props) => {
   useEffect(() => {
     //指定されたconversationIdの最新情報を取得
     if (activeConversationInfo) {
+      // 会話の情報をサーバから取得
       handleGetConversationInfo();
+
+      // 相手側のユーザーの情報を取得して表示
       const participantList = activeConversationInfo.participants.filter(
         (val) => val.userId !== userInfoJotai.userInfo?.id
       );
-
       const participant = participantList[0];
       if (participant && participant.user) {
         setParticipant(participant.user);
       }
+
+      // ソケット通信開始
+      // 会話に参加
+      socket.emit("joinConversation", activeConversationInfo.id);
+
+      // メッセージを受信するイベント
+      socket.on("receiveMessage", (newMessage: MessageInfoType) => {
+        newMessage.isMine = newMessage.senderId === userInfoJotai.userInfo?.id;
+        console.log("newMessage", newMessage);
+        setMessages((prev) => [...prev, newMessage]);
+      });
+
+      return () => {
+        // アンマウント時にソケット通信オフ
+        socket.off("receiveMessage");
+      };
     }
-  }, [activeConversationInfo]);
+  }, [activeConversationInfo?.id]);
 
   return (
     <div className="conversation">
