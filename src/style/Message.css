@@ -1,0 +1,18 @@
+.message_container {
+  flex: 1; /* 真ん中のコンポーネントをできる限り大きくする */
+  border-right: 0.5px var(--twitter-background) solid;
+  /* overflow-y: scroll; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.messageList_container {
+  flex: 0.5;
+  border-right: 0.5px var(--twitter-background) solid;
+}
+
+.sectionMessages_conversation {
+  flex: 0.5;
+  height: 100vh;
+  overflow-y: auto;
+}

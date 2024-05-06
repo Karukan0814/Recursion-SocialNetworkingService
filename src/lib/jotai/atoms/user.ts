@@ -6,7 +6,7 @@ const atomWithLocalStorage = (key: string, initialValue: UserInfoTypeJotai) => {
   const getInitialValue = () => {
     const item = localStorage.getItem(key);
     if (item !== null) {
-      return JSON.parse(item);
+      return JSON.parse(item) as UserInfoTypeJotai;
     }
     return initialValue;
   };

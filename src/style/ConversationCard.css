@@ -1,0 +1,26 @@
+.conversationCard__container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  align-items: center;
+  padding: 5px 10px;
+  border-bottom: 0.5px var(--twitter-background) solid;
+}
+
+.conversationCard__container--active {
+  background-color: var(--twitter-background);
+  border-right: 2px var(--twitter-color) solid;
+}
+.conversationCard__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: contain;
+}
+.conversationCard__text__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 15px;
+}
