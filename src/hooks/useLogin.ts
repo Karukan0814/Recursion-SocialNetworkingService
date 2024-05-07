@@ -213,8 +213,7 @@ const useLogin = () => {
         authtoken: userInfoJotai.authtoken,
       });
 
-      // //home画面に移動
-      // navigate();
+      return updatedUserInfo;
     } catch (error: any) {
       setErrorMsg(error.message);
       console.log(error);

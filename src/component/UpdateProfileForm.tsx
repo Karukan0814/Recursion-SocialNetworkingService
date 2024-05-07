@@ -7,16 +7,17 @@ import "../style/UpdateProfileForm.css";
 import { PhotoCamera } from "@mui/icons-material";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
 import { useAtom } from "jotai";
+import { UserInfoType } from "../lib/type/UserInfoType";
 type Props = {
   handleClose: () => void;
+  setUserInfo: React.Dispatch<React.SetStateAction<UserInfoType | null>>;
 };
 type FormData = {
   name: string;
   introduction: string;
-
   userImage: File | null;
 };
-const UpdateProfileForm = ({ handleClose }: Props) => {
+const UpdateProfileForm = ({ handleClose, setUserInfo }: Props) => {
   const [userInfoJotai] = useAtom(userInfoAtom);
 
   const { login, signUp, loading, errorMsg } = useLogin();
@@ -45,7 +46,14 @@ const UpdateProfileForm = ({ handleClose }: Props) => {
   const onSubmit = async (data: FormData) => {
     console.log({ data });
 
-    await updateUserInfo(data.name, data.introduction, data.userImage);
+    const updatedUserInfo = await updateUserInfo(
+      data.name,
+      data.introduction,
+      data.userImage
+    );
+    if (updatedUserInfo) {
+      setUserInfo(updatedUserInfo);
+    }
     // await signUp(data.name, data.email, data.password, data.confirmPassword);
     handleClose();
   };

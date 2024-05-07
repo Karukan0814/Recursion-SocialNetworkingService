@@ -77,7 +77,10 @@ const Profile = ({ userId }: Props) => {
         open={updateFormOpen}
         handleClose={() => setUpdateFormOpen(false)}
       >
-        <UpdateProfileForm handleClose={() => setUpdateFormOpen(false)} />
+        <UpdateProfileForm
+          handleClose={() => setUpdateFormOpen(false)}
+          setUserInfo={setUserInfo}
+        />
       </ModalPopup>
       <div className="profile__info__container">
         <div className="profilePhoto__container">
