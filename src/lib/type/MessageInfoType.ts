@@ -19,7 +19,7 @@ export type MessageInfoType = {
   conversationId: number;
   senderId: number;
 
-  sender: UserInfoType;
+  // sender: UserInfoType;
 
   createdAt: Date;
   isMine: boolean;

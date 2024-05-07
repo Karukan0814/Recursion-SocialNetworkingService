@@ -96,7 +96,8 @@ export async function getMessagesByConversationId(
         id: data.id,
         text: data.text,
         conversationId: data.conversationId,
-        sender: data.sender,
+        senderId: data.send,
+        // sender: data.sender,
 
         createdAt: data.createdAt,
         isMine: data.senderId === myId,
