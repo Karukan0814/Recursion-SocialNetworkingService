@@ -59,11 +59,9 @@ const Post = ({ post, displayFooter = true }: Props) => {
           </div>
           {displayFooter && (
             <div className="post__footer">
-              <PostReplyButton
-                replyCount={replyCount}
-                setOpenReply={setOpenReply}
-              />
-              <PostLikeButton postInfo={post} />
+              <PostReplyButton postInfo={post} setOpenReply={setOpenReply} />
+
+              <PostLikeButton postInfo={post} key={`${post.id}_like`} />
             </div>
           )}
         </div>
