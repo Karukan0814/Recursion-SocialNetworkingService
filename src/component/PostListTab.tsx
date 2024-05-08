@@ -58,7 +58,7 @@ const PostListTab = ({ tabName, replyToId, profileUserId, keyWord }: Props) => {
         >
           {postList.map((post, i) => (
             // <Post key={`${tabName}_${post.id}`} post={post} />
-            <Post key={i} post={post} />
+            <Post key={post.id} post={post} />
           ))}
         </InfiniteScroll>
       </div>
