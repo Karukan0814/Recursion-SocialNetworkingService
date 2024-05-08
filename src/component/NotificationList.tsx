@@ -14,7 +14,7 @@ import ConversationCard from "./ConversationCard";
 import useConversation from "../hooks/useConversation";
 import { IconButton } from "@mui/material";
 import { AddIcCallOutlined } from "@mui/icons-material";
-import "../style/ConversationList.css";
+import "../style/NotificationList.css";
 import ModalPopup from "./ModalPopup";
 import SearchUser from "./SearchUser";
 import { ConversationInfoType } from "../lib/type/MessageInfoType";
