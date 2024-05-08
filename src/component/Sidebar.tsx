@@ -18,6 +18,7 @@ import useLogin from "../hooks/useLogin";
 import SiderBarUserInfo from "./SiderBarUserInfo";
 import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
+import { Link } from "react-router-dom";
 
 type Props = {
   currentPage: string;
@@ -27,10 +28,12 @@ function Sidebar({ currentPage }: Props) {
 
   return (
     <div className="sidebar">
-      <div className="sidebar__icon">
-        <img src="/assets/karukan_icon.svg" alt="icon" />
-        <h1>Karukan SNS</h1>
-      </div>
+      <Link to={"/"} style={{ textDecoration: "none", color: "inherit" }}>
+        <div className="sidebar__icon">
+          <img src="/assets/karukan_icon.svg" alt="icon" />
+          <h1>Karukan SNS</h1>
+        </div>
+      </Link>
 
       <SidebarOption
         Icon={Home}
