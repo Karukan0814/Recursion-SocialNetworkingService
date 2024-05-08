@@ -38,6 +38,17 @@ const PostListTab = ({ tabName, replyToId, profileUserId, keyWord }: Props) => {
   // tabNameがvalidTabs配列に含まれているかチェック
   const shouldDisplayPostBox = validTabs.includes(tabName);
 
+  const displayResult = () => {
+    if (postList.length < 1) {
+      if (tabName === PostType.search) {
+        return <div className="tab__content_noResult">No results</div>;
+      }
+      return <div className="tab__content_noResult">No posts</div>;
+    } else {
+      return postList.map((post, i) => <Post key={post.id} post={post} />);
+    }
+  };
+
   return (
     <>
       {shouldDisplayPostBox && (
@@ -56,10 +67,11 @@ const PostListTab = ({ tabName, replyToId, profileUserId, keyWord }: Props) => {
           useWindow={false}
           initialLoad={false}
         >
-          {postList.map((post, i) => (
+          {displayResult()}
+          {/* {postList.map((post, i) => (
             // <Post key={`${tabName}_${post.id}`} post={post} />
             <Post key={post.id} post={post} />
-          ))}
+          ))} */}
         </InfiniteScroll>
       </div>
     </>

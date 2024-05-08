@@ -4,3 +4,7 @@
   /* height: 100%; */
   /* TODO heightの動的設定 */
 }
+.tab__content_noResult {
+  margin: 5px auto;
+  text-align: center;
+}
