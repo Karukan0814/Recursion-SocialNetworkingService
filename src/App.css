@@ -14,6 +14,7 @@ body {
 
 .errMsg {
   color: red;
+  padding: 5px;
 }
 
 .iconButton {

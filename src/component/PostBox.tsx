@@ -59,6 +59,10 @@ const PostBox = ({ registerPost, replyToId, postType }: Props) => {
   return (
     <div className="postBox">
       <form onSubmit={handleSubmit(onSubmit)}>
+        {errors.postMessage && (
+          <p className="errMsg">Your message is required</p>
+        )}
+
         <div className="postBox__input">
           <Avatar
             src={
@@ -86,7 +90,6 @@ const PostBox = ({ registerPost, replyToId, postType }: Props) => {
               fontFamily: "inherit",
             }}
           />
-          {errors.postMessage && <p>Your message is required</p>}
         </div>
         <div className="photo__preview__container">
           {imagePreviewUrl && (
