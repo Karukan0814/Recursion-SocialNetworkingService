@@ -8,6 +8,10 @@
   height: min-content;
 }
 
+.favIcon-active {
+  color: rgb(249, 24, 128);
+}
+
 .like__count {
   display: block;
   font-size: 0.8rem;

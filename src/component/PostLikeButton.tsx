@@ -28,7 +28,7 @@ const PostLikeButton = ({ postInfo }: Props) => {
     <div className="likeButton__container">
       <IconButton className="like__iconButton" onClick={(e) => handleLike(e)}>
         {likeState ? (
-          <Favorite fontSize="small" color="secondary" />
+          <Favorite fontSize="small" className="favIcon-active" />
         ) : (
           <FavoriteBorder fontSize="small" />
         )}
