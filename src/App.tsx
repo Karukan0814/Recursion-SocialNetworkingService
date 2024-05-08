@@ -14,6 +14,14 @@ import FollowPage from "./pages/FollowPage";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
+// import { Roboto } from "next/font/google";
+
+// const roboto = Roboto({
+//   weight: ["300", "400", "500", "700"],
+//   style: ["normal", "italic"],
+//   subsets: ["latin"],
+//   display: "swap",
+// });
 const theme = createTheme({
   palette: {
     primary: {
@@ -22,6 +30,9 @@ const theme = createTheme({
     secondary: {
       main: "rgb(83, 100, 113)",
     },
+  },
+  typography: {
+    fontFamily: ["sans-serif"].join(","),
   },
 });
 

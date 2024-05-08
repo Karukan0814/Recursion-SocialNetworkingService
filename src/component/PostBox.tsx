@@ -83,6 +83,7 @@ const PostBox = ({ registerPost, replyToId, postType }: Props) => {
               padding: "10px",
               boxSizing: "border-box",
               resize: "none",
+              fontFamily: "inherit",
             }}
           />
           {errors.postMessage && <p>Your message is required</p>}
