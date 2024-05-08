@@ -15,6 +15,10 @@
   font-size: 20px;
   padding: 10px 20px;
 }
+.notificationList__container {
+  flex-grow: 1; /* 残りのスペースを全て埋める */
+  overflow: auto; /* 必要に応じてスクロールを表示 */
+}
 
 @media (max-width: 1066px) {
   .notifications_container {

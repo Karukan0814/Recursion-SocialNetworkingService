@@ -8,19 +8,15 @@
   flex-basis: auto;
   flex-direction: row;
   flex-shrink: 0;
-  list-style: none;
+  gap: 5px;
   margin: 0px;
   min-height: 0px;
   min-width: 0px;
-  padding: 10px 0;
-  position: relative;
-  text-decoration: none;
-  z-index: 0;
+  padding: 10px 5px;
+  color: initial;
 }
 .favIcon {
   color: rgb(249, 24, 128);
-  width: 30px !important;
-  height: 30px !important;
 }
 
 .notification__icon {
@@ -34,24 +30,7 @@
   border-radius: 50%;
 }
 
-.notificationCard__text {
-  width: 100%;
-
-  align-items: stretch;
-  background-color: rgba(0, 0, 0, 0);
-  border: 0 solid black;
-  box-sizing: border-box;
-  display: flex;
-  flex-basis: auto;
-  flex-direction: column;
-  flex-shrink: 0;
-  list-style: none;
-
-  margin-left: 10px;
-  min-height: 0px;
-  min-width: 0px;
-  padding: 0px;
-  position: relative;
-  text-decoration: none;
-  z-index: 0;
+.notificationCard__text__title {
+  /* font-weight: bold; */
+  margin-bottom: 10px;
 }
