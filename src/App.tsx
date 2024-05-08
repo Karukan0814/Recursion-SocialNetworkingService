@@ -12,83 +12,98 @@ import VerifyPage from "./pages/VerifyPage";
 import ProtectedRoute from "./component/ProtectedRoute";
 import FollowPage from "./pages/FollowPage";
 
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#50b7f5",
+    },
+    secondary: {
+      main: "rgb(83, 100, 113)",
+    },
+  },
+});
+
 function App() {
   return (
-    <div className="app">
-      <Router>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <HomePage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/post/:postId"
-            element={
-              <ProtectedRoute>
-                <PostDetailPage />
-              </ProtectedRoute>
-            }
-          />
+    <ThemeProvider theme={theme}>
+      <div className="app">
+        <Router>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <HomePage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/post/:postId"
+              element={
+                <ProtectedRoute>
+                  <PostDetailPage />
+                </ProtectedRoute>
+              }
+            />
 
-          <Route path="/login" element={<LoginPage />} />
-          <Route
-            path="/search"
-            element={
-              <ProtectedRoute>
-                <SearchPage />
-              </ProtectedRoute>
-            }
-          />
+            <Route path="/login" element={<LoginPage />} />
+            <Route
+              path="/search"
+              element={
+                <ProtectedRoute>
+                  <SearchPage />
+                </ProtectedRoute>
+              }
+            />
 
-          <Route
-            path="/profile/:userId"
-            element={
-              <ProtectedRoute>
-                <ProfilePage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/message"
-            element={
-              <ProtectedRoute>
-                <MessagePage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/notification"
-            element={
-              <ProtectedRoute>
-                <NotificationPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/follow/:id"
-            element={
-              <ProtectedRoute>
-                <FollowPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/verify" element={<VerifyPage />} />
+            <Route
+              path="/profile/:userId"
+              element={
+                <ProtectedRoute>
+                  <ProfilePage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/message"
+              element={
+                <ProtectedRoute>
+                  <MessagePage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/notification"
+              element={
+                <ProtectedRoute>
+                  <NotificationPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/follow/:id"
+              element={
+                <ProtectedRoute>
+                  <FollowPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/verify" element={<VerifyPage />} />
 
-          <Route
-            path="*"
-            element={
-              <ProtectedRoute>
-                <NotFoundPage />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </Router>
-    </div>
+            <Route
+              path="*"
+              element={
+                <ProtectedRoute>
+                  <NotFoundPage />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </Router>
+      </div>
+    </ThemeProvider>
   );
 }
 

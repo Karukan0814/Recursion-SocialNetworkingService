@@ -10,3 +10,13 @@ body {
   max-width: 1300px;
   margin: 0 auto; /* 画面中央に配置 */
 }
+
+.errMsg {
+  color: red;
+}
+
+.iconButton {
+  width: min-content;
+  height: min-content;
+  color: #50b7f5;
+}
