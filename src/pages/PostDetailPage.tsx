@@ -59,7 +59,16 @@ const PostDetailPage = () => {
         <div className="parentPost__conatiner">
           {/*TODO  post詳細画面でもフッター出した場合の挙動について */}
           {parentPost ? (
-            <Post post={parentPost} displayFooter={false} />
+            <>
+              {parentPost.post && (
+                <Post
+                  post={parentPost.post}
+                  displayFooter={false}
+                  parentPostFlag={true}
+                />
+              )}
+              <Post post={parentPost} />
+            </>
           ) : (
             <Loading />
           )}

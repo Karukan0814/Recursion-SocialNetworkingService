@@ -1,12 +1,4 @@
-import {
-  ChatBubbleOutline,
-  Favorite,
-  FavoriteBorder,
-  Publish,
-  Repeat,
-  VerifiedUser,
-} from "@mui/icons-material";
-import { Avatar, IconButton } from "@mui/material";
+import { Avatar } from "@mui/material";
 import "../style/Post.css";
 import { PostInfo } from "../lib/type/PostType";
 import { useState } from "react";
@@ -18,8 +10,13 @@ import PostReplyButton from "./PostReplyButton";
 type Props = {
   post: PostInfo;
   displayFooter?: boolean;
+  parentPostFlag?: boolean;
 };
-const Post = ({ post, displayFooter = true }: Props) => {
+const Post = ({
+  post,
+  displayFooter = true,
+  parentPostFlag = false,
+}: Props) => {
   const formattedTime = post.createdAt.toLocaleString();
   const [openReply, setOpenReply] = useState(false);
   const [replyCount, setReplyCount] = useState(post.replies.length);
@@ -27,16 +24,21 @@ const Post = ({ post, displayFooter = true }: Props) => {
   return (
     <>
       <Link to={`/post/${post.id}`} style={{ textDecoration: "none" }}>
-        <div className="post">
+        <div className={parentPostFlag ? "post_withoutBorder" : "post"}>
           <div className="post__content">
-            <div className="post__avatar">
-              <Link to={`/profile/${post.user.id}`}>
-                <Avatar
-                  src={
-                    post.user.userImg ?? "/assets/default_profile_400x400.png"
-                  }
-                />
-              </Link>
+            <div className="post__header">
+              <div className="post__avatar">
+                <Link to={`/profile/${post.user.id}`}>
+                  <Avatar
+                    src={
+                      post.user.userImg ?? "/assets/default_profile_400x400.png"
+                    }
+                  />
+                </Link>
+              </div>
+              {parentPostFlag && (
+                <div className="post__header__replyLine"></div>
+              )}
             </div>
             <div className="post__body">
               <div className="post__header">

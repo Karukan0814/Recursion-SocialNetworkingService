@@ -7,13 +7,40 @@
   flex-direction: column;
   border-bottom: 1px solid var(--twitter-background);
 }
+.post_withoutBorder {
+  display: flex;
+  flex-direction: column;
+  /* border-bottom: 1px solid var(--twitter-background); */
+}
 .post__content {
   width: 100%;
-
+  height: auto;
   display: flex;
   align-items: flex-start;
   color: initial;
   text-decoration: none; /* 下線を消す */
+}
+
+.post__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.post__avatar {
+  padding: 20px;
+  width: 40px;
+  height: 40px;
+}
+.post__header__replyLine {
+  display: flex;
+  flex-grow: 1;
+  margin: auto;
+  /* height: calc(100% - 120px); */
+  height: 80px;
+  width: 2px;
+  background-color: var(--twitter-background);
 }
 .post__footer {
   display: flex;
@@ -27,11 +54,6 @@
   padding: 10px;
   width: calc(100% - 100px);
   text-decoration: none;
-}
-.post__avatar {
-  padding: 20px;
-  width: 40px;
-  height: 40px;
 }
 .post__badge {
   font-size: 14px !important;
