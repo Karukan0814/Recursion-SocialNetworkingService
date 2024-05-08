@@ -70,6 +70,7 @@ const PostBox = ({ registerPost, replyToId, postType }: Props) => {
           <TextareaAutosize
             {...register("postMessage", { required: true, maxLength: 200 })}
             maxRows={10}
+            maxLength={200}
             placeholder={`${
               postType === PostType.detail || postType === PostType.reply
                 ? "Reply to this message"
