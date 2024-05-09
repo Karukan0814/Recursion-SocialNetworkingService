@@ -6,14 +6,22 @@ import "../style/PostListTab.css";
 import Loading from "./Loading";
 import { PostType } from "../lib/type/PostType";
 import { useEffect, useState } from "react";
+import ModalPopup from "./ModalPopup";
 
 type Props = {
   tabName: PostType;
   replyToId?: number;
   profileUserId?: number;
   keyWord?: string;
+  displayScheduledAt?: boolean;
 };
-const PostListTab = ({ tabName, replyToId, profileUserId, keyWord }: Props) => {
+const PostListTab = ({
+  tabName,
+  replyToId,
+  profileUserId,
+  keyWord,
+  displayScheduledAt = false,
+}: Props) => {
   console.log(replyToId);
   const { postList, registerPost, setNextPost, hasMore } = usePosts(
     tabName,
@@ -56,6 +64,7 @@ const PostListTab = ({ tabName, replyToId, profileUserId, keyWord }: Props) => {
           registerPost={registerPost}
           replyToId={replyToId}
           postType={tabName}
+          displayScheduledAt={displayScheduledAt}
         />
       )}
       <div className="tab__content">
@@ -68,10 +77,6 @@ const PostListTab = ({ tabName, replyToId, profileUserId, keyWord }: Props) => {
           initialLoad={false}
         >
           {displayResult()}
-          {/* {postList.map((post, i) => (
-            // <Post key={`${tabName}_${post.id}`} post={post} />
-            <Post key={post.id} post={post} />
-          ))} */}
         </InfiniteScroll>
       </div>
     </>

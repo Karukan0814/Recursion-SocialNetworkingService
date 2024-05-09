@@ -27,10 +27,12 @@ const Feed = () => {
         </Tabs>
       </div>
 
-      {activeTab === "trend" && <PostListTab tabName={PostType.trend} />}
+      {activeTab === "trend" && (
+        <PostListTab tabName={PostType.trend} displayScheduledAt={true} />
+      )}
 
       {activeTab === "followings" && (
-        <PostListTab tabName={PostType.followings} />
+        <PostListTab tabName={PostType.followings} displayScheduledAt={true} />
       )}
     </div>
   );

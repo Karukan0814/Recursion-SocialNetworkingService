@@ -17,7 +17,10 @@ const Post = ({
   displayFooter = true,
   parentPostFlag = false,
 }: Props) => {
-  const formattedTime = post.createdAt.toLocaleString();
+  const formattedTime = post.sentAt
+    ? post.sentAt.toLocaleString()
+    : `This post is scheduled at ${post.scheduledAt?.toLocaleString()}`;
+
   const [openReply, setOpenReply] = useState(false);
   const [replyCount, setReplyCount] = useState(post.replies.length);
 

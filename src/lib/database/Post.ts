@@ -627,7 +627,8 @@ export async function registerPostAPI(
   jwtToken: string,
   img: string,
   text: string,
-  replyToId?: number
+  replyToId?: number,
+  scheduledAt?: Date
 ) {
   try {
     console.log("registerPost", {
@@ -636,6 +637,7 @@ export async function registerPostAPI(
       img,
       replyToId,
       jwtToken,
+      scheduledAt,
     });
 
     // TODO Postの画像データをどこに保存するか問題
@@ -647,6 +649,7 @@ export async function registerPostAPI(
 
       userId,
       replyToId,
+      scheduledAt,
     };
 
     // リクエストヘッダーにJWTを含める

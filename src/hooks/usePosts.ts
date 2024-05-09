@@ -32,7 +32,8 @@ const usePosts = (
   const registerPost = async (
     text: string,
     img: File | null,
-    replyToId?: number
+    replyToId?: number,
+    scheduledAt?: Date
   ) => {
     try {
       setLoading(true);
@@ -47,14 +48,20 @@ const usePosts = (
         userInfoJotai.authtoken!,
         testImg,
         text,
-        replyToId
+        replyToId,
+        scheduledAt
       );
       console.log(newPost);
       if (!newPost) {
         throw new Error("Something wrong with registering new post");
       }
 
-      setPostList([newPost, ...postList]);
+      if (!scheduledAt) {
+        //投稿予約日時が設定されていない場合のみ、リストに追加※予約されている場合は表示しない
+        setPostList([newPost, ...postList]);
+      } else {
+        alert(`Your post is scheduled at ${scheduledAt.toLocaleString()}`);
+      }
     } catch (error: any) {
       setErrorMsg(error.message);
       console.log(error);

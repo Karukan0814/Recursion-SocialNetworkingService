@@ -6,6 +6,9 @@ export type PostInfo = {
   text: string;
   image?: string;
   createdAt: Date;
+  scheduledAt?: Date;
+  sentAt?: Date;
+
   updatedAt: Date;
   likes: LikesInfo[];
   replies: PostInfo[];

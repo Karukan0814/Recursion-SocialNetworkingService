@@ -66,7 +66,7 @@
   text-transform: inherit !important;
   border-radius: 20px !important;
   height: 45px !important;
-  width: 70%;
+  width: 40%;
   margin: 20px auto 0 !important;
 }
 
@@ -80,4 +80,27 @@
   color: var(--twitter-color);
   background-color: transparent;
   border: none;
+}
+
+.calender__button {
+  width: min-content;
+  height: min-content;
+  color: #50b7f5;
+  margin: 20px 10px 0 0 !important;
+}
+.calender__icon {
+  color: #50b7f5 !important;
+}
+
+.postBox_scheduledAt__delete__button {
+  width: min-content;
+  height: min-content;
+  color: var(--twitter-background2) !important;
+  margin: 20px 10px 0 0 !important;
+}
+.postBox_scheduledAt__delete__icon {
+  color: var(--twitter-background2) !important;
+}
+.postBox_scheduledAt {
+  font-size: small;
 }
