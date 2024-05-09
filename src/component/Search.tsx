@@ -11,6 +11,8 @@ type Props = {
 };
 const Search = ({}: Props) => {
   //TODO User検索機能の追加
+  //TODO 検索結果なしの場合の表示
+
   const [keyword, setKeyword] = useState("");
 
   return (

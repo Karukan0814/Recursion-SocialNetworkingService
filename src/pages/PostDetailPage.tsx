@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 import useLogin from "../hooks/useLogin";
 import { getPostInfo } from "../lib/database/Post";
 import Loading from "../component/Loading";
-import PostBox from "../component/PostBox";
 import usePosts from "../hooks/usePosts";
 import PostListTab from "../component/PostListTab";
 import { useAtom } from "jotai";

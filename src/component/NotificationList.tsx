@@ -1,4 +1,3 @@
-import PostBox from "./PostBox";
 import InfiniteScroll from "react-infinite-scroller";
 import Post from "./Post";
 import usePosts from "../hooks/usePosts";
