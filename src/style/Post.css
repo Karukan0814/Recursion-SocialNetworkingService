@@ -21,11 +21,17 @@
   text-decoration: none; /* 下線を消す */
 }
 
-.post__header {
+.post__body__content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100%;
+}
+
+.post__body__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .post__avatar {
@@ -95,4 +101,13 @@
 .post__iconButton {
   width: min-content;
   height: min-content;
+}
+
+.post__delete__button {
+  width: min-content;
+  height: min-content;
+  color: var(--twitter-background2) !important;
+}
+.post__delete__icon {
+  color: var(--twitter-background2) !important;
 }

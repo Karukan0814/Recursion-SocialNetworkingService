@@ -1,28 +1,49 @@
-import { Avatar } from "@mui/material";
+import { Avatar, IconButton } from "@mui/material";
 import "../style/Post.css";
 import { PostInfo } from "../lib/type/PostType";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ModalPopup from "./ModalPopup";
 import ReplyForm from "./ReplyForm";
 import PostLikeButton from "./PostLikeButton";
 import PostReplyButton from "./PostReplyButton";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { useAtom } from "jotai";
+import { userInfoAtom } from "../lib/jotai/atoms/user";
+import { deletePost } from "../lib/database/Post";
+
 type Props = {
   post: PostInfo;
   displayFooter?: boolean;
   parentPostFlag?: boolean;
+  displayDeleteFlag?: boolean;
 };
 const Post = ({
   post,
   displayFooter = true,
   parentPostFlag = false,
+  displayDeleteFlag = false,
 }: Props) => {
+  const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
+
+  const navigate = useNavigate();
+
   const formattedTime = post.sentAt
     ? post.sentAt.toLocaleString()
     : `This post is scheduled at ${post.scheduledAt?.toLocaleString()}`;
 
   const [openReply, setOpenReply] = useState(false);
   const [replyCount, setReplyCount] = useState(post.replies.length);
+  const handlePostDelete = async (postId: number) => {
+    // サーバー側にポストの削除
+    await deletePost(
+      userInfoJotai.authtoken,
+      userInfoJotai.userInfo?.id,
+      postId
+    );
+    // 一つ前の画面に戻る
+    navigate(-1);
+  };
 
   return (
     <>
@@ -44,16 +65,36 @@ const Post = ({
               )}
             </div>
             <div className="post__body">
-              <div className="post__header">
-                <div className="post__headerText">
-                  <h3>
-                    <span className="post__headerSpecial">{post.username}</span>
-                  </h3>
-                  <h3>
-                    <span className="post__headerSpecial time">
-                      {formattedTime}
-                    </span>
-                  </h3>
+              <div className="post__body__content">
+                <div className="post__body__header">
+                  <div className="post__headerText">
+                    <h3>
+                      <span className="post__headerSpecial">
+                        {post.user.name}
+                      </span>
+                    </h3>
+                    <h3>
+                      <span className="post__headerSpecial time">
+                        {formattedTime}
+                      </span>
+                    </h3>
+                  </div>
+                  <div>
+                    {
+                      // ポストの投稿者IDとログインしているユーザーのIDが一致していたときのみ+displayDeleteFlag=trueのとき
+                      post.user.id === userInfoJotai.userInfo?.id &&
+                        displayDeleteFlag && (
+                          <IconButton
+                            className="post__delete__button"
+                            onClick={async () =>
+                              await handlePostDelete(post.id)
+                            }
+                          >
+                            <HighlightOffIcon className="post__delete__icon" />
+                          </IconButton>
+                        )
+                    }
+                  </div>
                 </div>
                 <div className="post__headerDescription">
                   <p>{post.text}</p>

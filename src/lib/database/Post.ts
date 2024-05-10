@@ -671,40 +671,52 @@ export async function registerPostAPI(
   }
 }
 
-// export async function deleteArticle(userId: number, articleInfo: ArticleInfo) {
-//   try {
-//     // クエリパラメータを用意
-//     const params: { [key: string]: any } = {
-//       userId,
-//       articleId: articleInfo.id,
-//     };
+export async function deletePost(
+  token: string | undefined | null,
 
-//     // リクエストヘッダーにJWTを含める
-//     const jwtToken = getCookie("userInfo");
-//     const headers = {
-//       Authorization: `Bearer ${jwtToken}`,
-//     };
-//     // データを取得する
-//     const response = await apiClient.delete("/article/delete", {
-//       params,
-//       headers,
-//     });
-//     if (response.status !== 200) {
-//       // This will activate the closest `error.js` Error Boundary
-//       throw new Error("記事削除失敗");
-//     }
+  userId: number | undefined | null,
 
-//     //firebaseから記事のimgを削除
-//     if (articleInfo.img.startsWith("http")) {
-//       const imageRef = ref(storage, articleInfo.img);
+  postId: number
+) {
+  try {
+    // クエリパラメータを用意
+    const params: { [key: string]: any } = {};
 
-//       // 画像をFirebase Storageから削除
-//       await deleteObject(imageRef);
-//     }
+    if (!token) {
+      throw new Error("token is required");
+    }
 
-//     return true;
-//   } catch (error) {
-//     console.error("Error registering data:", error);
-//     return false;
-//   }
-// }
+    //  各パラメータを設定
+    if (!userId) {
+      throw new Error("userId is required");
+    } else {
+      params.userId = userId;
+    }
+
+    if (!postId) {
+      throw new Error("postId is required");
+    } else {
+      params.postId = postId;
+    }
+
+    // リクエストヘッダーにJWTを含める
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    // データを取得する
+    const response = await apiClient.delete("/post/delete", {
+      params,
+      headers,
+    });
+    if (response.status !== 200) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error("deleting post failed");
+    }
+
+    //TODO ポストに画像が添付されていた場合は、それを削除
+    return true;
+  } catch (error) {
+    console.error("Error registering data:", error);
+    return false;
+  }
+}

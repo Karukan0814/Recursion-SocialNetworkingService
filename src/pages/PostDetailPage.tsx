@@ -9,7 +9,7 @@ import { IconButton } from "@mui/material";
 import "../style/PostDetail.css";
 import { useNavigate } from "react-router-dom";
 import useLogin from "../hooks/useLogin";
-import { getPostInfo } from "../lib/database/Post";
+import { deletePost, getPostInfo } from "../lib/database/Post";
 import Loading from "../component/Loading";
 import usePosts from "../hooks/usePosts";
 import PostListTab from "../component/PostListTab";
@@ -22,6 +22,8 @@ type FormData = {
 };
 
 const PostDetailPage = () => {
+  //TODO 親ポストが削除されてしまった場合のリプライの表示
+
   const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
 
   const navigate = useNavigate();
@@ -66,7 +68,8 @@ const PostDetailPage = () => {
                   parentPostFlag={true}
                 />
               )}
-              <Post post={parentPost} />
+
+              <Post post={parentPost} displayDeleteFlag={true} />
             </>
           ) : (
             <Loading />
