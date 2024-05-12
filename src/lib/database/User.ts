@@ -1,4 +1,4 @@
-import { AxiosError, isAxiosError } from "axios";
+import axios, { AxiosError, isAxiosError } from "axios";
 import { UserInfoType } from "../type/UserInfoType";
 import apiClient from "./apiClient";
 
@@ -115,19 +115,10 @@ export async function updateUserInfoAPI(
   name: string,
   email: string,
   introduction: string,
-  userImg: string,
+  userImg: File | null,
   token: string | undefined | null
 ) {
   try {
-    // クエリパラメータを用意
-    const params: { [key: string]: any } = {
-      id,
-      name,
-      email,
-      introduction,
-      userImg,
-    };
-    console.log(params);
     if (!token) {
       throw new Error("token is required");
     }
@@ -135,12 +126,30 @@ export async function updateUserInfoAPI(
       throw new Error("userName is required.");
     }
 
-    // リクエストヘッダーにJWTを含める
-    const headers = {
-      Authorization: `Bearer ${token}`,
+    const formData = new FormData();
+
+    formData.append("name", name);
+    formData.append("email", email);
+
+    formData.append("introduction", introduction);
+
+    formData.append("userId", id.toString());
+    if (userImg) formData.append("userImg", userImg);
+    console.log({ userImg });
+    const config = {
+      data: formData,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "content-type": "multipart/form-data",
+      },
     };
-    // データを送信する
-    const response = await apiClient.put("/user/update", params, { headers });
+
+    // データを取得する
+    const response = await axios.put(
+      import.meta.env.VITE_API_URL + "/user/update",
+      formData,
+      config
+    );
 
     return response.data as UserInfoType;
   } catch (error: any) {

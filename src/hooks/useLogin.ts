@@ -190,15 +190,34 @@ const useLogin = () => {
         throw new Error("no email  in storage");
       }
       const email = userInfoJotai.userInfo?.email;
-      //TODO 画像の保存先決定後に修正
-      const testImg = "/assets/food_fruit_sandwich_ichigo.png";
+
+      // 以下、ファイルが添付されている場合のvalidation
+      if (userImg) {
+        console.log("userImgあり");
+        // 画像ファイルかチェック
+        if (
+          !userImg.type.startsWith("image/jpeg") &&
+          !userImg.type.startsWith("image/png") &&
+          !userImg.type.startsWith("image/svg+xml")
+        ) {
+          throw new Error("File must be an image");
+        }
+
+        // ファイルサイズチェック
+        if (userImg.size > 5000000) {
+          // 5MBを超える場合はエラー
+          throw new Error("Image must be less than 5MB");
+        }
+      } else {
+        userImg = null;
+      }
 
       const data = await updateUserInfoAPI(
         id,
         name,
         email,
         introduction,
-        testImg,
+        userImg,
         userInfoJotai.authtoken
       );
 
