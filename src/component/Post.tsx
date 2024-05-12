@@ -24,7 +24,6 @@ const Post = ({
   parentPostFlag = false,
   displayDeleteFlag = false,
 }: Props) => {
-  console.log(post.img);
   const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
 
   const navigate = useNavigate();
@@ -101,13 +100,15 @@ const Post = ({
                   <p>{post.text}</p>
                 </div>
               </div>
-              <div className="post__img__container">
-                <img
-                  src={post.img}
-                  alt={`${post.id}_photo_img`}
-                  className="post__img"
-                />
-              </div>
+              {post.img && (
+                <div className="post__img__container">
+                  <img
+                    src={post.img}
+                    alt={`${post.id}_photo_img`}
+                    className="post__img"
+                  />
+                </div>
+              )}
             </div>
           </div>
           {displayFooter && (
