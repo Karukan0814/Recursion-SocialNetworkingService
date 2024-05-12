@@ -111,3 +111,15 @@
 .post__delete__icon {
   color: var(--twitter-background2) !important;
 }
+.post__img__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+.post__img {
+  min-width: 150px;
+  max-width: 200px;
+  min-height: 150px;
+  max-height: 200px;
+}

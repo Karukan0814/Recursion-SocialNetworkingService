@@ -4,7 +4,7 @@ export type PostInfo = {
   id: number;
   username: string;
   text: string;
-  image?: string;
+  img?: string;
   createdAt: Date;
   scheduledAt?: Date;
   sentAt?: Date;

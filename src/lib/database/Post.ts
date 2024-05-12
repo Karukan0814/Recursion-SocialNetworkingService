@@ -3,6 +3,7 @@
 //     // クエリパラメータを用意
 //     const params: { [key: string]: any } = {};
 
+import axios from "axios";
 import { PostInfo } from "../type/PostType";
 import apiClient from "./apiClient";
 
@@ -625,7 +626,7 @@ export async function getPostListByKeyword(
 export async function registerPostAPI(
   userId: number,
   jwtToken: string,
-  img: string,
+  img: File | null,
   text: string,
   replyToId?: number,
   scheduledAt?: Date
@@ -640,26 +641,43 @@ export async function registerPostAPI(
       scheduledAt,
     });
 
-    // TODO Postの画像データをどこに保存するか問題
-
     // クエリパラメータを用意
     const params: { [key: string]: any } = {
       text,
-      img: "/assets/food_sushi_pack.png",
-
+      img,
       userId,
       replyToId,
       scheduledAt,
     };
+    console.log(params);
 
-    // リクエストヘッダーにJWTを含める
-    const headers = {
-      Authorization: `Bearer ${jwtToken}`,
+    const formData = new FormData();
+
+    formData.append("text", text);
+    formData.append("userId", userId.toString());
+    if (img) formData.append("img", img);
+    if (replyToId) formData.append("replyToId", replyToId.toString());
+    if (scheduledAt) formData.append("scheduledAt", scheduledAt.toISOString());
+
+    // console.log("FormData entries:");
+    // for (let [key, value] of formData.entries()) {
+    //   console.log(`${key}: ${value}`);
+    // }
+    const config = {
+      data: formData,
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+        "content-type": "multipart/form-data",
+      },
     };
     // データを取得する
-    const response = await apiClient.post("/post/register", params, {
-      headers,
-    });
+    const response = await axios.post(
+      import.meta.env.VITE_API_URL + "/post/register",
+      formData,
+      config
+    );
+
+    // await apiClient.post("/post/register", formData, config);
     if (response.status !== 200) {
       // This will activate the closest `error.js` Error Boundary
       throw new Error(response.data);
