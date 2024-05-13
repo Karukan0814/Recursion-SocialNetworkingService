@@ -22,16 +22,13 @@ const PostListTab = ({
   keyWord,
   displayScheduledAt = false,
 }: Props) => {
-  console.log(replyToId);
-  const { postList, registerPost, setNextPost, hasMore } = usePosts(
+  const { postList, registerPost, setNextPost, hasMore, loading } = usePosts(
     tabName,
     replyToId,
     profileUserId,
     keyWord
   );
-  console.log(postList);
   const loadNextList = async (page: number) => {
-    console.log("loadNextList", page, replyToId);
     setNextPost(page, replyToId);
   };
 
@@ -62,6 +59,7 @@ const PostListTab = ({
       {shouldDisplayPostBox && (
         <PostBox
           registerPost={registerPost}
+          registerLoading={loading}
           replyToId={replyToId}
           postType={tabName}
           displayScheduledAt={displayScheduledAt}

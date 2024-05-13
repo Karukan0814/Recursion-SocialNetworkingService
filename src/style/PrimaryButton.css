@@ -14,3 +14,7 @@
 .primary_button_disabled {
   opacity: 0.5;
 }
+
+.circular {
+  color: var(--twitter-background) !important;
+}

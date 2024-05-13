@@ -45,6 +45,19 @@ const Post = ({
     navigate(-1);
   };
 
+  const getMediaType = () => {
+    if (post.imgFileType) {
+      if (["video/mp4", "video/webm"].includes(post.imgFileType)) {
+        return "video";
+      } else if (
+        ["image/jpeg", "image/png", "image/gif"].includes(post.imgFileType)
+      ) {
+        return "image";
+      }
+    }
+    return "unknown";
+  };
+
   return (
     <>
       <Link to={`/post/${post.id}`} style={{ textDecoration: "none" }}>
@@ -102,11 +115,17 @@ const Post = ({
               </div>
               {post.img && (
                 <div className="post__img__container">
-                  <img
-                    src={post.img}
-                    alt={`${post.id}_photo_img`}
-                    className="post__img"
-                  />
+                  {/* post.imgのurlの先にあるファイルが画像であればimg、videoであればvideo表示 */}
+                  {getMediaType() === "image" && (
+                    <img
+                      src={post.img}
+                      alt={`${post.id}_photo_img`}
+                      className="post__img"
+                    />
+                  )}
+                  {getMediaType() === "video" && (
+                    <video controls src={post.img} className="post__img" />
+                  )}
                 </div>
               )}
             </div>

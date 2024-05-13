@@ -9,7 +9,7 @@ import PrimaryButton from "./PrimaryButton";
 import { useForm } from "react-hook-form";
 import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
-import { PostType } from "../lib/type/PostType";
+import { PostType, validPostImgTypes } from "../lib/type/PostType";
 import ModalPopup from "./ModalPopup";
 import SchedulePostForm from "./SchedulePostForm";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
@@ -25,6 +25,7 @@ type Props = {
     replyToId?: number,
     scheduledAt?: Date
   ) => void;
+  registerLoading: boolean;
   replyToId?: number;
   postType?: PostType;
   displayScheduledAt?: boolean;
@@ -32,6 +33,7 @@ type Props = {
 
 const PostBox = ({
   registerPost,
+  registerLoading,
   replyToId,
   postType,
   displayScheduledAt = false,
@@ -44,6 +46,8 @@ const PostBox = ({
     setValue,
     formState: { errors },
     reset,
+    setError,
+    clearErrors,
   } = useForm<FormData>();
   const tweetImage = watch("postImage");
 
@@ -51,10 +55,12 @@ const PostBox = ({
   const [openSchedule, setOpenSchedule] = useState(false);
 
   const [imagePreviewUrl, setImagePreviewUrl] = useState("");
+  const [videoPreviewUrl, setVideoPreviewUrl] = useState("");
 
   const onSubmit = async (data: FormData) => {
     registerPost(data.postMessage, data.postImage, replyToId, postSchedule);
     setImagePreviewUrl("");
+    setVideoPreviewUrl("");
     setPostSchedule(undefined);
 
     reset();
@@ -63,13 +69,39 @@ const PostBox = ({
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
+
+      if (!Object.keys(validPostImgTypes).includes(file.type)) {
+        setError("postImage", {
+          type: "format",
+          message: "File must be a JPEG, PNG, GIF, MP4 or WebM image.",
+        });
+        return; // ファイルが許可された形式でない場合は処理を中止
+      }
+
+      clearErrors("postImage");
+
       setValue("postImage", file); // react-hook-formにファイルを設定
       const reader = new FileReader();
-      reader.onload = () => {
-        const previewUrl = reader.result as string;
-        setImagePreviewUrl(previewUrl);
-      };
-      reader.readAsDataURL(file);
+
+      if (file.type.startsWith("video")) {
+        console.log("filetype", file.type);
+        reader.onload = () => {
+          console.log("filetype", reader.result as string);
+
+          setVideoPreviewUrl(reader.result as string);
+          setImagePreviewUrl("");
+        };
+        reader.readAsDataURL(file);
+      } else {
+        reader.onload = () => {
+          console.log("filetype", reader.result as string);
+
+          const previewUrl = reader.result as string;
+          setImagePreviewUrl(previewUrl);
+          setVideoPreviewUrl("");
+        };
+        reader.readAsDataURL(file);
+      }
     }
   };
 
@@ -90,8 +122,12 @@ const PostBox = ({
         />
       </ModalPopup>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {errors.postMessage && (
-          <p className="errMsg">Your message is required</p>
+        {errors.postMessage && <p className="errMsg"> message is required</p>}
+        {/* {errors.postMessage && (
+          <p className="errMsg">{errors.postMessage.message}</p>
+        )} */}
+        {errors.postImage && (
+          <p className="errMsg">{errors.postImage.message}</p>
         )}
 
         <div className="postBox__input">
@@ -123,7 +159,7 @@ const PostBox = ({
           />
         </div>
         <div className="photo__preview__container">
-          {imagePreviewUrl && (
+          {(imagePreviewUrl || videoPreviewUrl) && (
             <>
               <span className="photo__preview__close">
                 <IconButton onClick={handleRemoveImage} aria-label="delete">
@@ -133,11 +169,19 @@ const PostBox = ({
               <span>
                 <IconButton />
               </span>
-              <img
-                src={imagePreviewUrl}
-                alt="Preview"
-                className="photo__preview"
-              />
+
+              {imagePreviewUrl && (
+                <img
+                  src={imagePreviewUrl}
+                  alt="Preview"
+                  className="img__preview"
+                />
+              )}
+              {videoPreviewUrl && (
+                <video controls src={videoPreviewUrl} className="img__preview">
+                  Video preview not available
+                </video>
+              )}
             </>
           )}
         </div>
@@ -180,7 +224,7 @@ const PostBox = ({
           )}
 
           <PrimaryButton
-            loading={false} //todo loadingの変数作成
+            loading={registerLoading}
             text={`${
               postType === PostType.detail || postType === PostType.reply
                 ? "Reply"

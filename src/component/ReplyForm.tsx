@@ -12,7 +12,7 @@ type Props = {
   setReplyCount: (value: React.SetStateAction<number>) => void;
 };
 const ReplyForm = ({ post, handleClose, setReplyCount }: Props) => {
-  const { registerPost, postList } = usePosts(PostType.reply);
+  const { registerPost, postList, loading } = usePosts(PostType.reply);
   useEffect(() => {
     if (postList.length > 0) {
       setReplyCount((prev) => prev + 1);
@@ -24,6 +24,7 @@ const ReplyForm = ({ post, handleClose, setReplyCount }: Props) => {
       <Post post={post} displayFooter={false} />
       <PostBox
         registerPost={registerPost}
+        registerLoading={loading}
         postType={PostType.reply}
         replyToId={post.id}
       />

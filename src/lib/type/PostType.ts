@@ -5,6 +5,7 @@ export type PostInfo = {
   username: string;
   text: string;
   img?: string;
+  imgFileType?: string;
   createdAt: Date;
   scheduledAt?: Date;
   sentAt?: Date;
@@ -15,6 +16,14 @@ export type PostInfo = {
   user: UserInfoType;
   post: PostInfo; //リプライの場合の親ポスト
 };
+
+export enum validPostImgTypes {
+  "image/jpeg",
+  "image/png",
+  "image/gif",
+  "video/mp4",
+  "video/webm",
+}
 
 export enum PostType {
   "trend",

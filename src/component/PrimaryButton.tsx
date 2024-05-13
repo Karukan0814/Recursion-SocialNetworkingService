@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import React from "react";
 import "../style/PrimaryButton.css";
 type Props = {
@@ -14,7 +14,7 @@ const PrimaryButton = ({ onClick, loading, text }: Props) => {
       disabled={loading}
       className={`primary_button ${loading && "primary_button_disabled"}`}
     >
-      {text}
+      {loading ? <CircularProgress className="circular" /> : <> {text}</>}
     </Button>
   );
 };

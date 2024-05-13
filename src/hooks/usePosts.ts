@@ -11,7 +11,7 @@ import {
 } from "../lib/database/Post";
 import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
-import { PostInfo, PostType } from "../lib/type/PostType";
+import { PostInfo, PostType, validPostImgTypes } from "../lib/type/PostType";
 
 const usePosts = (
   tabName: PostType,
@@ -49,22 +49,30 @@ const usePosts = (
       // ファイル名をハッシュ化したもの＋保存日時＋拡張子でファイル名を作成→public/img/ファイル名の頭２文字のフォルダに格納
 
       // 以下、ファイルが添付されている場合のvalidation
-      if (img && img.length > 0) {
+      console.log(img);
+      if (img) {
         // 画像ファイルかチェック
-        if (!img.type.startsWith("image/")) {
-          throw new Error("File must be an image");
+        if (!Object.keys(validPostImgTypes).includes(img.type)) {
+          throw new Error("File must be a JPEG, PNG, GIF, MP4 or WebM image.");
         }
-
-        // ファイルサイズチェック
-        if (img.size > 5000000) {
-          // 5MBを超える場合はエラー
-          throw new Error("Image must be less than 5MB");
+        if (img.type.startsWith("image")) {
+          // ファイルサイズチェック
+          if (img.size > 5000000) {
+            // 5MBを超える場合はエラー
+            throw new Error("Image must be less than 5MB");
+          }
+        }
+        if (img.type.startsWith("video")) {
+          // ファイルサイズチェック
+          if (img.size > 50000000) {
+            // 50MBを超える場合はエラー
+            throw new Error("Video must be less than 50MB");
+          }
         }
       } else {
         img = null;
       }
 
-      // const testImg = "/assets/food_fruit_sandwich_ichigo.png";
       const newPost = await registerPostAPI(
         userInfoJotai.userInfo?.id!,
         userInfoJotai.authtoken!,
