@@ -156,6 +156,7 @@ const Conversation = ({ activeConversationInfo }: Props) => {
               id="text"
               type="text"
               placeholder="Input your message"
+              maxLength={200}
               {...register("text", {
                 required: "message is required",
                 maxLength: {

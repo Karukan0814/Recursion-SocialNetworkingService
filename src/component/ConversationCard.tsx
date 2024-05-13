@@ -40,7 +40,7 @@ const ConversationCard = ({
     >
       <img
         className="conversationCard__icon"
-        src={participant.user?.userImg}
+        src={participant.user?.userImg || "/assets/default_profile_400x400.png"}
         alt="iconImg"
       />
       <div className="conversationCard__text__container">

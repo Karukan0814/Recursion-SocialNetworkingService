@@ -1,4 +1,5 @@
 .speech {
+  min-width: 200px;
   max-width: 60%;
   margin: 10px;
   padding: 10px;
@@ -10,4 +11,8 @@
 .speech.mine {
   background-color: var(--twitter-color);
   align-self: flex-end;
+}
+
+.speech p {
+  word-break: break-word;
 }
