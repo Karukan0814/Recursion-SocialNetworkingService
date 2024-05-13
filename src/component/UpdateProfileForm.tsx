@@ -29,6 +29,8 @@ const UpdateProfileForm = ({ handleClose, setUserInfo }: Props) => {
     setValue,
     formState: { errors },
     reset,
+    setError,
+    clearErrors,
   } = useForm<FormData>({
     defaultValues: {
       name: userInfoJotai.userInfo?.name || "",
@@ -61,6 +63,15 @@ const UpdateProfileForm = ({ handleClose, setUserInfo }: Props) => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
+
+      if (!["image/jpeg", "image/png"].includes(file.type)) {
+        setError("userImage", {
+          type: "format",
+          message: "File must be a JPEG or PNG image.",
+        });
+        return;
+      }
+      clearErrors("userImage");
       setValue("userImage", file); // react-hook-formにファイルを設定
       const reader = new FileReader();
       reader.onload = () => {
@@ -96,8 +107,11 @@ const UpdateProfileForm = ({ handleClose, setUserInfo }: Props) => {
                 onChange={handleFileChange} // ファイル選択時の処理
               />
               Upload
-            </Button>{" "}
+            </Button>
           </div>
+          {errors.userImage && (
+            <p className="errMsg">{errors.userImage.message}</p>
+          )}
 
           <div className="input-group">
             <input
