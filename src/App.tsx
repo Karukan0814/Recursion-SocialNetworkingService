@@ -78,7 +78,15 @@ function App() {
               }
             />
             <Route
-              path="/message"
+              path="/message/"
+              element={
+                <ProtectedRoute>
+                  <MessagePage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/message/:id"
               element={
                 <ProtectedRoute>
                   <MessagePage />

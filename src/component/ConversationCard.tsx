@@ -19,7 +19,7 @@ const ConversationCard = ({
   // setActiveConversationId,
   setActiveConversation,
 }: Props) => {
-  console.log("conversation", conversation);
+  // console.log("conversation", conversation);
 
   const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
 

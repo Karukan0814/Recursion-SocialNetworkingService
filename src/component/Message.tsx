@@ -7,8 +7,9 @@ import Conversation from "./Conversation";
 import ConversationList from "./ConversationList";
 import { ConversationInfoType } from "../lib/type/MessageInfoType";
 
-const Message = () => {
-  // const [activeConversationId, setActiveConversationId] = useState<number>(0);
+type Props = { triggeredById?: number };
+
+const Message = ({ triggeredById }: Props) => {
   const [activeConversationInfo, setActiveConversationInfo] =
     useState<ConversationInfoType>();
 
@@ -18,6 +19,7 @@ const Message = () => {
         <ConversationList
           activeConversationInfo={activeConversationInfo}
           setActiveConversationInfo={setActiveConversationInfo}
+          triggeredById={triggeredById}
         />
       </div>
       <div className="sectionMessages_conversation">
