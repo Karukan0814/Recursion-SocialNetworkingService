@@ -1,5 +1,5 @@
 import { Avatar, Button, IconButton } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../style/PostBox.css";
 import { PhotoCamera } from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
@@ -58,6 +58,7 @@ const PostBox = ({
   const [videoPreviewUrl, setVideoPreviewUrl] = useState("");
 
   const onSubmit = async (data: FormData) => {
+    console.log("data.postImage", data.postImage);
     registerPost(data.postMessage, data.postImage, replyToId, postSchedule);
     setImagePreviewUrl("");
     setVideoPreviewUrl("");
@@ -79,7 +80,7 @@ const PostBox = ({
       }
 
       clearErrors("postImage");
-
+      console.log("attachedFile", file);
       setValue("postImage", file); // react-hook-formにファイルを設定
       const reader = new FileReader();
 
@@ -109,6 +110,10 @@ const PostBox = ({
     setValue("postImage", null);
     setImagePreviewUrl(""); // 画像URLをクリアしてプレビューを削除
   };
+
+  useEffect(() => {
+    setValue("postImage", null); // ファイルが選択されていない場合はnullを設定
+  }, []);
   return (
     <div className="postBox">
       <ModalPopup
@@ -192,10 +197,10 @@ const PostBox = ({
           >
             <PhotoCamera />
             <input
-              {...register("postImage")}
+              // {...register("postImage")}
               type="file"
               hidden // ファイル入力を隠す
-              accept="image/*" // 画像ファイルのみ受け入れる
+              accept="image/*,video/*" // 画像と動画ファイルのみ受け入れる
               onChange={handleFileChange} // ファイル選択時の処理
             />
             Upload
