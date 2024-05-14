@@ -6,8 +6,15 @@ type Props = {
   Icon: React.ElementType;
   active?: boolean;
   path?: string;
+  notificationCount?: number;
 };
-function SidebarOption({ text, Icon, active = false, path }: Props) {
+function SidebarOption({
+  text,
+  Icon,
+  active = false,
+  path,
+  notificationCount,
+}: Props) {
   const navigate = useNavigate();
 
   const [siderbarOptionActive, setSiderbarOptionActive] = useState(active);
@@ -28,6 +35,11 @@ function SidebarOption({ text, Icon, active = false, path }: Props) {
       <Icon className="sidebarOptionIcon" />
 
       <h2 className="sidebarOptionTile">{text}</h2>
+      {notificationCount && (
+        <span className="sidebar__notification__count">
+          {notificationCount}
+        </span>
+      )}
     </div>
   );
 }

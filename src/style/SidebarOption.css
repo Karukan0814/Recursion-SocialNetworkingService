@@ -22,6 +22,19 @@
   color: var(--twitter-color);
 }
 
+.sidebar__notification__count {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--twitter-color);
+  color: white;
+  text-align: center;
+  line-height: 24px;
+  font-size: 14px;
+  font-weight: bold;
+  vertical-align: middle;
+}
 /* 小さいスクリーンの場合 */
 @media (max-width: 768px) {
   .sidebarOptionTile {
