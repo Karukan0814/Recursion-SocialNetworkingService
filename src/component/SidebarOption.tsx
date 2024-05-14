@@ -35,10 +35,12 @@ function SidebarOption({
       <Icon className="sidebarOptionIcon" />
 
       <h2 className="sidebarOptionTile">{text}</h2>
-      {notificationCount && (
+      {notificationCount && notificationCount > 0 ? (
         <span className="sidebar__notification__count">
           {notificationCount}
         </span>
+      ) : (
+        <></>
       )}
     </div>
   );

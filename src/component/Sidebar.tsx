@@ -88,7 +88,9 @@ function Sidebar({ currentPage }: Props) {
         text="Notifications"
         path="/notification"
         active={currentPage === "notification" ? true : false}
-        notificationCount={unreadNoticeCount}
+        notificationCount={
+          currentPage === "notification" ? 0 : unreadNoticeCount
+        }
       />
       <SidebarOption
         Icon={MailOutline}
