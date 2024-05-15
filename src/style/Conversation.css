@@ -20,9 +20,11 @@
   border-radius: 50%;
 }
 
-.conversation__userInfo__name {
+.conversation__userInfo__name span {
   font-size: 20px;
   font-weight: 700;
+  color: initial;
+  /* color: var(--twitter-background2); */
 }
 
 .conversation-messages {

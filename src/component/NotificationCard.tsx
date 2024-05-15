@@ -1,5 +1,5 @@
 import { Icon } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import "../style/NotificationCard.css";
 import { NotificationInfoType } from "../lib/type/NotificationInfoType";
@@ -12,6 +12,7 @@ type Props = {
   notification: NotificationInfoType;
 };
 const NotificationCard = ({ notification }: Props) => {
+  console.log(notification.read);
   const generateNotificationLink = () => {
     let link;
     switch (notification.type) {
@@ -81,9 +82,23 @@ const NotificationCard = ({ notification }: Props) => {
   const truncateText = (text: string): string => {
     return text.length > 100 ? text.substring(0, 100) + "..." : text;
   };
+
+  const [readFlag, setReadFlag] = useState(notification.read);
+
+  useEffect(() => {
+    if (!notification.read) {
+      setReadFlag(false);
+    }
+    const timer = setTimeout(() => {
+      console.log("time to change!");
+      setReadFlag(true);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [notification]);
   return (
     <Link to={generateNotificationLink()} style={{ textDecoration: "none" }}>
-      <div className="notificationCard__container">
+      <div className={`notificationCard__container ${!readFlag && "unread"}`}>
         <div className="notification__icon">{showNotificationIcon()}</div>
         <div className="notificationCard__text">
           <div>

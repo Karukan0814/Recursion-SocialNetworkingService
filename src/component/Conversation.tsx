@@ -16,6 +16,7 @@ import {
 import { UserInfoType } from "../lib/type/UserInfoType";
 import { useForm } from "react-hook-form";
 import { io } from "socket.io-client";
+import { Link } from "react-router-dom";
 
 type Message = {
   text: string;
@@ -127,18 +128,23 @@ const Conversation = ({ activeConversationInfo }: Props) => {
     <div className="conversation">
       {activeConversationInfo && (
         <>
-          <div className="conversation__userInfo">
-            <img
-              src={
-                participant?.userImg || "/assets/default_profile_400x400.png"
-              }
-              alt="defaultImg"
-              className="conversation__userInfo__img"
-            />
-            <div className="conversation__userInfo__name">
-              <span>{participant?.name}</span>
+          <Link
+            to={`/profile/${participant?.id}`}
+            style={{ textDecoration: "none" }}
+          >
+            <div className="conversation__userInfo">
+              <img
+                src={
+                  participant?.userImg || "/assets/default_profile_400x400.png"
+                }
+                alt="defaultImg"
+                className="conversation__userInfo__img"
+              />
+              <div className="conversation__userInfo__name">
+                <span>{participant?.name}</span>
+              </div>
             </div>
-          </div>
+          </Link>
           <div className="conversation-messages">
             {messages.map((msg, index) => (
               <SpeechBubble
