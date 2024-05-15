@@ -10,7 +10,7 @@
   margin-top: 20px !important;
 }
 .sidebar {
-  border-right: 1px solid var(--twitter-color);
+  /* border-right: 1px solid var(--twitter-color); */
   flex: 0.2;
   min-width: 200px;
   padding-top: 20px;

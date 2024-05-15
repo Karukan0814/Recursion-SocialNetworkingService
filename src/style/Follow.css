@@ -1,6 +1,8 @@
 .follow {
   flex: 0.5;
   border-right: var(--twitter-background) 1px solid;
+  border-left: 1px solid var(--twitter-color);
+
   /* min-width: fit-content; */
   overflow-y: scroll;
   height: 100vh;

@@ -1,6 +1,9 @@
 .postDetail__container {
   flex: 0.5;
   border-right: 1px solid var(--twitter-background);
+  border-left: 1px solid var(--twitter-color);
+  height: 200vh;
+
   overflow: hidden;
   height: 100vh;
   display: flex;

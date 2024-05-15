@@ -12,7 +12,6 @@ type Props = {
   notification: NotificationInfoType;
 };
 const NotificationCard = ({ notification }: Props) => {
-  console.log(notification.read);
   const generateNotificationLink = () => {
     let link;
     switch (notification.type) {

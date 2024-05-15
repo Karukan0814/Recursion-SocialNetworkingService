@@ -1,6 +1,9 @@
 .profile {
   flex: 0.5;
   border-right: var(--twitter-background) 1px solid;
+  border-left: 1px solid var(--twitter-color);
+  height: 200vh;
+
   overflow-y: scroll;
   position: relative;
   display: flex;

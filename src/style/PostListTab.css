@@ -1,8 +1,9 @@
 .tab__content {
   flex-grow: 1; /* 残りのスペースを全て埋める */
-  overflow: auto; /* 必要に応じてスクロールを表示 */
+  overflow: auto;
   /* height: 100%; */
   /* TODO heightの動的設定 */
+  height: fit-content;
 }
 .tab__content_noResult {
   margin: 5px auto;

@@ -1,6 +1,9 @@
 .message_container {
   flex: 1; /* 真ん中のコンポーネントをできる限り大きくする */
   border-right: 0.5px var(--twitter-background) solid;
+  border-left: 1px solid var(--twitter-color);
+  height: 200vh;
+
   /* overflow-y: scroll; */
   display: flex;
   justify-content: space-between;

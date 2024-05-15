@@ -2,21 +2,19 @@ import { IconButton, Tab, Tabs } from "@mui/material";
 import React, { useState } from "react";
 import PostListTab from "./PostListTab";
 import { PostType } from "../lib/type/PostType";
-import { useNavigate } from "react-router-dom";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import "../style/Follow.css";
+
+import "../style/Search.css";
 import SearchInput from "./SearchInput";
 type Props = {
   // userId: number;
 };
 const Search = ({}: Props) => {
   //TODO User検索機能の追加
-  //TODO 検索結果なしの場合の表示
 
   const [keyword, setKeyword] = useState("");
 
   return (
-    <div className="follow">
+    <div className="search">
       <SearchInput keyword={keyword} setKeyword={setKeyword} />
 
       {/* {keyword.startsWith("@") ? (

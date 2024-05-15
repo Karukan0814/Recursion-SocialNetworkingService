@@ -1,0 +1,11 @@
+.search {
+  flex: 0.5;
+  border-right: var(--twitter-background) 1px solid;
+  border-left: 1px solid var(--twitter-color);
+
+  /* min-width: fit-content; */
+  overflow-y: auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

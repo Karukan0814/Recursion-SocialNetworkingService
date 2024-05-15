@@ -1,6 +1,9 @@
 .notifications_container {
   flex: 0.5;
   border: 0.5px var(--twitter-background) solid;
+  border-left: 1px solid var(--twitter-color);
+  height: 200vh;
+
   /* overflow-y: scroll; */
   height: 100vh;
   display: flex;
