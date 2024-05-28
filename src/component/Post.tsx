@@ -104,14 +104,14 @@ const Post = ({
               {post.img && (
                 <div className="post__img__container">
                   {/* post.imgのurlの先にあるファイルが画像であればimg、videoであればvideo表示 */}
-                  {getMediaType() === "image" && (
+                  {getMediaType(post.imgFileType) === "image" && (
                     <img
                       src={post.img}
                       alt={`${post.id}_photo_img`}
                       className="post__img"
                     />
                   )}
-                  {getMediaType() === "video" && (
+                  {getMediaType(post.imgFileType) === "video" && (
                     <video controls src={post.img} className="post__img" />
                   )}
                 </div>
