@@ -26,6 +26,7 @@
   flex-direction: column;
   justify-content: center;
   height: 100%;
+  width: 100%; /* 投稿内容がコンテナ内に収まるようにする */
 }
 
 .post__body__header {
@@ -90,6 +91,11 @@
   font-size: 15px;
   margin-bottom: 20px;
   /* width: 100%; */
+  width: 100%; /* 親要素の幅に収める */
+  word-wrap: break-word; /* 長い単語を折り返す */
+  overflow-wrap: break-word; /* 長い単語を折り返す */
+  white-space: pre-wrap; /* 空白と改行を保持しつつ折り返す */
+  text-decoration: none;
 }
 .post__headerDescription p {
   white-space: normal; /* デフォルトの空白の扱いを保証 */

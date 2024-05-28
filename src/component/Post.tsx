@@ -11,6 +11,7 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
 import { deletePost } from "../lib/database/Post";
+import { getMediaType } from "../lib/utils/utils";
 
 type Props = {
   post: PostInfo;
@@ -43,19 +44,6 @@ const Post = ({
     );
     // 一つ前の画面に戻る
     navigate(-1);
-  };
-
-  const getMediaType = () => {
-    if (post.imgFileType) {
-      if (["video/mp4", "video/webm"].includes(post.imgFileType)) {
-        return "video";
-      } else if (
-        ["image/jpeg", "image/png", "image/gif"].includes(post.imgFileType)
-      ) {
-        return "image";
-      }
-    }
-    return "unknown";
   };
 
   return (
