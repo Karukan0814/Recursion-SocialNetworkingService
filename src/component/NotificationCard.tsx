@@ -102,7 +102,10 @@ const NotificationCard = ({ notification }: Props) => {
         <div className="notificationCard__text">
           <div>
             <img
-              src={notification.triggeredBy.userImg}
+              src={
+                notification.triggeredBy.userImg ||
+                "/assets/default_profile_400x400.png"
+              }
               alt="userIcon"
               className="notificationCard__text__icon"
             />
