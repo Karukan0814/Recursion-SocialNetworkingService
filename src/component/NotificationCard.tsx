@@ -1,5 +1,4 @@
-import { Icon } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import "../style/NotificationCard.css";
 import { NotificationInfoType } from "../lib/type/NotificationInfoType";

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "../style/SchedulePostForm.css";
 import PrimaryButton from "./PrimaryButton";
 import { useForm } from "react-hook-form";
-import { IconButton } from "@mui/material";
 
 type Props = {
   setPostSchedule: React.Dispatch<React.SetStateAction<Date | undefined>>;

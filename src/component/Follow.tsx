@@ -1,7 +1,5 @@
 import { IconButton, Tab, Tabs } from "@mui/material";
-import React, { useState } from "react";
-import PostListTab from "./PostListTab";
-import { PostType } from "../lib/type/PostType";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import FollowListTab from "./FollowListTab";

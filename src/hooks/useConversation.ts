@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
-import { registerPostAPI } from "../lib/database/Post";
 import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
-import { PostInfo, PostType } from "../lib/type/PostType";
-import { FollowType, UserInfoType } from "../lib/type/UserInfoType";
-import { getFollowersList, getFollowingList } from "../lib/database/User";
 import { ConversationInfoType } from "../lib/type/MessageInfoType";
 import {
   getConversationsListByUserId,
@@ -12,7 +8,7 @@ import {
 } from "../lib/database/Message";
 
 const useConversation = () => {
-  const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
+  const [userInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
 
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -21,24 +17,17 @@ const useConversation = () => {
   >([]);
   const [hasMore, setHasMore] = useState(true); //再読み込み判定
   useEffect(() => {
-    console.log("useEffect___usePosts");
     setNextConversation(1);
   }, []);
 
-  const startNewConversation = async (
-    toUserId: number
-    // firstmessage: string
-  ) => {
+  const startNewConversation = async (toUserId: number) => {
     try {
       setLoading(true);
 
-      const fromUserId = userInfoJotai.userInfo?.id;
-      // const toUserId=
       const newConversation = await registerConversationAPI(
         userInfoJotai.userInfo?.id!,
         toUserId,
         userInfoJotai.authtoken
-        // firstmessage
       );
 
       if (newConversation) {
@@ -59,7 +48,7 @@ const useConversation = () => {
       const token = userInfoJotai.authtoken;
       const userId = userInfoJotai.userInfo?.id;
       let newConversations: any[] | null = [];
-      //TODO サーバーから会話リストを取得
+      //サーバーから会話リストを取得
       newConversations = await getConversationsListByUserId(
         token,
         userId,
@@ -67,7 +56,6 @@ const useConversation = () => {
         page
       );
 
-      console.log(newConversations);
       if (!newConversations) {
         newConversations = [];
       }

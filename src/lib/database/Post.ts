@@ -1,31 +1,6 @@
-// export async function getArticleCount(type: ArticleType) {
-//   try {
-//     // クエリパラメータを用意
-//     const params: { [key: string]: any } = {};
-
 import axios from "axios";
-import { PostInfo } from "../type/PostType";
 import apiClient from "./apiClient";
-
-//     // 記事種類が指定されていればパラメータに設定
-//     if (type) {
-//       params.type = type;
-//     }
-
-//     // データを取得する
-//     const response = await apiClient.get("/article/articleCount", { params });
-//     if (response.status !== 200) {
-//       // This will activate the closest `error.js` Error Boundary
-//       throw new Error("Failed to fetch data");
-//     }
-
-//     return response.data as ArticleCount;
-//   } catch (error) {
-//     console.error("Error fetching data:", error);
-
-//     return { totalArticlesCount: 0 };
-//   }
-// }
+import { PostInfo } from "../type/PostType";
 
 export async function getTrendPostList(
   token: string | undefined | null,

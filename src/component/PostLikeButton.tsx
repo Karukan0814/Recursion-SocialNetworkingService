@@ -1,9 +1,9 @@
+import React from "react";
+import "../style/PostLikeButton.css";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-import React from "react";
 import { useLikeState } from "../hooks/useLikeState";
 import { PostInfo } from "../lib/type/PostType";
-import "../style/PostLikeButton.css";
 
 type Props = {
   postInfo: PostInfo;
@@ -20,7 +20,6 @@ const PostLikeButton = ({ postInfo }: Props) => {
 
   const handleLike = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log("handleLike");
     setLikeState(!likeState);
     registerLikeState();
   };

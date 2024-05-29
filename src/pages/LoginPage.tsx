@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import "../style/LoginPage.css";
 import { Button } from "@mui/material";
 import ModalPopup from "../component/ModalPopup";
 import LoginForm from "../component/LoginForm";
-import { useAtom } from "jotai";
-import { userInfoAtom } from "../lib/jotai/atoms/user";
-import { useNavigate } from "react-router-dom";
-import useLogin from "../hooks/useLogin";
 
 const LoginPage = () => {
   const [loginFormOpen, setLoginFormOpen] = useState(false);

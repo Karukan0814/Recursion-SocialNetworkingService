@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import useLogin from "../hooks/useLogin";
-import { Button, TextareaAutosize } from "@mui/material";
-import PrimaryButton from "./PrimaryButton";
-import { useForm } from "react-hook-form";
 import "../style/UpdateProfileForm.css";
-import { PhotoCamera } from "@mui/icons-material";
-import { userInfoAtom } from "../lib/jotai/atoms/user";
 import { useAtom } from "jotai";
+import { useForm } from "react-hook-form";
+import { Button, TextareaAutosize } from "@mui/material";
+import { PhotoCamera } from "@mui/icons-material";
+import useLogin from "../hooks/useLogin";
+import PrimaryButton from "./PrimaryButton";
+import { userInfoAtom } from "../lib/jotai/atoms/user";
 import { UserInfoType } from "../lib/type/UserInfoType";
 type Props = {
   handleClose: () => void;
@@ -46,8 +46,6 @@ const UpdateProfileForm = ({ handleClose, setUserInfo }: Props) => {
 
   const { updateUserInfo } = useLogin();
   const onSubmit = async (data: FormData) => {
-    console.log({ data });
-
     const updatedUserInfo = await updateUserInfo(
       data.name,
       data.introduction,
@@ -56,7 +54,6 @@ const UpdateProfileForm = ({ handleClose, setUserInfo }: Props) => {
     if (updatedUserInfo) {
       setUserInfo(updatedUserInfo);
     }
-    // await signUp(data.name, data.email, data.password, data.confirmPassword);
     handleClose();
   };
 

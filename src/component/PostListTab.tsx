@@ -1,12 +1,9 @@
-import PostBox from "./PostBox";
+import "../style/PostListTab.css";
 import InfiniteScroll from "react-infinite-scroller";
+import PostBox from "./PostBox";
 import Post from "./Post";
 import usePosts from "../hooks/usePosts";
-import "../style/PostListTab.css";
-import Loading from "./Loading";
 import { PostType } from "../lib/type/PostType";
-import { useEffect, useState } from "react";
-import ModalPopup from "./ModalPopup";
 
 type Props = {
   tabName: PostType;

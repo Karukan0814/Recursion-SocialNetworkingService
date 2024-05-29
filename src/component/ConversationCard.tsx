@@ -1,5 +1,3 @@
-import React from "react";
-
 import "../style/ConversationCard.css";
 import { ConversationInfoType } from "../lib/type/MessageInfoType";
 import { useAtom } from "jotai";
@@ -7,7 +5,6 @@ import { userInfoAtom } from "../lib/jotai/atoms/user";
 type Props = {
   active?: boolean;
   conversation: ConversationInfoType;
-  // setActiveConversationId: React.Dispatch<React.SetStateAction<number>>;
   setActiveConversation: React.Dispatch<
     React.SetStateAction<ConversationInfoType | undefined>
   >;
@@ -16,11 +13,8 @@ type Props = {
 const ConversationCard = ({
   active = false,
   conversation,
-  // setActiveConversationId,
   setActiveConversation,
 }: Props) => {
-  // console.log("conversation", conversation);
-
   const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
 
   const participantList = conversation.participants.filter(
@@ -34,7 +28,6 @@ const ConversationCard = ({
         active && "conversationCard__container--active"
       }`}
       onClick={() => {
-        // setActiveConversationId(conversation.id);
         setActiveConversation(conversation);
       }}
     >

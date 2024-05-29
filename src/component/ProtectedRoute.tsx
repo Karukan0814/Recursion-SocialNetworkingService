@@ -1,4 +1,3 @@
-// src/components/ProtectedRoute.js
 import React, { useEffect, useState } from "react";
 import { useAtom } from "jotai";
 import { Navigate } from "react-router-dom";

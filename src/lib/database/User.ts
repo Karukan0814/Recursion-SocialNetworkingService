@@ -1,6 +1,6 @@
-import axios, { AxiosError, isAxiosError } from "axios";
-import { UserInfoType } from "../type/UserInfoType";
+import axios, { isAxiosError } from "axios";
 import apiClient from "./apiClient";
+import { UserInfoType } from "../type/UserInfoType";
 
 type ResponseFromAPI = {
   token?: string;

@@ -27,7 +27,6 @@ export async function getRecentNotifications(
       Authorization: `Bearer ${token}`,
     };
 
-    // console.log("getPostListByUserId", params);
     // データを取得する
     const response = await apiClient.get("/notification/getRecentNotices", {
       headers,

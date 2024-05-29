@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import "../style/PostDetail.css";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { IconButton } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { useAtom } from "jotai";
 import Sidebar from "../component/Sidebar";
 import { PostInfo, PostType } from "../lib/type/PostType";
 import Post from "../component/Post";
 import Widgets from "../component/Widgets";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { IconButton } from "@mui/material";
-import "../style/PostDetail.css";
-import { useNavigate } from "react-router-dom";
-import useLogin from "../hooks/useLogin";
-import { deletePost, getPostInfo } from "../lib/database/Post";
+import { getPostInfo } from "../lib/database/Post";
 import Loading from "../component/Loading";
-import usePosts from "../hooks/usePosts";
 import PostListTab from "../component/PostListTab";
-import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
 
 type FormData = {
@@ -22,8 +20,6 @@ type FormData = {
 };
 
 const PostDetailPage = () => {
-  //TODO 親ポストが削除されてしまった場合のリプライの表示
-
   const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
 
   const navigate = useNavigate();
@@ -58,7 +54,6 @@ const PostDetailPage = () => {
           </IconButton>
         </div>
         <div className="parentPost__conatiner">
-          {/*TODO  post詳細画面でもフッター出した場合の挙動について */}
           {parentPost ? (
             <>
               {parentPost.post && (

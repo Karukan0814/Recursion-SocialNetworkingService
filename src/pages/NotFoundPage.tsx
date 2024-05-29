@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
-import Sidebar from "../component/Sidebar";
+import "../style/NotFound.css";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import "../style/NotFound.css";
-import useLogin from "../hooks/useLogin";
+import Sidebar from "../component/Sidebar";
 
 const NotFoundPage = () => {
   let navigate = useNavigate();

@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import Post from "./Post";
-import { PostInfo, PostType } from "../lib/type/PostType";
-import { Avatar } from "@mui/material";
+import React, { useEffect } from "react";
 import "../style/ReplyForm.css";
+import { Avatar } from "@mui/material";
+import { PostInfo, PostType } from "../lib/type/PostType";
 import PostBox from "./PostBox";
 import usePosts from "../hooks/usePosts";
 import { getMediaType } from "../lib/utils/utils";

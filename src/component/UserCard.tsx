@@ -1,30 +1,17 @@
-import {
-  ChatBubbleOutline,
-  Favorite,
-  FavoriteBorder,
-  Publish,
-  Repeat,
-  VerifiedUser,
-} from "@mui/icons-material";
-import { Avatar, IconButton } from "@mui/material";
+import { useState } from "react";
 import "../style/UserCard.css";
-import { PostInfo } from "../lib/type/PostType";
-import { SetStateAction, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import ModalPopup from "./ModalPopup";
-import ReplyForm from "./ReplyForm";
-import PostLikeButton from "./PostLikeButton";
-import PostReplyButton from "./PostReplyButton";
-import { UserInfoType } from "../lib/type/UserInfoType";
-import Follow from "./Follow";
-import FollowSwitch from "./FollowSwitch";
+
 import { useAtom } from "jotai";
+import { Link } from "react-router-dom";
+import { Avatar } from "@mui/material";
+import { UserInfoType } from "../lib/type/UserInfoType";
+import FollowSwitch from "./FollowSwitch";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
 type Props = {
   user: UserInfoType;
 };
 const UserCard = ({ user }: Props) => {
-  const [userInfoJotai, setUserInfoJotai] = useAtom(userInfoAtom);
+  const [userInfoJotai] = useAtom(userInfoAtom);
 
   const [followFlag, setFollowFlag] = useState(
     userInfoJotai.userInfo?.followings?.includes(user.id!) || false

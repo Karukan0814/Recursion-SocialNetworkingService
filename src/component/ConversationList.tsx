@@ -1,15 +1,5 @@
-import InfiniteScroll from "react-infinite-scroller";
-import Post from "./Post";
-import usePosts from "../hooks/usePosts";
-import "../style/PostListTab.css";
-import Loading from "./Loading";
-import { PostType } from "../lib/type/PostType";
-import { SetStateAction, useEffect, useState } from "react";
-import { FollowType } from "../lib/type/UserInfoType";
-import useFollow from "../hooks/useFollow";
-import UserCard from "./UserCard";
+import { useEffect, useState } from "react";
 import ConversationCard from "./ConversationCard";
-import useConversation from "../hooks/useConversation";
 import { IconButton } from "@mui/material";
 import { AddIcCallOutlined } from "@mui/icons-material";
 import "../style/ConversationList.css";
@@ -18,7 +8,6 @@ import SearchUser from "./SearchUser";
 import { ConversationInfoType } from "../lib/type/MessageInfoType";
 import {
   getAllConversationsListByUserId,
-  getConversationsListByUserId,
   registerConversationAPI,
 } from "../lib/database/Message";
 import { useAtom } from "jotai";
@@ -36,7 +25,7 @@ const ConversationList = ({
   setActiveConversationInfo,
   triggeredById,
 }: Props) => {
-  const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
+  const [userInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
 
   const [openUserSearch, setOpenUserSearch] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState<number>(
@@ -67,15 +56,9 @@ const ConversationList = ({
         userInfoJotai.userInfo?.id
       );
 
-      console.log("allConversations", allConversations);
       setConversationList(allConversations);
-      console.log("selectedUserId", selectedUserId);
-      // if (triggeredById) {
-      //   setSelectedUserId(triggeredById);
-      // }
 
       if (selectedUserId) {
-        console.log("selectedUserId", selectedUserId);
         // 既にあるConversationの中で対象ユーザーが参加しているものがあるか確認
         const exist = allConversations?.find((conv) => {
           // 参加者のIDのリストにselectedUserIdが含まれているか確認
@@ -83,7 +66,6 @@ const ConversationList = ({
             (participant) => participant.userId === selectedUserId
           );
         });
-        console.log("exist", exist);
 
         if (exist) {
           // 既存のConversationをactive状態にする
@@ -92,8 +74,6 @@ const ConversationList = ({
           // なければ新しいConversationを作成
           // 作成した上で、そのConversationをactive状態にする
           handleStartNewConversation(selectedUserId);
-
-          console.log("startNewConversation!");
         }
       }
     };

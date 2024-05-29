@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SpeechBubble from "./SpeechBubble";
 import "../style/Conversation.css";
 import SendIcon from "@mui/icons-material/Send";
-import { Button, IconButton } from "@mui/material";
-import {
-  getMessagesByConversationId,
-  registerMessageAPI,
-} from "../lib/database/Message";
+import { IconButton } from "@mui/material";
+import { getMessagesByConversationId } from "../lib/database/Message";
 import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
 import {
@@ -27,18 +24,11 @@ type FormData = {
   text: string;
 };
 
-const testMessages: Message[] = [
-  { text: "test1", isMine: true },
-  { text: "test2", isMine: false },
-  { text: "test3", isMine: true },
-];
-
 type Props = {
-  // conversationId: number;
   activeConversationInfo: ConversationInfoType | undefined;
 };
 const Conversation = ({ activeConversationInfo }: Props) => {
-  const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
+  const [userInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
 
   const socket = io(import.meta.env.VITE_SOCKET_URL, {
     auth: {
@@ -66,9 +56,6 @@ const Conversation = ({ activeConversationInfo }: Props) => {
   } = useForm<FormData>();
 
   const sendMessage = async (data: FormData) => {
-    // TODO サーバーにメッセージを送信する＋リアルタイム受信
-    console.log({ data });
-
     // サーバーにメッセージを送信
     socket.emit(
       "sendMessage",

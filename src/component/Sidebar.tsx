@@ -1,25 +1,19 @@
 import React, { useEffect, useState } from "react";
 import "../style/Sidebar.css";
-import SidebarOption from "./SidebarOption";
-import { Button, IconButton } from "@mui/material";
 import {
-  BookmarkBorder,
   Home,
-  ListAlt,
   MailOutline,
-  MoreHoriz,
   NotificationsNone,
   PermIdentity,
   Search,
-  Twitter,
 } from "@mui/icons-material";
-import LogoutIcon from "@mui/icons-material/Logout";
-import useLogin from "../hooks/useLogin";
-import SiderBarUserInfo from "./SiderBarUserInfo";
+
 import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
 import { Link } from "react-router-dom";
 import { io } from "socket.io-client";
+import SidebarOption from "./SidebarOption";
+import SiderBarUserInfo from "./SiderBarUserInfo";
 
 type Props = {
   currentPage: string;
@@ -49,7 +43,7 @@ function Sidebar({ currentPage }: Props) {
     const intervalId = setInterval(() => {
       console.log("requestUnreadNotifications");
       socket.emit("requestUnreadNotifications");
-    }, 60000 * 3); // 60秒毎にリクエスト→後で３分に変更
+    }, 60000 * 3); // 60秒毎にリクエスト
 
     // 未読通知数を受信
     socket.on("unreadNotificationsCount", (count) => {

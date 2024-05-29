@@ -14,7 +14,6 @@ const FollowSwitch = ({ followFlag, setFollowFlag, followUserId }: Props) => {
   const [userInfoJotai, setUserInfoJotai] = useAtom(userInfoAtom);
 
   const handleFollowCheck = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("handleFollowCheck");
     const newFollowFlag = !followFlag;
 
     //サーバー側にフォローの状態変更を登録する
@@ -24,7 +23,6 @@ const FollowSwitch = ({ followFlag, setFollowFlag, followUserId }: Props) => {
       !followFlag
     );
 
-    // const newFollowingList=
     const { followings, ...userWithoutFollowings } = userInfoJotai.userInfo!;
 
     setFollowFlag(newFollowFlag);

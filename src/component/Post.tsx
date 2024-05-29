@@ -1,13 +1,13 @@
-import { Avatar, IconButton } from "@mui/material";
-import "../style/Post.css";
-import { PostInfo } from "../lib/type/PostType";
 import { useState } from "react";
+import "../style/Post.css";
+import { Avatar, IconButton } from "@mui/material";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { Link, useNavigate } from "react-router-dom";
+import { PostInfo } from "../lib/type/PostType";
 import ModalPopup from "./ModalPopup";
 import ReplyForm from "./ReplyForm";
 import PostLikeButton from "./PostLikeButton";
 import PostReplyButton from "./PostReplyButton";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
 import { deletePost } from "../lib/database/Post";

@@ -1,6 +1,7 @@
-import { Button, CircularProgress } from "@mui/material";
 import React from "react";
 import "../style/PrimaryButton.css";
+import { Button, CircularProgress } from "@mui/material";
+
 type Props = {
   onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   loading: boolean;

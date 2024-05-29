@@ -1,8 +1,9 @@
-import { Avatar, Button, IconButton } from "@mui/material";
 import { useEffect, useState } from "react";
 import "../style/PostBox.css";
+import { Avatar, Button, IconButton } from "@mui/material";
 import { PhotoCamera } from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import EditCalendarIcon from "@mui/icons-material/EditCalendar";
 import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 import PrimaryButton from "./PrimaryButton";
@@ -12,7 +13,6 @@ import { userInfoAtom } from "../lib/jotai/atoms/user";
 import { PostType, validPostImgTypes } from "../lib/type/PostType";
 import ModalPopup from "./ModalPopup";
 import SchedulePostForm from "./SchedulePostForm";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 type FormData = {
   postMessage: string;

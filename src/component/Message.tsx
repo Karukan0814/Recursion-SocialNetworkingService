@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "../style/Message.css";
-import { IconButton } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-import ConversationCard from "./ConversationCard";
+
 import Conversation from "./Conversation";
 import ConversationList from "./ConversationList";
 import { ConversationInfoType } from "../lib/type/MessageInfoType";

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAtom } from "jotai";
 import {
   checkTokenAPI,
   loginAPI,
@@ -7,7 +8,6 @@ import {
   updateUserInfoAPI,
   verifyEmailAPI,
 } from "../lib/database/User";
-import { useAtom } from "jotai";
 import { jotaiInitialValue, userInfoAtom } from "../lib/jotai/atoms/user";
 import { UserInfoType } from "../lib/type/UserInfoType";
 

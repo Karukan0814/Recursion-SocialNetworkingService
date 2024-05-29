@@ -11,12 +11,10 @@ export const useLikeState = (post: PostInfo) => {
 
   useEffect(() => {
     const checkLikeState = () => {
-      // console.log("checkLikeState");
       // ログインユーザーのIDがlikes配列に存在するかどうかを確認
       const userLiked = post.likes.some(
         (like: LikesInfo) => like.userId === userInfojotai.userInfo?.id
       );
-      // console.log(post.id, post.likes, userLiked);
       // チェックに基づいてlikeStateを更新
       setLikeState(userLiked);
     };
@@ -26,10 +24,6 @@ export const useLikeState = (post: PostInfo) => {
   }, [post.likes]);
 
   const registerLikeState = async () => {
-    console.log("registerLikeState", {
-      likeState,
-    });
-
     //サーバーにlikeの情報を登録する
     const token = userInfojotai.authtoken;
     let newLikeCount = await registerLike(
@@ -38,7 +32,6 @@ export const useLikeState = (post: PostInfo) => {
       !likeState,
       token
     );
-    console.log(newLikeCount);
     if (newLikeCount === null) {
       newLikeCount = 0;
     }

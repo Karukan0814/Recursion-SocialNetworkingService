@@ -5,7 +5,6 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { Button } from "@mui/material";
 import ModalPopup from "./ModalPopup";
-import { Place } from "@mui/icons-material";
 import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
 import PostListTab from "./PostListTab";
@@ -46,7 +45,6 @@ const Profile = ({ userId }: Props) => {
     }
 
     const handleUserInfo = async () => {
-      console.log("handleUserInfo");
       const res = await getUserInfoById(userInfoJotai.authtoken, userId!);
       console.log(res);
       if (!res || !res.id) {
@@ -55,13 +53,11 @@ const Profile = ({ userId }: Props) => {
 
       //取得したユーザーがフォロー済みかどうかを確認する
       const followingList = userInfoJotai.userInfo?.followings;
-      console.log("followingList", followingList);
       if (!followingList) {
         setFollowFlag(false);
       } else {
         const followed = followingList?.includes(res!.id!);
 
-        console.log(followed);
         setFollowFlag(followed);
       }
 
@@ -99,12 +95,6 @@ const Profile = ({ userId }: Props) => {
               Update
             </Button>
           ) : (
-            // <FormControlLabel
-            //   control={
-            //     <Switch checked={followFlag} onChange={handleFollowCheck} />
-            //   }
-            //   label="Follow"
-            // />
             <FollowSwitch
               followFlag={followFlag}
               setFollowFlag={setFollowFlag}
@@ -117,10 +107,7 @@ const Profile = ({ userId }: Props) => {
           <p className="profile__info__introduction">
             {userInfo?.introduction}
           </p>
-          {/* <div className="profile__info__location">
-            <Place className="placeIcon" />
-            Location
-          </div> */}
+
           <div className="profile__info__follow">
             <Link to={`/follow/${userInfo?.id}`}>
               <span>following:{userInfo?.followings?.length}</span>

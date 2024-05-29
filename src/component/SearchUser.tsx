@@ -1,14 +1,9 @@
-import InfiniteScroll from "react-infinite-scroller";
-import Post from "./Post";
-import usePosts from "../hooks/usePosts";
+import { useState } from "react";
 import "../style/SearchUser.css";
-import Loading from "./Loading";
-import { PostType } from "../lib/type/PostType";
-import { useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroller";
+import { Avatar } from "@mui/material";
 import SearchInput from "./SearchInput";
 import useUsers from "../hooks/useUsers";
-import UserCard from "./UserCard";
-import { Avatar } from "@mui/material";
 
 type Props = {
   // setSelectedUserId: React.Dispatch<React.SetStateAction<number>>;

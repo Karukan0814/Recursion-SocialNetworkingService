@@ -1,4 +1,3 @@
-import React from "react";
 import "../style/SpeechBubble.css";
 type Props = {
   isMine: boolean;

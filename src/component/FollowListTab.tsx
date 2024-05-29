@@ -1,10 +1,5 @@
 import InfiniteScroll from "react-infinite-scroller";
-import Post from "./Post";
-import usePosts from "../hooks/usePosts";
-import "../style/PostListTab.css";
-import Loading from "./Loading";
-import { PostType } from "../lib/type/PostType";
-import { useEffect, useState } from "react";
+
 import { FollowType } from "../lib/type/UserInfoType";
 import useFollow from "../hooks/useFollow";
 import UserCard from "./UserCard";
@@ -15,9 +10,7 @@ type Props = {
 };
 const FollowListTab = ({ tabName, userId }: Props) => {
   const { userList, setNextUser, hasMore } = useFollow(tabName, userId);
-  console.log(userList);
   const loadNextList = async (page: number) => {
-    console.log("loadNextList", page);
     setNextUser(page);
   };
 

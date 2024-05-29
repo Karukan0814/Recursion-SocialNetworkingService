@@ -1,6 +1,6 @@
-import { Search } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import "../style/SearchInput.css";
+import { Search } from "@mui/icons-material";
 
 type Props = {
   keyword: string;

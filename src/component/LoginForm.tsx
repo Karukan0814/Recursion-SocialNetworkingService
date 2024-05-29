@@ -1,10 +1,7 @@
-import React, { useState } from "react";
 import "../style/LoginForm.css";
 import useLogin from "../hooks/useLogin";
-import { Button } from "@mui/material";
 import PrimaryButton from "./PrimaryButton";
 import { useForm } from "react-hook-form";
-import { signUpAPI } from "../lib/database/User";
 
 type Props = {
   signUpFlag: boolean;
@@ -28,7 +25,6 @@ const LoginForm = ({ signUpFlag, handleClose }: Props) => {
   const password = watch("password"); // パスワードの値を監視
 
   const onSubmit = async (data: FormData) => {
-    console.log({ data });
     if (signUpFlag) {
       await signUp(data.name, data.email, data.password, data.confirmPassword);
       handleClose();

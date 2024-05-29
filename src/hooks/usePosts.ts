@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useAtom } from "jotai";
 import {
   getFollowingsPostList,
   getLikeListByUserId,
@@ -9,7 +10,6 @@ import {
   getTrendPostList,
   registerPostAPI,
 } from "../lib/database/Post";
-import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
 import { PostInfo, PostType, validPostImgTypes } from "../lib/type/PostType";
 

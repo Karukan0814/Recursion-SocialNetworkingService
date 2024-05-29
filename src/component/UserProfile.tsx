@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Button, Modal, Box, TextField, Typography } from "@mui/material";
+import { useState } from "react";
+import { Button, TextField, Typography } from "@mui/material";
 import { PhotoCamera } from "@mui/icons-material";
 
 const UserProfile = () => {
@@ -26,7 +26,6 @@ const UserProfile = () => {
 
   const handleSave = () => {
     // Save data logic here
-    console.log(user);
     handleClose();
   };
 

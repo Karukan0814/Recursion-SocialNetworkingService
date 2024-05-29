@@ -1,22 +1,5 @@
-import InfiniteScroll from "react-infinite-scroller";
-import Post from "./Post";
-import usePosts from "../hooks/usePosts";
+import { useEffect, useState } from "react";
 import "../style/NotificationList.css";
-
-import Loading from "./Loading";
-import { PostType } from "../lib/type/PostType";
-import { SetStateAction, useEffect, useState } from "react";
-import { FollowType } from "../lib/type/UserInfoType";
-import useFollow from "../hooks/useFollow";
-import UserCard from "./UserCard";
-import ConversationCard from "./ConversationCard";
-import useConversation from "../hooks/useConversation";
-import { IconButton } from "@mui/material";
-import { AddIcCallOutlined } from "@mui/icons-material";
-import "../style/NotificationList.css";
-import ModalPopup from "./ModalPopup";
-import SearchUser from "./SearchUser";
-import { ConversationInfoType } from "../lib/type/MessageInfoType";
 import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
 import { getRecentNotifications } from "../lib/database/Notification";

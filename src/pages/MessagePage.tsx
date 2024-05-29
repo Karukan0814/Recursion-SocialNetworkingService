@@ -1,11 +1,9 @@
-import Sidebar from "../component/Sidebar";
-
-import Message from "../component/Message";
 import { useParams } from "react-router-dom";
+import Sidebar from "../component/Sidebar";
+import Message from "../component/Message";
 
 const MessagePage = () => {
   const { id } = useParams();
-  console.log("FollowPage", id);
   const triggeredById = parseInt(id || "");
   return (
     <>
