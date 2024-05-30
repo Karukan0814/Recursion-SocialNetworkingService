@@ -36,6 +36,7 @@ const SearchUser = ({ handleSelectUser }: Props) => {
             <div
               className="searchUser_result"
               onClick={() => handleSelectUser(user.id)}
+              key={user.id}
             >
               <div className="result__avatar">
                 <Avatar
