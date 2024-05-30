@@ -4,8 +4,8 @@
   background-color: var(--twitter-background);
   padding: 10px;
   border-radius: 20px;
-  width: 95%;
-  margin: 10px auto;
+  width: 90%;
+  margin: 20px auto;
 }
 .search__input > input {
   flex: 1;

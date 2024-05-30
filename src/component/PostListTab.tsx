@@ -4,6 +4,7 @@ import PostBox from "./PostBox";
 import Post from "./Post";
 import usePosts from "../hooks/usePosts";
 import { PostType } from "../lib/type/PostType";
+import Loading from "./Loading";
 
 type Props = {
   tabName: PostType;
@@ -66,7 +67,7 @@ const PostListTab = ({
         <InfiniteScroll
           pageStart={1}
           loadMore={loadNextList}
-          // loader={}
+          loader={<Loading />}
           hasMore={hasMore}
           useWindow={false}
           initialLoad={false}
