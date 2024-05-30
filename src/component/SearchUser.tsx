@@ -4,6 +4,7 @@ import InfiniteScroll from "react-infinite-scroller";
 import { Avatar } from "@mui/material";
 import SearchInput from "./SearchInput";
 import useUsers from "../hooks/useUsers";
+import Loading from "./Loading";
 
 type Props = {
   // setSelectedUserId: React.Dispatch<React.SetStateAction<number>>;
@@ -11,10 +12,9 @@ type Props = {
 };
 const SearchUser = ({ handleSelectUser }: Props) => {
   const [keyword, setKeyword] = useState("");
-  const { userList, setNextUser, hasMore } = useUsers(keyword);
+  const { userList, setNextUser, hasMore, loading } = useUsers(keyword);
   console.log(userList);
   const loadNextList = async (page: number) => {
-    console.log("loadNextList", page);
     setNextUser(page);
   };
 
@@ -25,14 +25,12 @@ const SearchUser = ({ handleSelectUser }: Props) => {
         <InfiniteScroll
           pageStart={1}
           loadMore={loadNextList}
-          // loader={}
+          // loader={<Loading />}
           hasMore={hasMore}
           useWindow={false}
           initialLoad={false}
         >
           {userList.map((user, i) => (
-            // <UserCard user={user} key={user.id} />
-
             <div
               className="searchUser_result"
               onClick={() => handleSelectUser(user.id)}
@@ -48,6 +46,7 @@ const SearchUser = ({ handleSelectUser }: Props) => {
               </h3>
             </div>
           ))}
+          {loading && <Loading />}
         </InfiniteScroll>
       </div>
     </div>

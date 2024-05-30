@@ -22,6 +22,8 @@ const usePosts = (
   const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
 
   const [loading, setLoading] = useState(false);
+  const [searchLoading, setSearchLoading] = useState(false);
+
   const [errorMsg, setErrorMsg] = useState("");
   const [postList, setPostList] = useState<PostInfo[]>([]);
   const [hasMore, setHasMore] = useState(true); //再読み込み判定
@@ -101,6 +103,7 @@ const usePosts = (
   };
 
   const setNextPost = async (page: number, replyToId?: number) => {
+    setSearchLoading(true);
     try {
       const token = userInfoJotai.authtoken;
       const userId = userInfoJotai.userInfo?.id;
@@ -176,11 +179,14 @@ const usePosts = (
     } catch (error: any) {
       setErrorMsg(error.message);
       console.log(error);
+    } finally {
+      setSearchLoading(false);
     }
   };
 
   return {
     loading,
+    searchLoading,
     errorMsg,
     registerPost,
     postList,

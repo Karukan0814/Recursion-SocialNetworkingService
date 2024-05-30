@@ -20,12 +20,15 @@ const PostListTab = ({
   keyWord,
   displayScheduledAt = false,
 }: Props) => {
-  const { postList, registerPost, setNextPost, hasMore, loading } = usePosts(
-    tabName,
-    replyToId,
-    profileUserId,
-    keyWord
-  );
+  const {
+    postList,
+    registerPost,
+    setNextPost,
+    hasMore,
+    loading,
+    searchLoading,
+  } = usePosts(tabName, replyToId, profileUserId, keyWord);
+
   const loadNextList = async (page: number) => {
     setNextPost(page, replyToId);
   };
@@ -42,7 +45,10 @@ const PostListTab = ({
   const shouldDisplayPostBox = validTabs.includes(tabName);
 
   const displayResult = () => {
-    if (postList.length < 1) {
+    // if (searchLoading) {
+    //   return <Loading />;
+    // } else {
+    if (!searchLoading && postList.length < 1) {
       if (tabName === PostType.search) {
         return <div className="tab__content_noResult">No results</div>;
       }
@@ -50,6 +56,7 @@ const PostListTab = ({
     } else {
       return postList.map((post, i) => <Post key={post.id} post={post} />);
     }
+    // }
   };
 
   return (

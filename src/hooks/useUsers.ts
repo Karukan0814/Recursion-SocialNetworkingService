@@ -17,6 +17,7 @@ const useUsers = (keyword: string) => {
   }, [keyword]);
 
   const setNextUser = async (page: number) => {
+    setLoading(true);
     try {
       const token = userInfoJotai.authtoken;
 
@@ -39,6 +40,8 @@ const useUsers = (keyword: string) => {
     } catch (error: any) {
       setErrorMsg(error.message);
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
