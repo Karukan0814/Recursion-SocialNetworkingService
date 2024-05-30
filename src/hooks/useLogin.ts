@@ -54,12 +54,15 @@ const useLogin = () => {
       }
       //サーバー側で登録処理
 
-      await signUpAPI(name, email, password);
-
-      //メール送信した旨、画面に表示
-      alert(
-        "Verification Mail was sent to your email. Please click the link in the mail."
-      );
+      const signUpResult = await signUpAPI(name, email, password);
+      if (signUpResult) {
+        //メール送信した旨、画面に表示
+        alert(
+          "Verification Mail was sent to your email. Please click the link in the mail."
+        );
+      } else {
+        alert("Sorry! Registering your email was failed!");
+      }
     } catch (e: any) {
     } finally {
       setLoading(false);
@@ -186,10 +189,6 @@ const useLogin = () => {
         throw new Error("no user id in storage");
       }
       const id = userInfoJotai.userInfo?.id;
-      if (!userInfoJotai.userInfo?.email) {
-        throw new Error("no email  in storage");
-      }
-      const email = userInfoJotai.userInfo?.email;
 
       // 以下、ファイルが添付されている場合のvalidation
       if (userImg) {
@@ -215,7 +214,6 @@ const useLogin = () => {
       const data = await updateUserInfoAPI(
         id,
         name,
-        email,
         introduction,
         userImg,
         userInfoJotai.authtoken
