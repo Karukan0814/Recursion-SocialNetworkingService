@@ -24,5 +24,7 @@ export const pages: RouteInfo[] = [
 
 export const articleTypeList = ["RECIPE", "SHOP", "ONLINE"];
 
+export const loadNumPerPage = 20;
+
 export const userActionList = ["COMMENT", "LIKE", "BOOKMARK", "USER"];
 export const allCategoryId = 100;

@@ -12,6 +12,7 @@ import {
 } from "../lib/database/Post";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
 import { PostInfo, PostType, validPostImgTypes } from "../lib/type/PostType";
+import { loadNumPerPage } from "../lib/constants";
 
 const usePosts = (
   tabName: PostType,
@@ -113,15 +114,26 @@ const usePosts = (
       let newPosts: any[] | null;
       if (tabName === PostType.trend) {
         // トレンドのポストリストの取得
-        newPosts = await getTrendPostList(token, 20, page);
+        newPosts = await getTrendPostList(token, loadNumPerPage, page);
       } else if (tabName === PostType.followings) {
         // フォローしているユーザーのポストリストの取得
 
-        newPosts = await getFollowingsPostList(token, userId, 20, page);
+        newPosts = await getFollowingsPostList(
+          token,
+          userId,
+          loadNumPerPage,
+          page
+        );
       } else if (tabName === PostType.detail) {
         // 選択したポストのリプライポストリストの取得
 
-        newPosts = await getReplyPostList(token, userId, 20, page, replyToId);
+        newPosts = await getReplyPostList(
+          token,
+          userId,
+          loadNumPerPage,
+          page,
+          replyToId
+        );
       } else if (tabName === PostType.profilePosts) {
         //ユーザーの親ポストリストの取得
         if (!profileUserId) {
@@ -134,21 +146,36 @@ const usePosts = (
           page,
           replyToId,
         });
-        newPosts = await getPostListByUserId(token, profileUserId, 20, page);
+        newPosts = await getPostListByUserId(
+          token,
+          profileUserId,
+          loadNumPerPage,
+          page
+        );
       } else if (tabName === PostType.profileReplies) {
         //ユーザーのリプライポストリストの取得
         if (!profileUserId) {
           throw new Error("profileUserId couldn't be extracted from storage.");
         }
         console.log("getReplyListByUserId", { token, profileUserId, page });
-        newPosts = await getReplyListByUserId(token, profileUserId, 20, page);
+        newPosts = await getReplyListByUserId(
+          token,
+          profileUserId,
+          loadNumPerPage,
+          page
+        );
       } else if (tabName === PostType.profileLikes) {
         //ユーザーがLikeしたポストリストの取得
         if (!profileUserId) {
           throw new Error("profileUserId couldn't be extracted from storage.");
         }
         console.log("getLikeListByUserId", { token, profileUserId, page });
-        newPosts = await getLikeListByUserId(token, profileUserId, 20, page);
+        newPosts = await getLikeListByUserId(
+          token,
+          profileUserId,
+          loadNumPerPage,
+          page
+        );
       } else if (tabName === PostType.search) {
         //ユーザーが入力したキーワードに関連するポストリストの取得
         if (!keyword) {
@@ -160,7 +187,12 @@ const usePosts = (
         else {
           // それ以外の場合、Postのtextから検索
           console.log("getPostListByKeyword", { token, profileUserId, page });
-          newPosts = await getPostListByKeyword(token, 20, page, keyword);
+          newPosts = await getPostListByKeyword(
+            token,
+            loadNumPerPage,
+            page,
+            keyword
+          );
         }
       } else {
         newPosts = [];
@@ -171,6 +203,10 @@ const usePosts = (
       }
 
       setHasMore(newPosts.length > 0);
+      if (page === 1 && newPosts.length < loadNumPerPage) {
+        setHasMore(false);
+        console.log("setHasMore", false);
+      }
       if (page > 1) {
         setPostList([...postList, ...newPosts]);
       } else {
