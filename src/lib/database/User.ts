@@ -21,7 +21,6 @@ export async function signUpAPI(
     }
     // データを送信する
     const response = await apiClient.post("/user/register", params);
-
     return response.data as ResponseFromAPI;
   } catch (error: any) {
     console.error("Error fetching data:", error);
@@ -43,7 +42,6 @@ export async function loginAPI(email: string, password: string) {
     }
     // データを取得する
     const response = await apiClient.post("/user/login", params);
-    console.log(response.data);
 
     return response.data as ResponseFromAPI;
   } catch (error: any) {
@@ -90,7 +88,6 @@ export async function checkTokenAPI(token: string | undefined | null) {
 
 export async function verifyEmailAPI(token: string) {
   try {
-    console.log("verifyEmailAPI");
     // クエリパラメータを用意
     const params: { [key: string]: any } = { token };
     if (!token) {
@@ -98,7 +95,6 @@ export async function verifyEmailAPI(token: string) {
     }
     // データを送信する
     const response = await apiClient.post("/user/verify", params);
-
     return response.data as ResponseFromAPI;
   } catch (error: any) {
     console.error("Error fetching data:", error);
@@ -113,7 +109,6 @@ export async function verifyEmailAPI(token: string) {
 export async function updateUserInfoAPI(
   id: number,
   name: string,
-  email: string,
   introduction: string,
   userImg: File | null,
   token: string | undefined | null
@@ -129,13 +124,11 @@ export async function updateUserInfoAPI(
     const formData = new FormData();
 
     formData.append("name", name);
-    formData.append("email", email);
 
     formData.append("introduction", introduction);
 
     formData.append("userId", id.toString());
     if (userImg) formData.append("userImg", userImg);
-    console.log({ userImg });
     const config = {
       data: formData,
       headers: {
@@ -198,6 +191,7 @@ export async function getFollowersList(
       // This will activate the closest `error.js` Error Boundary
       throw new Error("Failed to fetch data");
     }
+
     return response.data as UserInfoType[];
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -242,6 +236,7 @@ export async function getFollowingList(
       // This will activate the closest `error.js` Error Boundary
       throw new Error("Failed to fetch data");
     }
+
     return response.data as UserInfoType[];
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -319,7 +314,6 @@ export async function getUserListByKeyword(
   keyword: string
 ) {
   try {
-    console.log("getUserListByKeyword");
     // クエリパラメータを用意
     const params: { [key: string]: any } = { count };
 
@@ -346,7 +340,6 @@ export async function getUserListByKeyword(
       Authorization: `Bearer ${token}`,
     };
 
-    console.log("getUserListByKeyword", params);
     // データを取得する
     const response = await apiClient.get("/user/search/keyword", {
       headers,

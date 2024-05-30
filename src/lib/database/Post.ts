@@ -33,6 +33,7 @@ export async function getTrendPostList(
       // This will activate the closest `error.js` Error Boundary
       throw new Error("Failed to fetch data");
     }
+    console.log("getTrendPostList", response.data);
     return response.data as PostInfo[];
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -82,6 +83,8 @@ export async function getFollowingsPostList(
       // This will activate the closest `error.js` Error Boundary
       throw new Error("Failed to fetch data");
     }
+    console.log("getFollowingsPostList", response.data);
+
     return response.data as PostInfo[];
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -130,7 +133,6 @@ export async function getReplyPostList(
       Authorization: `Bearer ${token}`,
     };
 
-    console.log("getReplyPostList", params);
     // データを取得する
     const response = await apiClient.get("/post/search/replies", {
       headers,
@@ -140,6 +142,9 @@ export async function getReplyPostList(
       // This will activate the closest `error.js` Error Boundary
       throw new Error("Failed to fetch data");
     }
+
+    console.log("getReplyPostList", response.data);
+
     return response.data as PostInfo[];
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -179,6 +184,9 @@ export async function getPostInfo(
       // This will activate the closest `error.js` Error Boundary
       throw new Error("Failed to fetch data");
     }
+
+    console.log("getPostInfo", response.data);
+
     return response.data as PostInfo;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -285,6 +293,8 @@ export async function getPostListByUserId(
     }
 
     // console.log(response.data);
+    console.log("getPostListByUserId", response.data);
+
     return response.data as PostInfo[];
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -331,7 +341,6 @@ export async function getReplyListByUserId(
       Authorization: `Bearer ${token}`,
     };
 
-    console.log("getPostListByUserId", params);
     // データを取得する
     const response = await apiClient.get("/post/search/userReplies", {
       headers,
@@ -342,7 +351,8 @@ export async function getReplyListByUserId(
       throw new Error("Failed to fetch data");
     }
 
-    console.log(response.data);
+    console.log("getReplyListByUserId", response.data);
+
     return response.data as PostInfo[];
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -389,7 +399,6 @@ export async function getLikeListByUserId(
       Authorization: `Bearer ${token}`,
     };
 
-    console.log("getLikeListByUserId", params);
     // データを取得する
     const response = await apiClient.get("/post/search/userLikes", {
       headers,
@@ -399,6 +408,7 @@ export async function getLikeListByUserId(
       // This will activate the closest `error.js` Error Boundary
       throw new Error("Failed to fetch data");
     }
+    console.log("getLikeListByUserId", response.data);
 
     const likePosts = response.data.map((res: { post: PostInfo }) => {
       return res.post;
@@ -446,7 +456,6 @@ export async function getPostListByKeyword(
       Authorization: `Bearer ${token}`,
     };
 
-    console.log("getPostListByKeyword", params);
     // データを取得する
     const response = await apiClient.get("/post/search/keyword", {
       headers,
@@ -455,6 +464,7 @@ export async function getPostListByKeyword(
     if (response.status !== 200) {
       throw new Error("Failed to fetch data");
     }
+    console.log("getPostListByKeyword", response.data);
 
     return response.data as PostInfo[];
   } catch (error) {
@@ -463,141 +473,6 @@ export async function getPostListByKeyword(
     return null;
   }
 }
-
-// export async function getArticleByCategoryId(categoryId: number) {
-//   try {
-//     // クエリパラメータを用意
-//     const params = { categoryId }; // クエリパラメータをオブジェクトとして設定
-
-//     // データを取得する
-//     const response = await apiClient.get("/article/searchByCategory", {
-//       params, // クエリパラメータを追加
-//     });
-
-//     if (response.status !== 200) {
-//       throw new Error("Failed to fetch data");
-//     }
-
-//     return response.data as BasicCategorizedArticles;
-//   } catch (error) {
-//     console.error("Error fetching data:", error);
-//     return null;
-//   }
-// }
-
-// export async function registerLike(
-//   articleId: number,
-//   userId: number,
-//   like: boolean
-// ) {
-//   try {
-//     // クエリパラメータを用意
-//     const params: { [key: string]: any } = { articleId, userId, like };
-
-//     // リクエストヘッダーにJWTを含める
-//     const jwtToken = getCookie("userInfo");
-//     const headers = {
-//       Authorization: `Bearer ${jwtToken}`,
-//     };
-//     // データを取得する
-//     const response = await apiClient.post(
-//       "/userActions/like/register",
-//       params,
-//       { headers }
-//     );
-//     if (response.status !== 200) {
-//       // This will activate the closest `error.js` Error Boundary
-//       throw new Error("いいね情報登録失敗");
-//     }
-//     return response.data as number;
-//   } catch (error) {
-//     console.error("Error registering data:", error);
-
-//     return null;
-//   }
-// }
-
-// export async function getComments(articleId: number) {
-//   try {
-//     // クエリパラメータを用意
-//     const params: { [key: string]: any } = { articleId };
-
-//     // データを取得する
-//     const response = await apiClient.get("/userActions/comment/search", {
-//       params,
-//     });
-//     if (response.status !== 200) {
-//       // This will activate the closest `error.js` Error Boundary
-//       throw new Error("Failed to fetch data");
-//     }
-
-//     return response.data as CommentInfo[];
-//   } catch (error) {
-//     console.error("Error fetching data:", error);
-
-//     return null;
-//   }
-// }
-
-// export async function registerComment(
-//   articleId: number,
-//   userId: number,
-//   comment: string
-// ) {
-//   try {
-//     // クエリパラメータを用意
-//     const params: { [key: string]: any } = { articleId, userId, comment };
-
-//     // リクエストヘッダーにJWTを含める
-//     const jwtToken = getCookie("userInfo");
-//     const headers = {
-//       Authorization: `Bearer ${jwtToken}`,
-//     };
-//     // データを取得する
-//     const response = await apiClient.post(
-//       "/userActions/comment/register",
-//       params,
-//       { headers }
-//     );
-//     if (response.status !== 200) {
-//       // This will activate the closest `error.js` Error Boundary
-//       throw new Error("コメント登録失敗");
-//     }
-//     return response.data as CommentInfo;
-//   } catch (error) {
-//     console.error("Error registering data:", error);
-//     return null;
-//   }
-// }
-
-// export async function getArticleByUserId(userId: number, token: string) {
-//   try {
-//     // クエリパラメータを用意
-//     const params: { [key: string]: any } = {};
-
-//     params.userId = userId;
-//     // リクエストヘッダーにJWTを含める※サーバー側から呼び出す場合もあるので、getCookieしない
-//     const headers = {
-//       Authorization: `Bearer ${token}`,
-//     };
-//     // データを取得する
-//     const response = await apiClient.post(
-//       "/article/searchByUser",
-//       params, // クエリパラメータを data プロパティに移動
-//       { headers }
-//     );
-
-//     if (response.status !== 200) {
-//       throw new Error("Failed to fetch data");
-//     }
-
-//     return response.data as ArticlesCategorizedByActions;
-//   } catch (error) {
-//     console.error("Error fetching data:", error);
-//     return null;
-//   }
-// }
-
 export async function registerPostAPI(
   userId: number,
   jwtToken: string,
@@ -607,15 +482,6 @@ export async function registerPostAPI(
   scheduledAt?: Date
 ) {
   try {
-    console.log("registerPost", {
-      userId,
-      text,
-      img,
-      replyToId,
-      jwtToken,
-      scheduledAt,
-    });
-
     // クエリパラメータを用意
     const params: { [key: string]: any } = {
       text,
@@ -624,7 +490,6 @@ export async function registerPostAPI(
       replyToId,
       scheduledAt,
     };
-    console.log(params);
 
     const formData = new FormData();
 
@@ -634,10 +499,6 @@ export async function registerPostAPI(
     if (replyToId) formData.append("replyToId", replyToId.toString());
     if (scheduledAt) formData.append("scheduledAt", scheduledAt.toISOString());
 
-    // console.log("FormData entries:");
-    // for (let [key, value] of formData.entries()) {
-    //   console.log(`${key}: ${value}`);
-    // }
     const config = {
       data: formData,
       headers: {
@@ -652,11 +513,11 @@ export async function registerPostAPI(
       config
     );
 
-    // await apiClient.post("/post/register", formData, config);
     if (response.status !== 200) {
-      // This will activate the closest `error.js` Error Boundary
       throw new Error(response.data);
     }
+
+    console.log("registerPostAPI", response.data);
     return response.data as PostInfo;
   } catch (error) {
     console.error("Error registering data:", error);
