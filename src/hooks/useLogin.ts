@@ -77,7 +77,6 @@ const useLogin = () => {
 
       const data = await verifyEmailAPI(token);
       if (data?.error) {
-        console.log(data.error);
         throw new Error(data.error);
       }
 
@@ -94,7 +93,7 @@ const useLogin = () => {
       navigate("/");
     } catch (error: any) {
       setErrorMsg(error.message);
-      console.log(error);
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -110,7 +109,7 @@ const useLogin = () => {
       const data = await loginAPI(email, password);
 
       if (data?.error) {
-        console.log(data.error);
+        console.error(data.error);
         throw new Error(data.error);
       }
 
@@ -119,14 +118,13 @@ const useLogin = () => {
       }
       const loginUser: UserInfoType = data.user;
       //ログイン成功時はユーザー情報をjotaiに入れる
-      console.log("login", { userInfo: loginUser, authtoken: data.token });
       setuserInfoJotai({ userInfo: loginUser, authtoken: data.token });
 
       //home画面に移動
       navigate("/");
     } catch (error: any) {
       setErrorMsg(error.message);
-      console.log(error);
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -144,7 +142,6 @@ const useLogin = () => {
 
   const validateToken = async (token: string | undefined | null) => {
     const isValid = await checkTokenAPI(token);
-    console.log({ isValid });
     if (token && !isValid) {
       return false;
     }
@@ -192,7 +189,6 @@ const useLogin = () => {
 
       // 以下、ファイルが添付されている場合のvalidation
       if (userImg) {
-        console.log("userImgあり");
         // 画像ファイルかチェック
         if (
           !userImg.type.startsWith("image/jpeg") &&
@@ -224,7 +220,6 @@ const useLogin = () => {
       }
       const updatedUserInfo: UserInfoType = data;
       //アップデート成功時はユーザー情報をjotaiに入れる
-      console.log("update", { userInfo: updatedUserInfo });
       setuserInfoJotai({
         userInfo: updatedUserInfo,
         authtoken: userInfoJotai.authtoken,
@@ -233,7 +228,7 @@ const useLogin = () => {
       return updatedUserInfo;
     } catch (error: any) {
       setErrorMsg(error.message);
-      console.log(error);
+      console.error(error);
     } finally {
       setLoading(false);
     }

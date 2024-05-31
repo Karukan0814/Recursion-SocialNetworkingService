@@ -29,7 +29,6 @@ const usePosts = (
   const [postList, setPostList] = useState<PostInfo[]>([]);
   const [hasMore, setHasMore] = useState(true); //再読み込み判定
   useEffect(() => {
-    console.log("useEffect___usePosts");
     setNextPost(1, parentId);
   }, [parentId, tabName, profileUserId, keyword]);
   const registerPost = async (
@@ -52,7 +51,6 @@ const usePosts = (
       // ファイル名をハッシュ化したもの＋保存日時＋拡張子でファイル名を作成→public/img/ファイル名の頭２文字のフォルダに格納
 
       // 以下、ファイルが添付されている場合のvalidation
-      console.log(img);
       if (img) {
         // 画像ファイルかチェック
         if (!Object.keys(validPostImgTypes).includes(img.type)) {
@@ -84,7 +82,6 @@ const usePosts = (
         replyToId,
         scheduledAt
       );
-      console.log(newPost);
       if (!newPost) {
         throw new Error("Something wrong with registering new post");
       }
@@ -97,7 +94,7 @@ const usePosts = (
       }
     } catch (error: any) {
       setErrorMsg(error.message);
-      console.log(error);
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -140,12 +137,6 @@ const usePosts = (
           throw new Error("profileUserId couldn't be extracted from storage.");
         }
 
-        console.log("getPostListByUserId", {
-          token,
-          profileUserId,
-          page,
-          replyToId,
-        });
         newPosts = await getPostListByUserId(
           token,
           profileUserId,
@@ -157,7 +148,6 @@ const usePosts = (
         if (!profileUserId) {
           throw new Error("profileUserId couldn't be extracted from storage.");
         }
-        console.log("getReplyListByUserId", { token, profileUserId, page });
         newPosts = await getReplyListByUserId(
           token,
           profileUserId,
@@ -169,7 +159,6 @@ const usePosts = (
         if (!profileUserId) {
           throw new Error("profileUserId couldn't be extracted from storage.");
         }
-        console.log("getLikeListByUserId", { token, profileUserId, page });
         newPosts = await getLikeListByUserId(
           token,
           profileUserId,
@@ -180,13 +169,8 @@ const usePosts = (
         //ユーザーが入力したキーワードに関連するポストリストの取得
         if (!keyword) {
           newPosts = [];
-        }
-        // else if (keyword[0] === "@") {
-        //   // 検索単語の頭に@が付いている場合、ユーザー名の検索
-        // }
-        else {
+        } else {
           // それ以外の場合、Postのtextから検索
-          console.log("getPostListByKeyword", { token, profileUserId, page });
           newPosts = await getPostListByKeyword(
             token,
             loadNumPerPage,
@@ -197,7 +181,6 @@ const usePosts = (
       } else {
         newPosts = [];
       }
-      console.log(newPosts);
       if (!newPosts) {
         newPosts = [];
       }
@@ -205,7 +188,6 @@ const usePosts = (
       setHasMore(newPosts.length > 0);
       if (page === 1 && newPosts.length < loadNumPerPage) {
         setHasMore(false);
-        console.log("setHasMore", false);
       }
       if (page > 1) {
         setPostList([...postList, ...newPosts]);
@@ -214,7 +196,7 @@ const usePosts = (
       }
     } catch (error: any) {
       setErrorMsg(error.message);
-      console.log(error);
+      console.error(error);
     } finally {
       setSearchLoading(false);
     }

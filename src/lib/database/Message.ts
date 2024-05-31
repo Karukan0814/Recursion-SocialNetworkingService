@@ -24,7 +24,6 @@ export async function getAllConversationsListByUserId(
       Authorization: `Bearer ${token}`,
     };
 
-    // console.log("getPostListByUserId", params);
     // データを取得する
     const response = await apiClient.get("/message/search/conversationsAll", {
       headers,
@@ -35,7 +34,6 @@ export async function getAllConversationsListByUserId(
       throw new Error("Failed to fetch data");
     }
 
-    // console.log(response.data);
     return response.data as ConversationInfoType[];
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -77,7 +75,6 @@ export async function getConversationsListByUserId(
       Authorization: `Bearer ${token}`,
     };
 
-    // console.log("getPostListByUserId", params);
     // データを取得する
     const response = await apiClient.get("/message/search/conversations", {
       headers,
@@ -88,7 +85,6 @@ export async function getConversationsListByUserId(
       throw new Error("Failed to fetch data");
     }
 
-    // console.log(response.data);
     return response.data as ConversationInfoType[];
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -131,8 +127,6 @@ export async function getMessagesByConversationId(
       throw new Error("Failed to fetch data");
     }
 
-    console.log(response.data);
-
     //senderIdが自分のユーザーIDと同じメッセージにはisMineフラグをたてる
     const messages: MessageInfoType[] = response.data.map((data: any) => {
       const message: MessageInfoType = {
@@ -147,8 +141,6 @@ export async function getMessagesByConversationId(
       };
       return message;
     });
-
-    console.log(messages);
 
     return messages;
   } catch (error) {
@@ -165,13 +157,6 @@ export async function registerConversationAPI(
   // firstmessage: string
 ) {
   try {
-    console.log("registerConversationAPI", {
-      fromUserId,
-      toUserId,
-
-      token,
-    });
-
     // クエリパラメータを用意
     const params: { [key: string]: any } = {};
 
@@ -222,13 +207,6 @@ export async function registerMessageAPI(
   text: string
 ) {
   try {
-    console.log("registerMessageAPI", {
-      conversationId,
-      senderId,
-
-      text,
-    });
-
     // クエリパラメータを用意
     const params: { [key: string]: any } = {};
 

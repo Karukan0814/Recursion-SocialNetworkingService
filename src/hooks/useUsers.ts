@@ -12,7 +12,6 @@ const useUsers = (keyword: string) => {
   const [userList, setUserList] = useState<UserInfoType[]>([]);
   const [hasMore, setHasMore] = useState(true); //再読み込み判定
   useEffect(() => {
-    console.log("useEffect___usePosts");
     setNextUser(1);
   }, [keyword]);
 
@@ -39,7 +38,7 @@ const useUsers = (keyword: string) => {
       }
     } catch (error: any) {
       setErrorMsg(error.message);
-      console.log(error);
+      console.error(error);
     } finally {
       setLoading(false);
     }

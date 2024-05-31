@@ -37,7 +37,6 @@ export async function getRecentNotifications(
       throw new Error("Failed to fetch data");
     }
 
-    // console.log(response.data);
     return response.data as NotificationInfoType[];
   } catch (error) {
     console.error("Error fetching data:", error);

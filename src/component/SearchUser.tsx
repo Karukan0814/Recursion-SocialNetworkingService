@@ -7,13 +7,11 @@ import useUsers from "../hooks/useUsers";
 import Loading from "./Loading";
 
 type Props = {
-  // setSelectedUserId: React.Dispatch<React.SetStateAction<number>>;
   handleSelectUser: (userId?: number) => void;
 };
 const SearchUser = ({ handleSelectUser }: Props) => {
   const [keyword, setKeyword] = useState("");
   const { userList, setNextUser, hasMore, loading } = useUsers(keyword);
-  console.log(userList);
   const loadNextList = async (page: number) => {
     setNextUser(page);
   };

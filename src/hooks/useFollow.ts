@@ -12,14 +12,12 @@ const useFollow = (tabName: FollowType, userId: number, parentId?: number) => {
   const [userList, setUserList] = useState<UserInfoType[]>([]);
   const [hasMore, setHasMore] = useState(true); //再読み込み判定
   useEffect(() => {
-    console.log("useEffect___usePosts");
     setNextUser(1, parentId);
   }, [parentId, tabName]);
 
   const setNextUser = async (page: number, replyToId?: number) => {
     try {
       const token = userInfoJotai.authtoken;
-      // const userId = userInfoJotai.userInfo?.id;
       if (!userId) {
         throw new Error("userId couldn't be extracted from storage.");
       }

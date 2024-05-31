@@ -30,7 +30,6 @@ const FollowSwitch = ({ followFlag, setFollowFlag, followUserId }: Props) => {
       userInfo: { ...userWithoutFollowings, followings: newFollowings },
       authtoken: userInfoJotai.authtoken,
     });
-    console.log(userInfoJotai);
   };
   return (
     <FormControlLabel

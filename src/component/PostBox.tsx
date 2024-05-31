@@ -58,7 +58,6 @@ const PostBox = ({
   const [videoPreviewUrl, setVideoPreviewUrl] = useState("");
 
   const onSubmit = async (data: FormData) => {
-    console.log("data.postImage", data.postImage);
     registerPost(data.postMessage, data.postImage, replyToId, postSchedule);
     setImagePreviewUrl("");
     setVideoPreviewUrl("");
@@ -80,23 +79,17 @@ const PostBox = ({
       }
 
       clearErrors("postImage");
-      console.log("attachedFile", file);
       setValue("postImage", file); // react-hook-formにファイルを設定
       const reader = new FileReader();
 
       if (file.type.startsWith("video")) {
-        console.log("filetype", file.type);
         reader.onload = () => {
-          console.log("filetype", reader.result as string);
-
           setVideoPreviewUrl(reader.result as string);
           setImagePreviewUrl("");
         };
         reader.readAsDataURL(file);
       } else {
         reader.onload = () => {
-          console.log("filetype", reader.result as string);
-
           const previewUrl = reader.result as string;
           setImagePreviewUrl(previewUrl);
           setVideoPreviewUrl("");

@@ -100,7 +100,6 @@ const Conversation = ({ activeConversationInfo }: Props) => {
       // メッセージを受信するイベント
       socket.on("receiveMessage", (newMessage: MessageInfoType) => {
         newMessage.isMine = newMessage.senderId === userInfoJotai.userInfo?.id;
-        console.log("newMessage", newMessage);
         setMessages((prev) => [...prev, newMessage]);
       });
 

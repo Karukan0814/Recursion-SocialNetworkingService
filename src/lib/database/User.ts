@@ -69,11 +69,9 @@ export async function checkTokenAPI(token: string | undefined | null) {
     const response = await apiClient.post("/user/checkToken", {}, { headers });
     if (response.status === 200) {
       // トークン有効
-      console.log("トークン有効");
       return true;
     } else {
       //トークン無効
-      console.log("トークン無効");
 
       return false;
     }

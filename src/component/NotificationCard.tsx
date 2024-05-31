@@ -88,7 +88,6 @@ const NotificationCard = ({ notification }: Props) => {
       setReadFlag(false);
     }
     const timer = setTimeout(() => {
-      console.log("time to change!");
       setReadFlag(true);
     }, 3000);
 

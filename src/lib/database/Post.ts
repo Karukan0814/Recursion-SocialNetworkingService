@@ -33,7 +33,6 @@ export async function getTrendPostList(
       // This will activate the closest `error.js` Error Boundary
       throw new Error("Failed to fetch data");
     }
-    console.log("getTrendPostList", response.data);
     return response.data as PostInfo[];
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -83,7 +82,6 @@ export async function getFollowingsPostList(
       // This will activate the closest `error.js` Error Boundary
       throw new Error("Failed to fetch data");
     }
-    console.log("getFollowingsPostList", response.data);
 
     return response.data as PostInfo[];
   } catch (error) {
@@ -143,8 +141,6 @@ export async function getReplyPostList(
       throw new Error("Failed to fetch data");
     }
 
-    console.log("getReplyPostList", response.data);
-
     return response.data as PostInfo[];
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -157,7 +153,6 @@ export async function getPostInfo(
   token: string | undefined | null
 ) {
   try {
-    console.log("getPostInfo", { postId, token });
     // クエリパラメータを用意
     const params: { [key: string]: any } = {};
 
@@ -184,8 +179,6 @@ export async function getPostInfo(
       // This will activate the closest `error.js` Error Boundary
       throw new Error("Failed to fetch data");
     }
-
-    console.log("getPostInfo", response.data);
 
     return response.data as PostInfo;
   } catch (error) {
@@ -281,7 +274,6 @@ export async function getPostListByUserId(
       Authorization: `Bearer ${token}`,
     };
 
-    // console.log("getPostListByUserId", params);
     // データを取得する
     const response = await apiClient.get("/post/search/userPosts", {
       headers,
@@ -291,9 +283,6 @@ export async function getPostListByUserId(
       // This will activate the closest `error.js` Error Boundary
       throw new Error("Failed to fetch data");
     }
-
-    // console.log(response.data);
-    console.log("getPostListByUserId", response.data);
 
     return response.data as PostInfo[];
   } catch (error) {
@@ -351,8 +340,6 @@ export async function getReplyListByUserId(
       throw new Error("Failed to fetch data");
     }
 
-    console.log("getReplyListByUserId", response.data);
-
     return response.data as PostInfo[];
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -408,12 +395,10 @@ export async function getLikeListByUserId(
       // This will activate the closest `error.js` Error Boundary
       throw new Error("Failed to fetch data");
     }
-    console.log("getLikeListByUserId", response.data);
 
     const likePosts = response.data.map((res: { post: PostInfo }) => {
       return res.post;
     });
-    console.log(likePosts);
     return likePosts as PostInfo[];
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -429,7 +414,6 @@ export async function getPostListByKeyword(
   keyword: string
 ) {
   try {
-    console.log("getPostListByKeyword");
     // クエリパラメータを用意
     const params: { [key: string]: any } = { count };
 
@@ -464,7 +448,6 @@ export async function getPostListByKeyword(
     if (response.status !== 200) {
       throw new Error("Failed to fetch data");
     }
-    console.log("getPostListByKeyword", response.data);
 
     return response.data as PostInfo[];
   } catch (error) {
@@ -517,7 +500,6 @@ export async function registerPostAPI(
       throw new Error(response.data);
     }
 
-    console.log("registerPostAPI", response.data);
     return response.data as PostInfo;
   } catch (error) {
     console.error("Error registering data:", error);

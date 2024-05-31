@@ -34,7 +34,6 @@ const ConversationList = ({
   const [conversationList, setConversationList] = useState<
     ConversationInfoType[]
   >([]);
-  console.log(conversationList);
 
   const handleStartNewConversation = async (toUserId: number) => {
     const newConversation = await registerConversationAPI(
@@ -48,8 +47,6 @@ const ConversationList = ({
     }
   };
   useEffect(() => {
-    console.log("useEffect__selectedUserId");
-
     const getConversationList = async () => {
       const allConversations = await getAllConversationsListByUserId(
         userInfoJotai.authtoken,

@@ -5,7 +5,6 @@ import Follow from "../component/Follow";
 
 const FollowPage = () => {
   const { id } = useParams();
-  console.log("FollowPage", id);
   const userId = parseInt(id || "");
   return (
     <>

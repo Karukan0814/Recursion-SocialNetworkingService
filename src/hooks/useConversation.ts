@@ -37,7 +37,6 @@ const useConversation = () => {
       return newConversation;
     } catch (error: any) {
       setErrorMsg(error.message);
-      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -68,7 +67,6 @@ const useConversation = () => {
       }
     } catch (error: any) {
       setErrorMsg(error.message);
-      console.log(error);
     }
   };
 

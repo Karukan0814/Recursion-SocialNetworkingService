@@ -5,7 +5,6 @@ import Profile from "../component/Profile";
 
 const ProfilePage = () => {
   const { userId } = useParams();
-  console.log({ userId });
 
   return (
     <>

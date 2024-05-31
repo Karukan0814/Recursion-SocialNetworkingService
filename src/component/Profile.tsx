@@ -19,10 +19,8 @@ type Props = {
 };
 
 const Profile = ({ userId }: Props) => {
-  console.log(userId);
   const [userInfoJotai, setUserInfoJotai] = useAtom(userInfoAtom);
   const navigate = useNavigate();
-  // const [id, setId] = useState(userId);
   const [userInfo, setUserInfo] = useState<UserInfoType | null>(null);
 
   const [activeTab, setActiveTab] = useState("posts");
@@ -46,7 +44,6 @@ const Profile = ({ userId }: Props) => {
 
     const handleUserInfo = async () => {
       const res = await getUserInfoById(userInfoJotai.authtoken, userId!);
-      console.log(res);
       if (!res || !res.id) {
         navigate("/notfound");
       }
