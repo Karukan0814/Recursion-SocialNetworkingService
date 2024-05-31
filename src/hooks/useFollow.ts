@@ -3,6 +3,7 @@ import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
 import { FollowType, UserInfoType } from "../lib/type/UserInfoType";
 import { getFollowersList, getFollowingList } from "../lib/database/User";
+import { loadNumPerPage } from "../lib/constants";
 
 const useFollow = (tabName: FollowType, userId: number, parentId?: number) => {
   const [userInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
@@ -24,11 +25,11 @@ const useFollow = (tabName: FollowType, userId: number, parentId?: number) => {
       let newUsers: any[] | null;
       if (tabName === FollowType.follower) {
         // フォロワーリストの取得
-        newUsers = await getFollowersList(token, 20, page, userId);
+        newUsers = await getFollowersList(token, loadNumPerPage, page, userId);
       } else if (tabName === FollowType.following) {
         // フォローしているユーザーのリストの取得
 
-        newUsers = await getFollowingList(token, 20, page, userId);
+        newUsers = await getFollowingList(token, loadNumPerPage, page, userId);
       } else {
         newUsers = [];
       }
@@ -37,6 +38,9 @@ const useFollow = (tabName: FollowType, userId: number, parentId?: number) => {
       }
 
       setHasMore(newUsers.length > 0);
+      if (page === 1 && newUsers.length < loadNumPerPage) {
+        setHasMore(false);
+      }
       if (page > 1) {
         setUserList([...userList, ...newUsers]);
       } else {

@@ -3,6 +3,7 @@ import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
 import { UserInfoType } from "../lib/type/UserInfoType";
 import { getUserListByKeyword } from "../lib/database/User";
+import { loadNumPerPage } from "../lib/constants";
 
 const useUsers = (keyword: string) => {
   const [userInfoJotai, setuserInfoJotai] = useAtom(userInfoAtom); //ユーザー情報のグローバルステート
@@ -23,7 +24,12 @@ const useUsers = (keyword: string) => {
       let newUsers: any[] | null = [];
       // ユーザーリストの取得
       if (keyword) {
-        newUsers = await getUserListByKeyword(token, 20, page, keyword);
+        newUsers = await getUserListByKeyword(
+          token,
+          loadNumPerPage,
+          page,
+          keyword
+        );
       }
 
       if (!newUsers) {
@@ -31,6 +37,9 @@ const useUsers = (keyword: string) => {
       }
 
       setHasMore(newUsers.length > 0);
+      if (page === 1 && newUsers.length < loadNumPerPage) {
+        setHasMore(false);
+      }
       if (page > 1) {
         setUserList([...userList, ...newUsers]);
       } else {

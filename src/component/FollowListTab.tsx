@@ -3,6 +3,7 @@ import InfiniteScroll from "react-infinite-scroller";
 import { FollowType } from "../lib/type/UserInfoType";
 import useFollow from "../hooks/useFollow";
 import UserCard from "./UserCard";
+import Loading from "./Loading";
 
 type Props = {
   tabName: FollowType;
@@ -20,7 +21,7 @@ const FollowListTab = ({ tabName, userId }: Props) => {
         <InfiniteScroll
           pageStart={1}
           loadMore={loadNextList}
-          // loader={}
+          loader={<Loading />}
           hasMore={hasMore}
           useWindow={false}
           initialLoad={false}

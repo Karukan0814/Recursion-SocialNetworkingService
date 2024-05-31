@@ -23,7 +23,7 @@ const SearchUser = ({ handleSelectUser }: Props) => {
         <InfiniteScroll
           pageStart={1}
           loadMore={loadNextList}
-          // loader={<Loading />}
+          loader={<Loading />}
           hasMore={hasMore}
           useWindow={false}
           initialLoad={false}
@@ -44,7 +44,6 @@ const SearchUser = ({ handleSelectUser }: Props) => {
               </h3>
             </div>
           ))}
-          {loading && <Loading />}
         </InfiniteScroll>
       </div>
     </div>
