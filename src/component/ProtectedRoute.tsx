@@ -37,7 +37,7 @@ const ProtectedRoute = ({ children }: Props) => {
     return <div>Loading...</div>;
   }
 
-  return isAuthenticated ? children : <Navigate to="/login" replace />;
+  return isAuthenticated ? <>{children}</> : <Navigate to="/login" replace />;
 };
 
 export default ProtectedRoute;
