@@ -25,7 +25,7 @@ jobs:
         run: npm run build
 
       - name: List build folder
-        run: ls -la dist
+        run: ls -laR dist
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
