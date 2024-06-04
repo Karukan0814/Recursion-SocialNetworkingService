@@ -12,6 +12,7 @@ import { useAtom } from "jotai";
 import { userInfoAtom } from "../lib/jotai/atoms/user";
 import { deletePost } from "../lib/database/Post";
 import { getMediaType } from "../lib/utils/utils";
+import { formatDistanceToNow } from "date-fns";
 
 type Props = {
   post: PostInfo;
@@ -30,7 +31,7 @@ const Post = ({
   const navigate = useNavigate();
 
   const formattedTime = post.sentAt
-    ? post.sentAt.toLocaleString()
+    ? formatDistanceToNow(post.sentAt, { addSuffix: true })
     : `This post is scheduled at ${post.scheduledAt?.toLocaleString()}`;
 
   const [openReply, setOpenReply] = useState(false);
