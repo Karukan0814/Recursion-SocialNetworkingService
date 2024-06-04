@@ -45,9 +45,6 @@ const PostListTab = ({
   const shouldDisplayPostBox = validTabs.includes(tabName);
 
   const displayResult = () => {
-    // if (searchLoading) {
-    //   return <Loading />;
-    // } else {
     if (!searchLoading && postList.length < 1) {
       if (tabName === PostType.search) {
         return <div className="postListTab__content_noResult">No results</div>;
@@ -56,7 +53,6 @@ const PostListTab = ({
     } else {
       return postList.map((post, i) => <Post key={post.id} post={post} />);
     }
-    // }
   };
 
   return (
@@ -74,7 +70,11 @@ const PostListTab = ({
         <InfiniteScroll
           pageStart={1}
           loadMore={loadNextList}
-          loader={<Loading />}
+          loader={
+            <div key={0}>
+              <Loading />
+            </div>
+          }
           hasMore={hasMore}
           useWindow={false}
           initialLoad={false}
