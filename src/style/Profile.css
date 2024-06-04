@@ -74,22 +74,15 @@
 }
 
 .updateProfile_button {
-  /* border-radius: 50% !important; */
   z-index: 1000;
-  /* color: #ffff !important;
-  background-color: var(--twitter-color) !important; */
   width: fit-content !important;
   margin-right: 20px !important;
 }
 .profile__header {
   display: flex;
-  /* position: sticky;
-  top: 0; */
   background-color: white;
-  /* z-index: 100; */
   border-bottom: 1px solid var(--twitter-background);
   padding: 15px 20px;
-  width: 100%;
   flex-shrink: 0; /* ヘッダーの高さを固定 */
 }
 

@@ -16,7 +16,6 @@
   z-index: 100;
   border: 1px solid var(--twitter-background);
   padding: 15px 20px;
-  width: 100%;
   flex-shrink: 0; /* ヘッダーの高さを固定 */
 }
 
