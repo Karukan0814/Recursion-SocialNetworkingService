@@ -29,11 +29,11 @@ const NotificationList = ({}: Props) => {
   }, []);
 
   return (
-    <div className="notifications_container">
-      <div className="notificationsTitle__container">
-        <h2 className="notificationsTitle__text">Notifications</h2>
+    <div className="notificationList_container">
+      <div className="notificationList_title_container">
+        <h2 className="notificationList_title_text">Notifications</h2>
       </div>
-      <div className="notificationList__container">
+      <div className="notificationList_card_container">
         {recentNotices.map((notification) => {
           return (
             <NotificationCard

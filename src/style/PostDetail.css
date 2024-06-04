@@ -22,7 +22,7 @@
   flex-shrink: 0; /* ヘッダーの高さを固定 */
 }
 
-.parentPost__conatiner {
+.postDetail_parentPost__conatiner {
   flex-shrink: 0; /* ヘッダーの高さを固定 */
   white-space: normal; /* 折り返しを許可 */
   overflow-wrap: break-word; /* 長い単語が端に達した場合に折り返す */
@@ -38,32 +38,4 @@
   justify-content: center;
   /* margin: 5px 10px; */
   border-bottom: 1px solid var(--twitter-background);
-}
-
-.replyForm__textArea {
-  width: 95%;
-  height: 100%;
-  border: none;
-  outline: none;
-  overflow: hidden;
-  resize: none;
-  text-align: start;
-}
-
-.replyForm__Button__container {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-}
-.replyForm__Button {
-  background-color: var(--twitter-color) !important;
-  border: none !important;
-  color: white !important;
-  font-weight: 700 !important;
-  text-transform: inherit !important;
-  border-radius: 20px !important;
-  height: 45px !important;
-  width: max-content;
-  margin-right: 50px;
-  margin-bottom: 10px;
 }

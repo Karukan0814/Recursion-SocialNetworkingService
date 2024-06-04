@@ -13,11 +13,14 @@ const PostReplyButton = ({ replyCount, setOpenReply }: Props) => {
     setOpenReply(true);
   };
   return (
-    <div className="replyButton__container">
-      <IconButton className="reply__iconButton" onClick={(e) => handleReply(e)}>
+    <div className="postReplyButton__container">
+      <IconButton
+        className="postReplyButton__iconButton"
+        onClick={(e) => handleReply(e)}
+      >
         <ChatBubbleOutline fontSize="small" />
       </IconButton>
-      <span className="reply__count">{replyCount}</span>
+      <span className="postReplyButton__count">{replyCount}</span>
     </div>
   );
 };

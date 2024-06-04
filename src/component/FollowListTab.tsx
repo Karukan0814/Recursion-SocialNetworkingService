@@ -4,6 +4,7 @@ import { FollowType } from "../lib/type/UserInfoType";
 import useFollow from "../hooks/useFollow";
 import UserCard from "./UserCard";
 import Loading from "./Loading";
+import "../style/FollowList.css";
 
 type Props = {
   tabName: FollowType;
@@ -17,7 +18,7 @@ const FollowListTab = ({ tabName, userId }: Props) => {
 
   return (
     <>
-      <div className="tab__content">
+      <div className="followList__tab__content">
         <InfiniteScroll
           pageStart={1}
           loadMore={loadNextList}

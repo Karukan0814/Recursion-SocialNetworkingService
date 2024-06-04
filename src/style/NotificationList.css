@@ -1,4 +1,4 @@
-.notifications_container {
+.notificationList_container {
   flex: 0.5;
   border: 0.5px var(--twitter-background) solid;
   border-left: 1px solid var(--twitter-color);
@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
 }
-.notificationsTitle__container {
+.notificationList_title_container {
   height: 80px;
   width: 100%;
   border-bottom: 0.5px var(--twitter-background) solid;
@@ -18,17 +18,17 @@
   justify-content: flex-start;
 }
 
-.notificationsTitle__text {
+.notificationList_title_text {
   font-size: 20px;
   padding: 10px 20px;
 }
-.notificationList__container {
+.notificationList_card_container {
   flex-grow: 1; /* 残りのスペースを全て埋める */
   overflow: auto; /* 必要に応じてスクロールを表示 */
 }
 
 @media (max-width: 1066px) {
-  .notifications_container {
+  .notificationList_container {
     flex: 1; /* 真ん中のコンポーネントをできる限り大きくする */
   }
 }

@@ -49,7 +49,7 @@ const SchedulePostForm = ({
 
   return (
     <>
-      <div className="login-form">
+      <div className="schedulePostForm_container">
         <h1>Set Post Schedule</h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -64,7 +64,7 @@ const SchedulePostForm = ({
           </div>
           <div>Timezone: {timezone}</div>
 
-          <div className="loginButton_container">
+          <div className="schedulePostForm_button_container">
             <PrimaryButton
               loading={loading}
               text={"Set"}

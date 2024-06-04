@@ -1,4 +1,4 @@
-.search__input {
+.searchInput_container {
   display: flex;
   align-items: center;
   background-color: var(--twitter-background);
@@ -7,14 +7,14 @@
   width: 90%;
   margin: 20px auto;
 }
-.search__input > input {
+.searchInput_container > input {
   flex: 1;
   border: none;
   background-color: var(--twitter-background);
 }
-.search__input > input:focus {
+.searchInput_container > input:focus {
   outline: none;
 }
-.search__searchIcon {
+.searchInput_searchIcon {
   color: gray;
 }

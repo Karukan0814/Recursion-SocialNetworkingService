@@ -16,15 +16,15 @@
   color: initial;
 }
 
-.unread {
+.notificationCard__unread {
   background-color: var(--twitter-background);
   border-bottom: 0.5px #ffff solid;
 }
-.favIcon {
+.notificationCard__favIcon {
   color: rgb(249, 24, 128);
 }
 
-.notification__icon {
+.notificationCard__icon {
   margin-left: 20px;
 }
 

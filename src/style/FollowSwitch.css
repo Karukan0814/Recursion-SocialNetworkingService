@@ -1,3 +1,7 @@
 .follow_switch {
   color: var(--twitter-background2) !important;
 }
+
+.follow_switch .MuiFormControlLabel-label {
+  font-size: 0.7rem;
+}

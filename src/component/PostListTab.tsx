@@ -50,9 +50,9 @@ const PostListTab = ({
     // } else {
     if (!searchLoading && postList.length < 1) {
       if (tabName === PostType.search) {
-        return <div className="tab__content_noResult">No results</div>;
+        return <div className="postListTab__content_noResult">No results</div>;
       }
-      return <div className="tab__content_noResult">No posts</div>;
+      return <div className="postListTab__content_noResult">No posts</div>;
     } else {
       return postList.map((post, i) => <Post key={post.id} post={post} />);
     }
@@ -70,7 +70,7 @@ const PostListTab = ({
           displayScheduledAt={displayScheduledAt}
         />
       )}
-      <div className="tab__content">
+      <div className="postListTab__content">
         <InfiniteScroll
           pageStart={1}
           loadMore={loadNextList}

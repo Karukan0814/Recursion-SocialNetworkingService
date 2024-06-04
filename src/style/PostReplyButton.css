@@ -1,14 +1,14 @@
-.replyButton__container {
+.postReplyButton__container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.reply__iconButton {
+.postReplyButton__iconButton {
   width: min-content;
   height: min-content;
 }
 
-.reply__count {
+.postReplyButton__count {
   display: block;
   font-size: 0.8rem;
   color: var(--twitter-background2);

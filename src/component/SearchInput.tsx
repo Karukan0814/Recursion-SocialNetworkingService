@@ -18,8 +18,8 @@ const SearchInput = ({ keyword, setKeyword }: Props) => {
     return () => clearTimeout(timeoutId); // コンポーネントのアンマウント時にタイマーをクリア
   }, [inputValue, setKeyword]);
   return (
-    <div className="search__input">
-      <Search className="search__searchIcon" />
+    <div className="searchInput_container">
+      <Search className="searchInput_searchIcon" />
       <input
         placeholder="Search KarukanSNS"
         type="text"

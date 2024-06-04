@@ -13,7 +13,7 @@
 .errMsg {
   margin-bottom: 10px;
 }
-.profile__photo {
+.update_profile__photo {
   width: 150px;
   height: 150px;
   object-fit: contain;

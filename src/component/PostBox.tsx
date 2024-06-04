@@ -121,9 +121,7 @@ const PostBox = ({
       </ModalPopup>
       <form onSubmit={handleSubmit(onSubmit)}>
         {errors.postMessage && <p className="errMsg"> message is required</p>}
-        {/* {errors.postMessage && (
-          <p className="errMsg">{errors.postMessage.message}</p>
-        )} */}
+
         {errors.postImage && (
           <p className="errMsg">{errors.postImage.message}</p>
         )}
@@ -172,11 +170,15 @@ const PostBox = ({
                 <img
                   src={imagePreviewUrl}
                   alt="Preview"
-                  className="img__preview"
+                  className="postBox_img__preview"
                 />
               )}
               {videoPreviewUrl && (
-                <video controls src={videoPreviewUrl} className="img__preview">
+                <video
+                  controls
+                  src={videoPreviewUrl}
+                  className="postBox_img__preview"
+                >
                   Video preview not available
                 </video>
               )}
@@ -186,7 +188,7 @@ const PostBox = ({
         <div className="postButton__container">
           <Button
             component="label" // Buttonをlabelタグとして機能させる
-            className="photo__button"
+            className="postBox_photo__button"
           >
             <PhotoCamera />
             <input
@@ -201,11 +203,11 @@ const PostBox = ({
           {displayScheduledAt && (
             <>
               <IconButton
-                className="calender__button"
+                className="postBox_calender_button"
                 aria-label=""
                 onClick={() => setOpenSchedule(true)}
               >
-                <EditCalendarIcon className="calender__icon" />
+                <EditCalendarIcon className="postBox_calender__icon" />
                 <span className="postBox_scheduledAt">
                   {postSchedule && postSchedule.toLocaleString()}
                 </span>

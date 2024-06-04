@@ -34,13 +34,13 @@ const SearchUser = ({ handleSelectUser }: Props) => {
               onClick={() => handleSelectUser(user.id)}
               key={user.id}
             >
-              <div className="result__avatar">
+              <div className="searchUser_result__avatar">
                 <Avatar
                   src={user.userImg || "/assets/default_profile_400x400.png"}
                 />
               </div>
               <h3>
-                <span className="result__name">{user.name}</span>
+                <span className="searchUser_result__name">{user.name}</span>
               </h3>
             </div>
           ))}

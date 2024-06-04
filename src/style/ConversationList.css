@@ -1,4 +1,4 @@
-.sectionTitle__container {
+.messageList__container {
   height: 80px;
   border-bottom: 0.5px var(--twitter-background) solid;
 
@@ -8,7 +8,7 @@
   justify-content: space-between;
 }
 
-.sectionTitle__text {
+.messageList__container__title {
   font-size: 20px;
   padding: 10px 20px;
 }
@@ -17,11 +17,6 @@
   height: 100%;
 }
 
-.sectionMessages_list {
-  flex: 0.5;
-  /* border-right: 0.5px var(--twitter-background) solid; */
-  height: 100%;
-}
 .add__messageButton {
   width: min-content;
   height: min-content;

@@ -96,8 +96,8 @@ const ConversationList = ({
       >
         <SearchUser handleSelectUser={handleSelectUser} />
       </ModalPopup>
-      <div className="sectionTitle__container">
-        <h2 className="sectionTitle__text">Messages</h2>
+      <div className="messageList__container">
+        <h2 className="messageList__container__title">Messages</h2>
         <IconButton
           className="add__messageButton"
           aria-label="add message"
@@ -106,7 +106,7 @@ const ConversationList = ({
           <AddIcCallOutlined className="add__messageIcon" />
         </IconButton>
       </div>
-      <div className="tab__content">
+      <div>
         {conversationList.map((conversation) => {
           const isActive = conversation.id === activeConversationInfo?.id;
 

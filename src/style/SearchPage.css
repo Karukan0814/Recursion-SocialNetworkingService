@@ -1,9 +1,0 @@
-.search__container {
-  flex: 0.5;
-}
-
-@media (max-width: 1066px) {
-  .search__container {
-    flex: 1; /* 真ん中のコンポーネントをできる限り大きくする */
-  }
-}

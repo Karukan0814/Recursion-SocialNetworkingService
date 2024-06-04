@@ -13,7 +13,7 @@ const LoginPage = () => {
     setLoginFormOpen(true);
   };
   return (
-    <div className="login-container">
+    <div className="loginPage_container">
       <ModalPopup
         open={loginFormOpen}
         handleClose={() => setLoginFormOpen(false)}
@@ -23,7 +23,7 @@ const LoginPage = () => {
           handleClose={() => setLoginFormOpen(false)}
         />
       </ModalPopup>
-      <div className="image-container">
+      <div className="loginPage_image_container">
         <img
           src="/assets/karukan_icon.svg"
           className="responsive-img"
@@ -31,13 +31,13 @@ const LoginPage = () => {
         />
       </div>
       <div>
-        <h1 className="login-title">Happening now</h1>
-        <h3 className="login-subtitle">Join today.</h3>
+        <h1 className="loginPage_title">Happening now</h1>
+        <h3 className="loginPage_subtitle">Join today.</h3>
         <Button onClick={() => handleLoginPopup(true)} variant="contained">
           Create Account
         </Button>
 
-        <p className="login-text">Already have an account?</p>
+        <p className="loginPage_text">Already have an account?</p>
 
         <Button onClick={() => handleLoginPopup(false)} variant="outlined">
           Sign In

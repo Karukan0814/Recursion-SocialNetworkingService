@@ -10,11 +10,11 @@
   justify-content: center;
 }
 
-.errMsg {
+.loginForm_errMsg {
   margin-bottom: 10px;
 }
 
-.loginButton_container {
+.loginForm_loginButton_container {
   display: flex;
   justify-content: center;
 }
@@ -24,42 +24,14 @@
   margin-bottom: 20px;
 }
 
-.input-group {
+.loginForm_input-group {
   margin-bottom: 15px;
 }
 
-.input-group input {
+.loginForm_input-group input {
   /* width: 100%; */
   padding: 10px;
   font-size: 14px;
   border: 1px solid #ccd6dd;
   border-radius: 5px;
-}
-
-button {
-  width: 100%;
-  padding: 10px;
-  background-color: #1da1f2;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #1991db;
-}
-
-.links {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.links a {
-  color: #1da1f2;
-  text-decoration: none;
-}
-
-.links span {
-  margin: 0 5px;
 }

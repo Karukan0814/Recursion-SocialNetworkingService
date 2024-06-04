@@ -24,15 +24,21 @@ const PostLikeButton = ({ postInfo }: Props) => {
     registerLikeState();
   };
   return (
-    <div className="likeButton__container">
-      <IconButton className="like__iconButton" onClick={(e) => handleLike(e)}>
+    <div className="postLikeButton__container">
+      <IconButton
+        className="postLikeButton__iconButton"
+        onClick={(e) => handleLike(e)}
+      >
         {likeState ? (
-          <Favorite fontSize="small" className="favIcon-active" />
+          <Favorite
+            fontSize="small"
+            className="postLikeButton__favIcon_active"
+          />
         ) : (
           <FavoriteBorder fontSize="small" />
         )}
       </IconButton>
-      <span className="like__count">{likeCount}</span>
+      <span className="postLikeButton__like__count">{likeCount}</span>
     </div>
   );
 };

@@ -1,18 +1,18 @@
-.likeButton__container {
+.postLikeButton__container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.like__iconButton {
+.postLikeButton__iconButton {
   width: min-content;
   height: min-content;
 }
 
-.favIcon-active {
+.postLikeButton__favIcon_active {
   color: rgb(249, 24, 128);
 }
 
-.like__count {
+.postLikeButton__like__count {
   display: block;
   font-size: 0.8rem;
   color: var(--twitter-background2);

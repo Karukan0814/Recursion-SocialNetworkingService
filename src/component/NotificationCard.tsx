@@ -59,7 +59,9 @@ const NotificationCard = ({ notification }: Props) => {
     let icon;
     switch (notification.type) {
       case "Like":
-        icon = <FavoriteIcon className="iconButton favIcon" />;
+        icon = (
+          <FavoriteIcon className="iconButton notificationCard__favIcon" />
+        );
         break;
       case "FOLLOW":
         icon = <PersonIcon className="iconButton" color="primary" />;
@@ -95,8 +97,12 @@ const NotificationCard = ({ notification }: Props) => {
   }, [notification]);
   return (
     <Link to={generateNotificationLink()} style={{ textDecoration: "none" }}>
-      <div className={`notificationCard__container ${!readFlag && "unread"}`}>
-        <div className="notification__icon">{showNotificationIcon()}</div>
+      <div
+        className={`notificationCard__container ${
+          !readFlag && "notificationCard__unread"
+        }`}
+      >
+        <div className="notificationCard__icon">{showNotificationIcon()}</div>
         <div className="notificationCard__text">
           <div>
             <img

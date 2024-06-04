@@ -44,9 +44,11 @@ const LoginForm = ({ signUpFlag, handleClose }: Props) => {
         <form onSubmit={handleSubmit(onSubmit)}>
           {signUpFlag ? (
             <>
-              {errorMsg && <p className="errMsg">{errorMsg}</p>}
+              {errorMsg && (
+                <p className="errMsg loginForm_errMsg">{errorMsg}</p>
+              )}
 
-              <div className="input-group">
+              <div className="loginForm_input-group">
                 <input
                   id="email"
                   type="email"
@@ -60,11 +62,13 @@ const LoginForm = ({ signUpFlag, handleClose }: Props) => {
                   })}
                 />
                 {errors.email && (
-                  <p className="errMsg">{errors.email.message}</p>
+                  <p className="errMsg loginForm_errMsg">
+                    {errors.email.message}
+                  </p>
                 )}
               </div>
 
-              <div className="input-group">
+              <div className="loginForm_input-group">
                 <input
                   id="name"
                   type="text"
@@ -77,9 +81,13 @@ const LoginForm = ({ signUpFlag, handleClose }: Props) => {
                     },
                   })}
                 />
-                {errors.name && <p className="errMsg">{errors.name.message}</p>}
+                {errors.name && (
+                  <p className="errMsg loginForm_errMsg">
+                    {errors.name.message}
+                  </p>
+                )}
               </div>
-              <div className="input-group">
+              <div className="loginForm_input-group">
                 <input
                   id="password"
                   type="password"
@@ -97,10 +105,12 @@ const LoginForm = ({ signUpFlag, handleClose }: Props) => {
                   })}
                 />
                 {errors.password && (
-                  <p className="errMsg">{errors.password.message}</p>
+                  <p className="errMsg loginForm_errMsg">
+                    {errors.password.message}
+                  </p>
                 )}
               </div>
-              <div className="input-group">
+              <div className="loginForm_input-group">
                 <input
                   id="confirmPassword"
                   type="password"
@@ -112,14 +122,18 @@ const LoginForm = ({ signUpFlag, handleClose }: Props) => {
                   })}
                 />
                 {errors.confirmPassword && (
-                  <p className="errMsg">{errors.confirmPassword.message}</p>
+                  <p className="errMsg loginForm_errMsg">
+                    {errors.confirmPassword.message}
+                  </p>
                 )}
               </div>
             </>
           ) : (
             <>
-              {errorMsg && <p className="errMsg">{errorMsg}</p>}
-              <div className="input-group">
+              {errorMsg && (
+                <p className="errMsg loginForm_errMsg">{errorMsg}</p>
+              )}
+              <div className="loginForm_input-group">
                 <input
                   id="email"
                   type="email"
@@ -127,10 +141,12 @@ const LoginForm = ({ signUpFlag, handleClose }: Props) => {
                   {...register("email", { required: "Email is required" })}
                 />
                 {errors.email && (
-                  <p className="errMsg">{errors.email.message}</p>
+                  <p className="errMsg loginForm_errMsg">
+                    {errors.email.message}
+                  </p>
                 )}
               </div>
-              <div className="input-group">
+              <div className="loginForm_input-group">
                 <input
                   id="password"
                   type="password"
@@ -140,13 +156,15 @@ const LoginForm = ({ signUpFlag, handleClose }: Props) => {
                   })}
                 />
                 {errors.password && (
-                  <p className="errMsg">{errors.password.message}</p>
+                  <p className="errMsg loginForm_errMsg">
+                    {errors.password.message}
+                  </p>
                 )}
               </div>
             </>
           )}
 
-          <div className="loginButton_container">
+          <div className="loginForm_loginButton_container">
             <PrimaryButton
               loading={loading}
               text={signUpFlag ? "Sign Up" : "Log in"}

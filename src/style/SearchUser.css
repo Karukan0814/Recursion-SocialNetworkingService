@@ -31,12 +31,12 @@
   background-color: var(--twitter-background);
 }
 
-.result__avatar {
+.searchUser_result__avatar {
   padding: 20px;
   width: 40px;
   height: 40px;
 }
-.result__name {
+.searchUser_result__name {
   font-weight: 600;
   font-size: 1rem;
 }

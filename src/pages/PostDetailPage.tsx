@@ -53,7 +53,7 @@ const PostDetailPage = () => {
             <ArrowBackIcon />
           </IconButton>
         </div>
-        <div className="parentPost__conatiner">
+        <div className="postDetail_parentPost__conatiner">
           {parentPost ? (
             <>
               {parentPost.post && (

@@ -45,7 +45,7 @@
   border-radius: 50%;
 }
 
-.img__preview {
+.postBox_img__preview {
   min-width: 150px;
   max-width: 200px;
   min-height: 150px;
@@ -70,7 +70,7 @@
   margin: 20px auto 0 !important;
 }
 
-.photo__button {
+.postBox_photo__button {
   flex: 1;
   display: flex !important;
   justify-content: center !important;
@@ -82,13 +82,13 @@
   border: none;
 }
 
-.calender__button {
+.postBox_calender_button {
   width: min-content;
   height: min-content;
   color: #50b7f5;
   margin: 20px 10px 0 0 !important;
 }
-.calender__icon {
+.postBox_calender__icon {
   color: #50b7f5 !important;
 }
 
