@@ -3,6 +3,7 @@
   align-items: center;
   cursor: pointer;
   border-radius: 30px;
+  position: relative;
 }
 .sidebarOption:hover {
   background-color: #e8f5fe;
@@ -24,6 +25,8 @@
 
 .sidebar__notification__count {
   display: inline-block;
+  position: absolute;
+  right: 2px;
   width: 24px;
   height: 24px;
   border-radius: 50%;
@@ -31,7 +34,7 @@
   color: white;
   text-align: center;
   line-height: 24px;
-  font-size: 14px;
+  font-size: 0.8rem;
   font-weight: bold;
   vertical-align: middle;
 }
@@ -48,5 +51,11 @@
 
   .sidebarOption {
     justify-content: center; /* フレックスボックス内のアイテムを中央に揃える */
+  }
+
+  .sidebar__notification__count {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
   }
 }
