@@ -19,3 +19,14 @@
   height: 100vh;
   overflow-y: auto;
 }
+
+.message__isSmall {
+  flex: 1;
+}
+
+.sectionMessages_header {
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 1px solid var(--twitter-background);
+  flex-shrink: 0; /* ヘッダーの高さを固定 */
+}

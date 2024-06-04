@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: 98%;
 }
 
 .conversation__userInfo {
@@ -41,9 +41,8 @@
   background-color: var(--twitter-background);
   padding: 10px;
   border-radius: 20px;
-  margin-top: 10px;
-  margin-left: 20px;
-  margin-bottom: 20px;
+
+  margin: 10px 20px 20px;
 }
 .conversation-form > input {
   border: none;
@@ -60,4 +59,17 @@
 }
 .conversation__sendIcon {
   color: var(--twitter-color) !important;
+}
+
+@media (max-width: 1066px) {
+  .conversation {
+    height: 95%;
+  }
+  .conversation__userInfo {
+    height: 150px;
+  }
+  .conversation__userInfo__img {
+    width: 70px;
+    height: 70px;
+  }
 }
