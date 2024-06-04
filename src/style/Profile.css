@@ -116,4 +116,11 @@
   .profile {
     flex: 1; /* 真ん中のコンポーネントをできる限り大きくする */
   }
+
+  .profile__photo {
+    width: 100px;
+    height: 100px;
+
+    margin-left: 20px;
+  }
 }
