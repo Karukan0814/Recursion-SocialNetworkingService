@@ -31,7 +31,7 @@ https://karukan-practice.site/
 
 ## ER 図
 
-![er-diagram](https://github.com/Karukan0814/SocialNetworkingService_back/blob/main/prisma/ERD.md)
+![er-diagram](https://github.com/Karukan0814/SocialNetworkingService_back/main/prisma/ERD.md)
 ※Mermaid.js で自動作成
 
 ## メイン機能の使い方
@@ -55,14 +55,14 @@ https://karukan-practice.site/
 
 <table>
   <tr>
-     <th style="text-align: center">記事一覧</th>
-    <th style="text-align: center">お魚検索機能</th>
-    <th style="text-align: center">いいね・ブックマーク機能</th>
+     <th style="text-align: center">サインアップ・Email認証</th>
+    <th style="text-align: center">ログイン・ログアウト</th>
+    <th style="text-align: center">ポストの一覧表示（トレンド/フォロー切り替え）</th>
   </tr>
   <tr>
-    <td><img src="https://github.com/Karukan0814/EatFish_All/blob/master/assets/articleListDemo.gif" alt="記事一覧" /></td>
-    <td><img src="https://github.com/Karukan0814/EatFish_All/blob/master/assets/searchDemo.gif" alt="お魚検索機能" /></td>
-    <td><img src="https://github.com/Karukan0814/EatFish_All/blob/master/assets/likeBookmarkDemo.gif" alt="いいね・ブックマーク機能" /></td>
+    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/SignUp.gif" alt="サインアップ" /></td>
+    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/LoginLogout.gif" alt="お魚検索機能" /></td>
+    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/PostList.gif" alt="いいね・ブックマーク機能" /></td>
   </tr>
   <tr>
      <th style="text-align: center">コメント機能</th>
