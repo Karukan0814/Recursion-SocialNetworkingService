@@ -91,6 +91,23 @@ https://karukan-practice.site/
     <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Message.gif" alt="リアルタイムメッセージ機能" /></td>
 
   </tr>
+
+<tr>
+    <th style="text-align: center">プロフィール更新</th>
+     <th style="text-align: center">自分の投稿したポスト・リプライ・いいねしたポストの確認</th>
+  </tr>
+  <tr>
+      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/UpdateProfile.gif" alt="プロフィール更新" /></td>
+    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/MyPosts.gif" alt="自ポスト確認" /></td>
+
+  </tr>
+  <tr>
+    <th style="text-align: center">ポスト検索機能</th>
+  </tr>
+  <tr>
+      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Search.gif" alt="ポスト検索機能" /></td>
+
+  </tr>
 </table>
 
 <br>
