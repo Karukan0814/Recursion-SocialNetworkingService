@@ -1,6 +1,6 @@
 # Recursion Server with Databases: Social Networking Service / KarukanSNS
 
-![service-image](https://github.com/Karukan0814/EatFish_All/blob/master/assets/EatFishImg.png)
+![service-image](https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/appImg.png)
 ![Node.js 20.9.0](https://img.shields.io/badge/Node.js-20.9.0-brightgreen)
 ![Express 4.19.2](https://img.shields.io/badge/express-4.19.2-brightgreen)
 [![TypeScript](https://img.shields.io/badge/TypeScript-v4.9.3-007ACC?logo=TypeScript&logoColor=007ACC)](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html)
@@ -42,13 +42,16 @@ https://karukan-practice.site/
 
 ### コア機能
 
-季節のお魚紹介一覧
-レシピ・魚屋・お取り寄せ先一覧
-お魚検索機能
-いいね・ブックマーク機能
-コメント機能
-記事作成機能
-マイページ上で記事を管理
+サインアップ・email 認証
+ログイン・ログアウト
+投稿のトレンド一覧表示・フォローユーザーの投稿一覧表示
+ポスト投稿
+リプライ投稿
+いいね機能
+ソケット通信によるリアルタイム通知機能
+ソケット通信によるリアルタイムメッセージ機能
+マイページ上でプロフィール情報変更
+マイページ上で自ポストの一覧表示・リプライ一覧表示・いいね一覧表示
 
 <table>
   <tr>
