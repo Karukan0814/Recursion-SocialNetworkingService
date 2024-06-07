@@ -81,6 +81,16 @@ https://karukan-practice.site/
     <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Like.gif" alt="スケジュール投稿" /></td>
 
   </tr>
+
+<tr>
+    <th style="text-align: center">リアルタイム通知機能</th>
+     <th style="text-align: center">リアルタイムメッセージ機能</th>
+  </tr>
+  <tr>
+      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Notification.gif" alt="通知機能" /></td>
+    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Message.gif" alt="リアルタイムメッセージ機能" /></td>
+
+  </tr>
 </table>
 
 <br>
