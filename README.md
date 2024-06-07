@@ -31,7 +31,7 @@ https://karukan-practice.site/
 
 ## ER 図
 
-![er-diagram](https://github.com/Karukan0814/SocialNetworkingService_back/main/prisma/ERD.md)
+![er-diagram](https://github.com/Karukan0814/SocialNetworkingService_back/blob/main/prisma/ERD.md)
 ※Mermaid.js で自動作成
 
 ## メイン機能の使い方
@@ -57,22 +57,29 @@ https://karukan-practice.site/
   <tr>
      <th style="text-align: center">サインアップ・Email認証</th>
     <th style="text-align: center">ログイン・ログアウト</th>
-    <th style="text-align: center">ポストの一覧表示（トレンド/フォロー切り替え）</th>
   </tr>
   <tr>
     <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/SignUp.gif" alt="サインアップ" /></td>
     <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/LoginLogout.gif" alt="お魚検索機能" /></td>
-    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/PostList.gif" alt="いいね・ブックマーク機能" /></td>
+ 
   </tr>
   <tr>
-     <th style="text-align: center">コメント機能</th>
-     <th style="text-align: center">記事作成機能</th>
-    <th style="text-align: center">マイページ上で記事を管理</th>
+    <th style="text-align: center">ポストの一覧表示（トレンド/フォロー切り替え）</th>
+     <th style="text-align: center">ポスト投稿（スケジュール投稿可）</th>
   </tr>
   <tr>
-    <td><img src="https://github.com/Karukan0814/EatFish_All/blob/master/assets/commentDemo.gif" alt="コメント機能" /></td>
-    <td><img src="https://github.com/Karukan0814/EatFish_All/blob/master/assets/createArticleDemo.gif" alt="記事作成機能" /></td>
-    <td><img src="https://github.com/Karukan0814/EatFish_All/blob/master/assets/mypageDemo.gif" alt="マイページ上で記事を管理" /></td>
+      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/PostList.gif" alt="ポスト一覧表示" /></td>
+    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/postScheduled.gif" alt="スケジュール投稿" /></td>
+
+  </tr>
+  <tr>
+    <th style="text-align: center">ポスト詳細表示・リプライ投稿</th>
+     <th style="text-align: center">いいね機能</th>
+  </tr>
+  <tr>
+      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/postDetailandReply.gif" alt="ポスト一覧表示" /></td>
+    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Like.gif" alt="スケジュール投稿" /></td>
+
   </tr>
 </table>
 
