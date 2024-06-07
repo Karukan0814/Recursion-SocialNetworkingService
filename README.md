@@ -59,7 +59,7 @@ https://karukan-practice.site/
     <th style="text-align: center">ログイン・ログアウト</th>
   </tr>
   <tr>
-    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/SignUp.gif" alt="サインアップ" /></td>
+    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/SignUp.gif" alt="サインアップ" />testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest</td>
     <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/LoginLogout.gif" alt="お魚検索機能" /></td>
  
   </tr>
