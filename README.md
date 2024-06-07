@@ -27,7 +27,7 @@ https://karukan-practice.site/
 
 ## インフラ構成図
 
-![infrastructure-diagram](https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/karukanSNS.drawio)
+![infrastructure-diagram](https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/infrastructure.drawio.png)
 
 ## ER 図
 
