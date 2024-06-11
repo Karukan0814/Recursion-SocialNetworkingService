@@ -30,6 +30,8 @@ https://karukan-practice.site/
 
 ![infrastructure-diagram](https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/infrastructure.drawio.png)
 
+このアプリケーションは単一のサーバ上でのみ実行され、垂直スケーリングのみが可能な構成となっている。
+
 ・フロントエンド
 フロントエンドは、React で作成したアプリケーションを使用し、Amazon S3 を使用して静的サイトホスティングを行った。CloudFront を利用して、S3 のコンテンツをグローバルにキャッシュし、ユーザーに高速に配信するようにした。ドメイン名の管理には Amazon Route 53 を使用し、カスタムドメインを設定した。
 
@@ -264,6 +266,9 @@ Node.js を使用してバックエンドアプリケーションを作成し、
       </p>
       <p style="width: 90%; word-wrap: break-word">
         2.メッセージ機能：メッセージ一覧からメッセージをやりとりしたいユーザーを選択すると、ソケット通信を開始し、リアルタイムでサーバーとやりとりして相手ユーザーとメッセージをやりとりする。
+      </p>
+      <p style="width: 90%; word-wrap: break-word">
+        3.メッセージ暗号化：すべてのプライベートメッセージは、cryptoを用いて暗号化された後にデータベースに保存、読む際に復号される。
       </p>
     </td>
   </tr>
