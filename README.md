@@ -57,8 +57,7 @@ Node.js を使用してバックエンドアプリケーションを作成し、
      <th style="text-align: center">サインアップ・Email認証</th>
   </tr>
   <tr style="margin-top: 20px;">
-    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/SignUp.gif" alt="サインアップ"  /></td>
-    <td>
+    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/SignUp.gif" alt="サインアップ"  />
     Email認証の流れ：
 
   <ol>
@@ -74,7 +73,6 @@ Node.js を使用してバックエンドアプリケーションを作成し、
 
   </li>
   </ol>
-  </div>
 
   </td>
 
