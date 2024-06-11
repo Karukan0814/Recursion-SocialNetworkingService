@@ -52,12 +52,12 @@ Node.js を使用してバックエンドアプリケーションを作成し、
 
 ### コア機能
 
-<table style="max-witdth: 95%">
+<table >
   <tr style="margin-top: 20px;">
      <th style="text-align: center">サインアップ・Email認証</th>
   </tr>
   <tr style="margin-top: 20px;">
-    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/SignUp.gif" alt="サインアップ" style="width: 95%; height: auto; object-fit: contain;" />
+    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/SignUp.gif" alt="サインアップ"  />
     <div>
     Email認証の流れ：
 
@@ -84,7 +84,7 @@ Node.js を使用してバックエンドアプリケーションを作成し、
   </tr>
   <tr style="margin-top: 20px;">
 
-  <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/LoginLogout.gif" alt="ログインログアウト" style="width: 95%; height: auto; object-fit: contain;" />
+  <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/LoginLogout.gif" alt="ログインログアウト"  />
   
    <div>
     ログイン・ログアウトの流れ：
@@ -108,7 +108,7 @@ Node.js を使用してバックエンドアプリケーションを作成し、
     <th style="text-align: center">ポストの一覧表示（トレンド/フォロー切り替え）</th>
   </tr>
   <tr style="margin-top: 20px;">
-      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/PostList.gif" alt="ポスト一覧表示" style="width: 95%; height: auto; object-fit: contain;" />
+      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/PostList.gif" alt="ポスト一覧表示"  />
   
    <div>
     Home画面でのポストの一覧表示：
@@ -133,7 +133,7 @@ Node.js を使用してバックエンドアプリケーションを作成し、
   </tr>
   <tr style="margin-top: 20px;">
  
-  <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/postScheduled.gif" alt="スケジュール投稿" style="width: 95%; height: auto; object-fit: contain;" />
+  <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/postScheduled.gif" alt="スケジュール投稿"  />
    <div>
     ポストの投稿：
 
@@ -160,7 +160,7 @@ Node.js を使用してバックエンドアプリケーションを作成し、
     <th style="text-align: center">ポスト詳細表示・リプライ投稿</th>
   </tr>
   <tr style="margin-top: 20px;">
-      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/postDetailandReply.gif" alt="ポスト詳細表示・リプライ投稿" style="width: 95%; height: auto; object-fit: contain;" />
+      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/postDetailandReply.gif" alt="ポスト詳細表示・リプライ投稿"  />
       
    <div>
     ポストの詳細：
@@ -193,7 +193,7 @@ Node.js を使用してバックエンドアプリケーションを作成し、
      <th style="text-align: center">いいね機能</th>
   </tr>
   <tr style="margin-top: 20px;">
-    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Like.gif" alt="いいね機能" style="width: 95%; height: auto; object-fit: contain;" />
+    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Like.gif" alt="いいね機能"  />
    <div>
 
   <ol>
@@ -221,7 +221,7 @@ Node.js を使用してバックエンドアプリケーションを作成し、
     <th style="text-align: center">リアルタイム通知機能</th>
   </tr>
   <tr style="margin-top: 20px;">
-      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Notification.gif" alt="通知機能" style="width: 95%; height: auto; object-fit: contain;" />
+      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Notification.gif" alt="通知機能"  />
       
    <div>
    通知機能：ソケット通信を利用してサーバー側と通信を行い、3分に一度、ユーザーが未読の通知数を取得する。通知画面ではユーザーに送信された通知の一覧が閲覧でき、未読の通知は3秒間だけ色がグレーに表示される。
@@ -252,7 +252,7 @@ Node.js を使用してバックエンドアプリケーションを作成し、
   </tr>
   <tr style="margin-top: 20px;">
     
-  <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Message.gif" alt="リアルタイムメッセージ機能" style="width: 95%; height: auto; object-fit: contain;" />
+  <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Message.gif" alt="リアルタイムメッセージ機能"  />
       
    <div>
    
@@ -280,7 +280,7 @@ Node.js を使用してバックエンドアプリケーションを作成し、
     <th style="text-align: center">プロフィール更新</th>
   </tr>
   <tr style="margin-top: 20px;">
-      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/UpdateProfile.gif" alt="プロフィール更新"style="width: 95%; height: auto; object-fit: contain;"  />
+      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/UpdateProfile.gif" alt="プロフィール更新"  />
       
    <div>
    
@@ -301,7 +301,7 @@ Node.js を使用してバックエンドアプリケーションを作成し、
      <th style="text-align: center">自分の投稿したポスト・リプライ・いいねしたポストの確認</th>
   </tr>
   <tr style="margin-top: 20px;">
-    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/MyPosts.gif" alt="自ポスト確認" style="width: 95%; height: auto; object-fit: contain;"/>
+    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/MyPosts.gif" alt="自ポスト確認" />
     
    <div>
    
@@ -317,14 +317,14 @@ Node.js を使用してバックエンドアプリケーションを作成し、
     <th style="text-align: center">ポスト検索機能</th>
   </tr>
   <tr style="margin-top: 20px;">
-      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Search.gif" alt="ポスト検索機能" style="width: 95%; height: auto; object-fit: contain;" /></td>
+      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Search.gif" alt="ポスト検索機能"  /></td>
 
   </tr>
     <tr style="margin-top: 20px;">
     <th style="text-align: center">フォロー・アンフォロー機能</th>
   </tr>
   <tr style="margin-top: 20px;">
-      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/FollowUnfollow.gif" alt="フォロー・アンフォロー機能" style="width: 95%; height: auto; object-fit: contain;" />
+      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/FollowUnfollow.gif" alt="フォロー・アンフォロー機能"  />
    <div>
    
     プロフィール画面やフォロー一覧画面の各ユーザー情報にはフォロースイッチがあり、フォローのON/OFFを切り替えられる。
