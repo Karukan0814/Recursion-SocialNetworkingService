@@ -364,28 +364,38 @@ Node.js を使用してバックエンドアプリケーションを作成し、
 
 ## 使用技術一覧
 
-**バックエンド:** Node.js 　>=16.13.0 / TypeScript 5.2.2
+**バックエンド:** Node.js 　 20.9.0 / TypeScript 5.4.5
 
-- フレームワーク: Express.js (^4.18.2)
-- データベースクライアント: Prisma (^5.5.2)
+- フレームワーク: Express.js (^4.19.2)
+- データベースクライアント: Prisma (^5.12.1)
+- ORM クライアント: @prisma/client (^5.14.0)
 - テストフレームワーク: Jest (^29.7.0)
 - HTTP クライアント: Axios (^1.6.1)
 - セキュリティ: Helmet (^7.1.0), JSON Web Tokens (jsonwebtoken) (^9.0.2)
 - ロギング: Morgan (^1.10.0)
-- その他依存関係: Cheerio (^1.0.0-rc.12), CORS (^2.8.5), dotenv (^16.3.1), express-validator (^7.0.1), iconv-lite (^0.6.3)
+- バッチ処理: node-cron (^3.0.3)
+- メール送信: Nodemailer (^6.9.13)
+- 暗号化: bcrypt (^5.1.1), bcryptjs (^2.4.3), crypto (^1.0.1)
+- ファイルアップロード: Multer (^1.4.5-lts.1)
+- バリデーション: validator (^13.11.0)
+- 環境変数: dotenv (^16.4.5)
+- ソケット通信: socket.io (^4.7.5)
+- AWS SDK: aws-sdk (^2.1617.0)
+- フェイクデータ生成: @faker-js/faker (^8.4.1)
+- その他依存関係: cors (^2.8.5)
+  **フロントエンド:** TypeScript: ^4.9.3 / React ^18.2.0
 
-**フロントエンド:** TypeScript: 5.2.2 / React 18.2.0 / Next.js 13.2.4
-
-- スタイリング: @emotion/react 11.11.1, @emotion/styled 11.11.0, @mui/material 5.14.16
-- アイコン: @mui/icons-material 5.14.16
-- HTTP クライアント: axios 1.6.0
-- 状態管理: jotai 2.5.0
-- 認証: firebase 10.5.2-authentification,jsonwebtoken 9.0.2
-- データ保存: firebase 10.5.2-storage
-- フォーム管理: react-hook-form 7.47.0
-- テストフレームワーク: @testing-library/react 14.1.2, jest 29.7.0
-
-リント / コード解析: eslint 8.52.0, eslint-config-next 14.0.1
+- スタイリング: @emotion/react (^11.11.4), @emotion/styled (^11.11.5), @mui/material (^5.15.15)
+- アイコン: @mui/icons-material (^5.15.15)
+- HTTP クライアント: Axios (^1.6.8)
+- 状態管理: Jotai (^2.8.0)
+- 認証・メール送信: Nodemailer (^6.9.13)
+- 日付処理: date-fns (^3.6.0)
+- 無限スクロール: react-infinite-scroller (^1.2.6)
+- ルーティング: react-router-dom (^6.22.3)
+- ソーシャルメディア埋め込み: react-twitter-embed (^4.0.4)
+- ソケット通信: socket.io-client (^4.7.5)
+- フォーム管理: react-hook-form (^7.51.3)
 
 **CI / CD:** GitHub Actions
 
