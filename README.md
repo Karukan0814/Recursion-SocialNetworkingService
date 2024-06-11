@@ -52,7 +52,7 @@ Node.js を使用してバックエンドアプリケーションを作成し、
 
 ### コア機能
 
-<table style="width: 90%; border-spacing: 20px;">
+<table>
   <tr style="margin-top: 20px;">
      <th style="text-align: center">サインアップ・Email認証</th>
   </tr>
