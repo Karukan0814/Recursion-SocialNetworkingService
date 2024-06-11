@@ -1,11 +1,12 @@
 # Recursion Server with Databases: Social Networking Service / KarukanSNS
 
-![service-image](https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/appImg.png)
 ![Node.js 20.9.0](https://img.shields.io/badge/Node.js-20.9.0-brightgreen)
 ![Express 4.19.2](https://img.shields.io/badge/express-4.19.2-brightgreen)
 [![TypeScript](https://img.shields.io/badge/TypeScript-v4.9.3-007ACC?logo=TypeScript&logoColor=007ACC)](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html)
 [![React](https://img.shields.io/badge/React-v18.2.0-61DAFB?logo=React&logoColor=61DAFB)](https://react.dev/blog/2022/03/29/react-v18#whats-new-in-react-18)
 [![Docker](https://img.shields.io/badge/Docker-gray?logo=Docker&logoColor=2496ED)](https://www.docker.com)
+
+![service-image](https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/appImg.png)
 
 ## 概要
 
@@ -28,6 +29,15 @@ https://karukan-practice.site/
 ## インフラ構成図
 
 ![infrastructure-diagram](https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/infrastructure.drawio.png)
+
+・フロントエンド
+フロントエンドは、React で作成したアプリケーションを使用し、Amazon S3 を使用して静的サイトホスティングを行った。CloudFront を利用して、S3 のコンテンツをグローバルにキャッシュし、ユーザーに高速に配信するようにした。ドメイン名の管理には Amazon Route 53 を使用し、カスタムドメインを設定した。
+
+・バックエンド
+Node.js を使用してバックエンドアプリケーションを作成し、Amazon EC2 インスタンスにデプロイした。この EC2 インスタンスは。Nginx をリバースプロキシとして使用して、クライアントからのリクエストを Node.js アプリケーションに転送して SSL/TLS の処理を行っている。
+
+・データベース
+データベースは費用上の問題から、Amazon RDS ではなく EC2 インスタンスに MySQL サーバーを立てて運用。これにより、AWS 無料枠以内になりコストを最適化した。
 
 ## ER 図
 
@@ -52,52 +62,83 @@ https://karukan-practice.site/
 ソケット通信によるリアルタイムメッセージ機能
 マイページ上でプロフィール情報変更
 マイページ上で自ポストの一覧表示・リプライ一覧表示・いいね一覧表示
+フォローアンフォロー
 
 <table>
   <tr>
      <th style="text-align: center">サインアップ・Email認証</th>
-    <th style="text-align: center">ログイン・ログアウト</th>
   </tr>
   <tr>
     <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/SignUp.gif" alt="サインアップ" />testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest</td>
-    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/LoginLogout.gif" alt="お魚検索機能" /></td>
+
+  </tr>
+    <tr>
+    <th style="text-align: center">ログイン・ログアウト</th>
+  </tr>
+  <tr>
+
+  <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/LoginLogout.gif" alt="ログインログアウト" /></td>
  
   </tr>
   <tr>
     <th style="text-align: center">ポストの一覧表示（トレンド/フォロー切り替え）</th>
-     <th style="text-align: center">ポスト投稿（スケジュール投稿可）</th>
   </tr>
   <tr>
       <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/PostList.gif" alt="ポスト一覧表示" /></td>
-    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/postScheduled.gif" alt="スケジュール投稿" /></td>
+
+  </tr>
+    <tr>
+     <th style="text-align: center">ポスト投稿（スケジュール投稿可）</th>
+  </tr>
+  <tr>
+ 
+  <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/postScheduled.gif" alt="スケジュール投稿" /></td>
 
   </tr>
   <tr>
     <th style="text-align: center">ポスト詳細表示・リプライ投稿</th>
+  </tr>
+  <tr>
+      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/postDetailandReply.gif" alt="ポスト詳細表示・リプライ投稿" /></td>
+
+  </tr>
+    <tr>
      <th style="text-align: center">いいね機能</th>
   </tr>
   <tr>
-      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/postDetailandReply.gif" alt="ポスト一覧表示" /></td>
-    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Like.gif" alt="スケジュール投稿" /></td>
+    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Like.gif" alt="いいね機能" /></td>
 
   </tr>
 
 <tr>
     <th style="text-align: center">リアルタイム通知機能</th>
-     <th style="text-align: center">リアルタイムメッセージ機能</th>
   </tr>
   <tr>
       <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Notification.gif" alt="通知機能" /></td>
-    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Message.gif" alt="リアルタイムメッセージ機能" /></td>
+
+  </tr>
+
+<tr>
+     <th style="text-align: center">リアルタイムメッセージ機能</th>
+  </tr>
+  <tr>
+    
+  <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Message.gif" alt="リアルタイムメッセージ機能" /></td>
 
   </tr>
 
 <tr>
     <th style="text-align: center">プロフィール更新</th>
-     <th style="text-align: center">自分の投稿したポスト・リプライ・いいねしたポストの確認</th>
   </tr>
   <tr>
       <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/UpdateProfile.gif" alt="プロフィール更新" /></td>
+
+  </tr>
+  
+<tr>
+     <th style="text-align: center">自分の投稿したポスト・リプライ・いいねしたポストの確認</th>
+  </tr>
+  <tr>
     <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/MyPosts.gif" alt="自ポスト確認" /></td>
 
   </tr>
@@ -106,6 +147,13 @@ https://karukan-practice.site/
   </tr>
   <tr>
       <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Search.gif" alt="ポスト検索機能" /></td>
+
+  </tr>
+    <tr>
+    <th style="text-align: center">フォロー・アンフォロー機能</th>
+  </tr>
+  <tr>
+      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/FollowUnfollow.gif" alt="フォロー・アンフォロー機能" /></td>
 
   </tr>
 </table>
