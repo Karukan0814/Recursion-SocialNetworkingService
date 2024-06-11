@@ -54,11 +54,19 @@ const Post = ({
           <div className="post__content">
             <div className="post__header">
               <div className="post__avatar">
-                <Avatar
-                  src={
-                    post.user.userImg ?? "/assets/default_profile_400x400.png"
-                  }
-                />
+                <span
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href = `/profile/${post.user.id}`;
+                  }}
+                  style={{ textDecoration: "none", cursor: "pointer" }}
+                >
+                  <Avatar
+                    src={
+                      post.user.userImg ?? "/assets/default_profile_400x400.png"
+                    }
+                  />
+                </span>
               </div>
               {parentPostFlag && (
                 <div className="post__header__replyLine"></div>
