@@ -68,7 +68,7 @@ Node.js を使用してバックエンドアプリケーションを作成し、
     <td>
       <p style="width: 90%; word-wrap: break-word">Email認証の流れ：</p>
 
-      <p style="width: 90%; word-wrap: break-word">
+   <p style="width: 90%; word-wrap: break-word">
         トークン生成:
         JWTを使用してトークンを生成。トークンにはユーザー情報と有効期限が含まれる。
       </p>
@@ -103,7 +103,7 @@ Node.js を使用してバックエンドアプリケーションを作成し、
         ログイン・ログアウトの流れ：
       </p>
 
-      <p style="width: 90%; word-wrap: break-word">
+  <p style="width: 90%; word-wrap: break-word">
         1.ログイン:
         ユーザーは登録しているemailアドレスとパスワードを入力して送信する。サーバーはemailとパスワードの整合性を確認して合致しているならばJWTを使用してトークンを作成し必要なユーザー情報とともに返却する。フロントエンドでそのトークンとユーザー情報をjotaiを使用してアプリケーション全体で保持する。
       </p>
@@ -132,7 +132,7 @@ Node.js を使用してバックエンドアプリケーションを作成し、
     <td>
       <p style="width: 90%; word-wrap: break-word">ポストの投稿：</p>
 
-      <p style="width: 90%; word-wrap: break-word">
+  <p style="width: 90%; word-wrap: break-word">
         1.通常投稿: 200字以内のテキストと添付画像を送信することができる。
       </p>
       <p style="width: 90%; word-wrap: break-word">
@@ -163,7 +163,7 @@ Node.js を使用してバックエンドアプリケーションを作成し、
     <td>
       <p style="width: 90%; word-wrap: break-word">ポストの詳細：</p>
 
-      <p style="width: 90%; word-wrap: break-word">
+  <p style="width: 90%; word-wrap: break-word">
         1.ポストの詳細確認:
         Home画面に表示されたポスト一覧にある各ポストをクリックすると、そのポストの詳細画面に遷移する。
       </p>
@@ -229,7 +229,7 @@ Node.js を使用してバックエンドアプリケーションを作成し、
         通知機能：ソケット通信を利用してサーバー側と通信を行い、3分に一度、ユーザーが未読の通知数を取得する。通知画面ではユーザーに送信された通知の一覧が閲覧でき、未読の通知は3秒間だけ色がグレーに表示される。
       </p>
 
-      <p style="width: 90%; word-wrap: break-word">
+<p style="width: 90%; word-wrap: break-word">
         1.いいね通知:
         ユーザーのポストがいいねされたことを通知。クリックすると該当のポスト詳細画面に遷移する。
       </p>
