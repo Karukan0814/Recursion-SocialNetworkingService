@@ -52,287 +52,52 @@ Node.js を使用してバックエンドアプリケーションを作成し、
 
 ### コア機能
 
-<table >
-  <tr style="margin-top: 20px;">
-     <th style="text-align: center">サインアップ・Email認証</th>
+<table style="width: 100%; border-spacing: 20px">
+  <tr style="margin-top: 20px">
+    <th style="text-align: center">サインアップ・Email認証</th>
   </tr>
-  <tr style="margin-top: 20px;">
-    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/SignUp.gif" alt="サインアップ"  />
-    Email認証の流れ：
-
-  <ol>
-
-  <li>
-    トークン生成: JWTを使用してトークンを生成。トークンにはユーザー情報と有効期限が含まれる。
-  </li>
-  <li>
-    メール送信: nodemailerを利用し、GmailのSMTPサーバーを経由して登録されたユーザーのメールアドレスにメールを送信。このメールには認証用のリンクが記載されている。
-  </li>
-  <li>
-    ユーザー認証: ユーザーは送られてきたメールに記載されているリンクをクリックすることで認証を完了させる。このリンクにはJWTトークンが含まれており、バックエンドでトークンを検証することでユーザーの認証が完了する。
-
-  </li>
-  </ol>
-
-  </td>
-
+  <tr style="margin-top: 20px">
+    <td>
+      <img
+        src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/SignUp.gif"
+        alt="サインアップ"
+        style="width: 95%; height: auto; object-fit: contain"
+      />
+      <div>
+        <p>Email認証の流れ：</p>
+        <ol>
+          <li>
+            トークン生成:
+            JWTを使用してトークンを生成。トークンにはユーザー情報と有効期限が含まれる。
+          </li>
+          <li>
+            メール送信:
+            nodemailerを利用し、GmailのSMTPサーバーを経由して登録されたユーザーのメールアドレスにメールを送信。このメールには認証用のリンクが記載されている。
+          </li>
+          <li>
+            ユーザー認証:
+            ユーザーは送られてきたメールに記載されているリンクをクリックすることで認証を完了させる。このリンクにはJWTトークンが含まれており、バックエンドでトークンを検証することでユーザーの認証が完了する。
+          </li>
+        </ol>
+      </div>
+    </td>
   </tr>
-    <tr style="margin-top: 20px;">
+  <tr style="margin-top: 20px">
     <th style="text-align: center">ログイン・ログアウト</th>
   </tr>
-  <tr style="margin-top: 20px;">
-
-  <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/LoginLogout.gif" alt="ログインログアウト"  />
-  
-   <div>
-    ログイン・ログアウトの流れ：
-
-  <ol>
-
-  <li>
-    ログイン: ユーザーは登録しているemailアドレスとパスワードを入力して送信する。サーバーはemailとパスワードの整合性を確認して合致しているならばJWTを使用してトークンを作成し必要なユーザー情報とともに返却する。フロントエンドでそのトークンとユーザー情報をjotaiを使用してアプリケーション全体で保持する。
-  </li>
-  <li>
-    ログアウト: ログアウトボタンをクリックすると、Jotaiで保持されているトークンとユーザー情報がクリアされ、ログイン画面に遷移してログアウト処理が完了する。
-  </li>
-
-  </ol>
-  </div>
-
-  </td>
- 
-  </tr>
-  <tr style="margin-top: 20px;">
-    <th style="text-align: center">ポストの一覧表示（トレンド/フォロー切り替え）</th>
-  </tr>
-  <tr style="margin-top: 20px;">
-      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/PostList.gif" alt="ポスト一覧表示"  />
-  
-   <div>
-    Home画面でのポストの一覧表示：
-
-  <ol>
-
-  <li>
-    トレンド: 24時間以内に投稿されたポストのうち、いいねされた数が多い順にポストを一覧表示する。1ロードにつき20件表示し、画面をスクロールすると自動的に次の20件のポストを表示する無限スクロールを実装している。
-  </li>
-  <li>
-    フォロー: ユーザーがフォローしているユーザーとユーザー自身のポストを最新順で20件表示する。同様に画面をスクロールすると次の20件をロードする無限スクロールを実装している。
-  </li>
-
-  </ol>
-  </div>      
-      
-</td>
-
-  </tr>
-    <tr style="margin-top: 20px;">
-     <th style="text-align: center">ポスト投稿（スケジュール投稿可）</th>
-  </tr>
-  <tr style="margin-top: 20px;">
- 
-  <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/postScheduled.gif" alt="スケジュール投稿"  />
-   <div>
-    ポストの投稿：
-
-  <ol>
-
-  <li>
-    通常投稿: 200字以内のテキストと添付画像を送信することができる。
-  </li>
-  <li>
-    予約投稿: 未来の日時を設定することで、あらかじめポストの投稿を予約することができる。予約した投稿はプロフィール画面の自ポスト一覧から確認可能
-  </li>
-    <li>
-    動画添付: mp4もしくはwebm形式の動画を添付可能。添付した動画はサーバー側でffmpegを使用して圧縮して保存する。※今回作成した本番環境では、サーバー側でのffmpegの使用がEC2インスタンスのメモリを圧迫するため、動画投稿を停止している。試す場合は開発環境を作成し、PostType.tsのvalidPostImgTypesのコメントアウトを外す。
-  </li>
-
-  </ol>
-  </div>    
-  
-  
-  </td>
-
-  </tr>
-  <tr style="margin-top: 20px;">
-    <th style="text-align: center">ポスト詳細表示・リプライ投稿</th>
-  </tr>
-  <tr style="margin-top: 20px;">
-      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/postDetailandReply.gif" alt="ポスト詳細表示・リプライ投稿"  />
-      
-   <div>
-    ポストの詳細：
-
-  <ol>
-
-  <li>
-    ポストの詳細確認: Home画面に表示されたポスト一覧にある各ポストをクリックすると、そのポストの詳細画面に遷移する。
-  </li>
-  <li>
-    リプライ一覧: ポスト詳細画面では、そのポストへのリプライの一覧を見ることができる（無限スクロール・1ロード20件）。また、リプライをクリックすることでそのリプライポストの詳細画面に遷移する（リプライへのリプライが可能）。
-  </li>
-    <li>
-    リプライ投稿:ユーザーは任意のポストに対してリプライボタン、もしくはポスト詳細画面にあるリプライ送信ボックスからリプライポストを投稿できる。リプライに対するリプライも可能。
-  </li>
-    <li>
-    リプライ通知:リプライした相手にはリプライされたことを知らせる通知が飛ぶ。
-  </li>
-  </ol>
-  </div>    
-  
-      
-      
-      
-      
-</td>
-
-  </tr>
-    <tr style="margin-top: 20px;">
-     <th style="text-align: center">いいね機能</th>
-  </tr>
-  <tr style="margin-top: 20px;">
-    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Like.gif" alt="いいね機能"  />
-   <div>
-
-  <ol>
-
-  <li>
-    いいね機能: 各ポストの下部のハートマークをクリックすると、そのポストにいいねすることができる。
-  </li>
-  <li>
-    いいね一覧: いいねしたポストの一覧はプロフィール画面のいいねタブから確認することができる。
-  </li>
-    <li>
-    いいね通知:いいねしたポストを投稿したユーザーにはいいねされたことを知らせる通知がとぶ。
-  </li>
-
-  </ol>
-  </div>        
-    
-    
-    
-</td>
-
-  </tr>
-
-<tr style="margin-top: 20px;">
-    <th style="text-align: center">リアルタイム通知機能</th>
-  </tr>
-  <tr style="margin-top: 20px;">
-      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Notification.gif" alt="通知機能"  />
-      
-   <div>
-   通知機能：ソケット通信を利用してサーバー側と通信を行い、3分に一度、ユーザーが未読の通知数を取得する。通知画面ではユーザーに送信された通知の一覧が閲覧でき、未読の通知は3秒間だけ色がグレーに表示される。
-
-  <ol>
-
-  <li>
-    いいね通知: ユーザーのポストがいいねされたことを通知。クリックすると該当のポスト詳細画面に遷移する。
-  </li>
-  <li>
-    リプライ通知: ユーザーのポストにリプライされたことを通知。クリックすると該当のポスト詳細画面に遷移する。
-  </li>
-    <li>
-    フォロー通知:他ユーザーにフォローされたことを通知。クリックするとそのユーザーのプロフィール画面に遷移。
-  </li>
-
-  </ol>
-  </div>         
-      
-      
-      
-</td>
-
-  </tr>
-
-<tr style="margin-top: 20px;">
-     <th style="text-align: center">リアルタイムメッセージ機能</th>
-  </tr>
-  <tr style="margin-top: 20px;">
-    
-  <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Message.gif" alt="リアルタイムメッセージ機能"  />
-      
-   <div>
-   
-  <ol>
-
-  <li>
-    ユーザー検索機能: メッセージを開始したいユーザーを通知画面上のAddボタンをクリックして表示されるユーザー検索画面から検索可能。
-  </li>
-  <li>
-   メッセージ機能：メッセージ一覧からメッセージをやりとりしたいユーザーを選択すると、ソケット通信を開始し、リアルタイムでサーバーとやりとりして相手ユーザーとメッセージをやりとりする。
-  </li>
-
-  </ol>
-  </div>         
-      
-  
-  
-  
-  
-  </td>
-
-  </tr>
-
-<tr style="margin-top: 20px;">
-    <th style="text-align: center">プロフィール更新</th>
-  </tr>
-  <tr style="margin-top: 20px;">
-      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/UpdateProfile.gif" alt="プロフィール更新"  />
-      
-   <div>
-   
-  <ol>
-
-  <li>
-    ユーザー情報更新: プロフィール画面のUpdateボタンをクリックすると、ユーザー情報の更新モーダルが表示される。そこから、ユーザー名・プロフィール画像・紹介文を変更可能
-  </li>
-
-  </ol>
-  </div>        
-      
-</td>
-
-  </tr>
-  
-<tr style="margin-top: 20px;">
-     <th style="text-align: center">自分の投稿したポスト・リプライ・いいねしたポストの確認</th>
-  </tr>
-  <tr style="margin-top: 20px;">
-    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/MyPosts.gif" alt="自ポスト確認" />
-    
-   <div>
-   
-    プロフィール画面には自分の投稿したポスト・リプライ・いいねしたポストの確認が行えるタブが存在する。
- 
-  </div>       
-    
-    
-</td>
-
-  </tr>
-  <tr style="margin-top: 20px;">
-    <th style="text-align: center">ポスト検索機能</th>
-  </tr>
-  <tr style="margin-top: 20px;">
-      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Search.gif" alt="ポスト検索機能"  /></td>
-
-  </tr>
-    <tr style="margin-top: 20px;">
-    <th style="text-align: center">フォロー・アンフォロー機能</th>
-  </tr>
-  <tr style="margin-top: 20px;">
-      <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/FollowUnfollow.gif" alt="フォロー・アンフォロー機能"  />
-   <div>
-   
-    プロフィール画面やフォロー一覧画面の各ユーザー情報にはフォロースイッチがあり、フォローのON/OFFを切り替えられる。
- 
-  </div>         
-      
-</td>
-
-  </tr>
-</table>
+  <tr style="margin-top: 20px">
+    <td>
+      <img
+        src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/LoginLogout.gif"
+        alt="ログインログアウト"
+        style="width: 95%; height: auto; object-fit: contain"
+      />
+      <div>
+        <p>ログイン・ログアウトの流れ：</p>
+        <ol>
+          <li>
+            ログイン:
+            ユーザーは登録しているemailアドレスとパスワードを入力して送信する。
 
 <br>
 
