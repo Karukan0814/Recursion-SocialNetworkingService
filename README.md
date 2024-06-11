@@ -70,10 +70,25 @@ Node.js を使用してバックエンドアプリケーションを作成し、
   </tr>
   <tr>
     <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/SignUp.gif" alt="サインアップ" />
-    <p style="background-color: #ffff;">JWTを使用してトークンを生成し、そのトークンをnodemailerを利用することでGmailのSMTPサーバーを経由して登録されたユーザーのメールアドレスにメール送信する。ユーザーは送られてきたメールにあるリンクをクリックすることで認証を完了させる（Email認証）。</p>
-  
-    
-    </td>
+    <div>
+    Email認証の流れ：
+
+  <ul>
+
+  <ol>
+    トークン生成: JWTを使用してトークンを生成します。トークンにはユーザー情報と有効期限が含まれています。
+  </ol>
+  <ol>
+    メール送信: nodemailerを利用し、GmailのSMTPサーバーを経由して登録されたユーザーのメールアドレスにメールを送信します。このメールには認証用のリンクが含まれています。
+  </ol>
+  <ol>
+    ユーザー認証: ユーザーは送られてきたメールに記載されているリンクをクリックすることで認証を完了させます。このリンクにはJWTトークンが含まれており、バックエンドでトークンを検証することでユーザーの認証が完了します。
+
+  </ol>
+  </ul>
+  </div>
+
+  </td>
 
   </tr>
     <tr>
