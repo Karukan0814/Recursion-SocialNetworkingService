@@ -1,4 +1,4 @@
-# Recursion Server with Databases: Social Networking Service / KarukanSNS
+t# Recursion Server with Databases: Social Networking Service / KarukanSNS
 
 ![Node.js 20.9.0](https://img.shields.io/badge/Node.js-20.9.0-brightgreen)
 ![Express 4.19.2](https://img.shields.io/badge/express-4.19.2-brightgreen)
@@ -51,6 +51,32 @@ Node.js を使用してバックエンドアプリケーションを作成し、
 ## 主な機能
 
 ### コア機能
+
+<table style="width: 90%;>
+
+<tr style="margin-top: 20px;">
+     <th style="text-align: center">サインアップ・Email認証</th>
+  </tr>
+  <tr style="margin-top: 20px;">
+    <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/SignUp.gif" alt="サインアップ"  /></td></tr>
+    <tr><td>
+   <p style="width: 90%; word-wrap: break-word;"> Email認証の流れ：</p>
+
+  <p style="width: 90%; word-wrap: break-word;">
+    トークン生成: JWTを使用してトークンを生成。トークンにはユーザー情報と有効期限が含まれる。
+  </p>
+  <p style="width: 90%; word-wrap: break-word;">
+    1.メール送信: nodemailerを利用し、GmailのSMTPサーバーを経由して登録されたユーザーのメールアドレスにメールを送信。このメールには認証用のリンクが記載されている。
+  </p>
+  <p style="width: 90%; word-wrap: break-word;">
+    2.ユーザー認証: ユーザーは送られてきたメールに記載されているリンクをクリックすることで認証を完了させる。このリンクにはJWTトークンが含まれており、バックエンドでトークンを検証することでユーザーの認証が完了する。
+
+  </p>
+
+  </td>
+
+  </tr>
+  </table>
 
 <table style="width: 90%;>
 
