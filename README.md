@@ -52,8 +52,9 @@ Node.js を使用してバックエンドアプリケーションを作成し、
 
 ### コア機能
 
-<table style="max-width: 90%; >
-  <tr style="margin-top: 20px;">
+<table style="width: 90%;>
+
+<tr style="margin-top: 20px;">
      <th style="text-align: center">サインアップ・Email認証</th>
   </tr>
   <tr style="margin-top: 20px;">
@@ -218,7 +219,6 @@ Node.js を使用してバックエンドアプリケーションを作成し、
     
   <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Message.gif" alt="リアルタイムメッセージ機能"  />
 
-
   <p style="width: 90%; word-wrap: break-word;">
     1.ユーザー検索機能: メッセージを開始したいユーザーを通知画面上のAddボタンをクリックして表示されるユーザー検索画面から検索可能。
   </p>
@@ -235,7 +235,6 @@ Node.js を使用してバックエンドアプリケーションを作成し、
   </tr>
   <tr style="margin-top: 20px;">
       <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/UpdateProfile.gif" alt="プロフィール更新"  />
-
 
     ユーザー情報更新: プロフィール画面のUpdateボタンをクリックすると、ユーザー情報の更新モーダルが表示される。そこから、ユーザー名・プロフィール画像・紹介文を変更可能
 
