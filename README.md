@@ -53,10 +53,10 @@ Node.js を使用してバックエンドアプリケーションを作成し、
 ### コア機能
 
 <table style="width: 100%; border-spacing: 20px;">
-  <tr>
+  <tr style="margin-top: 20px;">
      <th style="text-align: center">サインアップ・Email認証</th>
   </tr>
-  <tr>
+  <tr style="margin-top: 20px;">
     <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/SignUp.gif" alt="サインアップ" style="max-width: 100%; height: auto;" />
     <div>
     Email認証の流れ：
@@ -79,10 +79,10 @@ Node.js を使用してバックエンドアプリケーションを作成し、
   </td>
 
   </tr>
-    <tr>
+    <tr style="margin-top: 20px;">
     <th style="text-align: center">ログイン・ログアウト</th>
   </tr>
-  <tr>
+  <tr style="margin-top: 20px;">
 
   <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/LoginLogout.gif" alt="ログインログアウト" style="max-width: 100%; height: auto;" />
   
@@ -104,10 +104,10 @@ Node.js を使用してバックエンドアプリケーションを作成し、
   </td>
  
   </tr>
-  <tr>
+  <tr style="margin-top: 20px;">
     <th style="text-align: center">ポストの一覧表示（トレンド/フォロー切り替え）</th>
   </tr>
-  <tr>
+  <tr style="margin-top: 20px;">
       <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/PostList.gif" alt="ポスト一覧表示" style="max-width: 100%; height: auto;" />
   
    <div>
@@ -128,10 +128,10 @@ Node.js を使用してバックエンドアプリケーションを作成し、
 </td>
 
   </tr>
-    <tr>
+    <tr style="margin-top: 20px;">
      <th style="text-align: center">ポスト投稿（スケジュール投稿可）</th>
   </tr>
-  <tr>
+  <tr style="margin-top: 20px;">
  
   <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/postScheduled.gif" alt="スケジュール投稿" style="max-width: 100%; height: auto;" />
    <div>
@@ -156,10 +156,10 @@ Node.js を使用してバックエンドアプリケーションを作成し、
   </td>
 
   </tr>
-  <tr>
+  <tr style="margin-top: 20px;">
     <th style="text-align: center">ポスト詳細表示・リプライ投稿</th>
   </tr>
-  <tr>
+  <tr style="margin-top: 20px;">
       <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/postDetailandReply.gif" alt="ポスト詳細表示・リプライ投稿" style="max-width: 100%; height: auto;" />
       
    <div>
@@ -189,10 +189,10 @@ Node.js を使用してバックエンドアプリケーションを作成し、
 </td>
 
   </tr>
-    <tr>
+    <tr style="margin-top: 20px;">
      <th style="text-align: center">いいね機能</th>
   </tr>
-  <tr>
+  <tr style="margin-top: 20px;">
     <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Like.gif" alt="いいね機能" style="max-width: 100%; height: auto;" />
    <div>
 
@@ -217,10 +217,10 @@ Node.js を使用してバックエンドアプリケーションを作成し、
 
   </tr>
 
-<tr>
+<tr style="margin-top: 20px;">
     <th style="text-align: center">リアルタイム通知機能</th>
   </tr>
-  <tr>
+  <tr style="margin-top: 20px;">
       <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Notification.gif" alt="通知機能" style="max-width: 100%; height: auto;" />
       
    <div>
@@ -247,10 +247,10 @@ Node.js を使用してバックエンドアプリケーションを作成し、
 
   </tr>
 
-<tr>
+<tr style="margin-top: 20px;">
      <th style="text-align: center">リアルタイムメッセージ機能</th>
   </tr>
-  <tr>
+  <tr style="margin-top: 20px;">
     
   <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Message.gif" alt="リアルタイムメッセージ機能" style="max-width: 100%; height: auto;" />
       
@@ -276,10 +276,10 @@ Node.js を使用してバックエンドアプリケーションを作成し、
 
   </tr>
 
-<tr>
+<tr style="margin-top: 20px;">
     <th style="text-align: center">プロフィール更新</th>
   </tr>
-  <tr>
+  <tr style="margin-top: 20px;">
       <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/UpdateProfile.gif" alt="プロフィール更新" style="max-width: 100%; height: auto;"  />
       
    <div>
@@ -297,10 +297,10 @@ Node.js を使用してバックエンドアプリケーションを作成し、
 
   </tr>
   
-<tr>
+<tr style="margin-top: 20px;">
      <th style="text-align: center">自分の投稿したポスト・リプライ・いいねしたポストの確認</th>
   </tr>
-  <tr>
+  <tr style="margin-top: 20px;">
     <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/MyPosts.gif" alt="自ポスト確認" style="max-width: 100%; height: auto;" />
     
    <div>
@@ -313,17 +313,17 @@ Node.js を使用してバックエンドアプリケーションを作成し、
 </td>
 
   </tr>
-  <tr>
+  <tr style="margin-top: 20px;">
     <th style="text-align: center">ポスト検索機能</th>
   </tr>
-  <tr>
+  <tr style="margin-top: 20px;">
       <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/Search.gif" alt="ポスト検索機能" style="max-width: 100%; height: auto;" /></td>
 
   </tr>
-    <tr>
+    <tr style="margin-top: 20px;">
     <th style="text-align: center">フォロー・アンフォロー機能</th>
   </tr>
-  <tr>
+  <tr style="margin-top: 20px;">
       <td><img src="https://github.com/Karukan0814/Recursion-SocialNetworkingService_front/blob/main/public/assets/FollowUnfollow.gif" alt="フォロー・アンフォロー機能" style="max-width: 100%; height: auto;" />
    <div>
    
