@@ -21,8 +21,8 @@ export enum validPostImgTypes {
   "image/jpeg",
   "image/png",
   "image/gif",
-  "video/mp4",
-  "video/webm",
+  // "video/mp4",
+  // "video/webm",　サーバに負荷をかけるため本番環境では停止
 }
 
 export enum PostType {
