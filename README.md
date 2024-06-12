@@ -385,7 +385,8 @@ Node.js を使用してバックエンドアプリケーションを作成し、
 - AWS SDK: aws-sdk (^2.1617.0)
 - フェイクデータ生成: @faker-js/faker (^8.4.1)
 - その他依存関係: cors (^2.8.5)
-  **フロントエンド:** TypeScript: ^4.9.3 / React ^18.2.0
+
+**フロントエンド:** TypeScript: ^4.9.3 / React ^18.2.0
 
 - スタイリング: @emotion/react (^11.11.4), @emotion/styled (^11.11.5), @mui/material (^5.15.15)
 - アイコン: @mui/icons-material (^5.15.15)
@@ -401,15 +402,41 @@ Node.js を使用してバックエンドアプリケーションを作成し、
 
 **CI / CD:** GitHub Actions
 
-**認証:** Fjsonwebtoken
+**認証:** jsonwebtoken
 
-#### テスト / セキュリティ
+**開発環境の構築:**
 
-- クロスブラウザテスト
+開発環境を Docker を使用して立ち上げることが可能。以下、その手順。
+※以下はフロントエンドのたちあげ。バックエンドの立ち上げは以下リンクに記述。
+[https://github.com/Karukan0814/SocialNetworkingService_back]
 
-  - PC
-    - Windows10 / 11: Google Chrome / Firefox / Microsoft Edge
-    - Mac: Google Chrome / Firefox / Safari
-  - スマートフォン
-    - Android: Google Chrome
-    - iOS: Safari
+1. 当該レポジトリをローカル環境にコピー
+
+2. 環境変数ファイルの準備
+   　.env ファイルをルートフォルダ直下に用意し、以下を記述して保存する。
+
+```
+VITE_API_URL=http://localhost:3000/api
+VITE_SOCKET_URL=http://localhost:3000
+
+
+
+
+```
+
+3. Docker ビルド
+   　以下を実行してビルド。なお、以下は Docker がインストール済みであることを前提とする。
+
+```
+docker build -t my-react-app .
+```
+
+4. Docker 立ち上げ
+   　以下を実行してコンテナを立ち上げ。
+
+```
+docker run -p 3000:3000 my-react-app
+```
+
+5. 動作確認
+   　[http://localhost:3000/](http://localhost:3000/)にアクセスして動作確認
