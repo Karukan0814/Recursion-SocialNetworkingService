@@ -379,7 +379,6 @@ Node.js を使用してバックエンドアプリケーションを作成し、
 - メール送信: Nodemailer (^6.9.13)
 - 暗号化: bcrypt (^5.1.1), bcryptjs (^2.4.3), crypto (^1.0.1)
 - ファイルアップロード: Multer (^1.4.5-lts.1)
-- バリデーション: validator (^13.11.0)
 - 環境変数: dotenv (^16.4.5)
 - ソケット通信: socket.io (^4.7.5)
 - AWS SDK: aws-sdk (^2.1617.0)
