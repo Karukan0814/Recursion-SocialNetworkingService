@@ -129,7 +129,7 @@
   .loginPage_container {
     justify-content: flex-start;
     flex-direction: column;
-    align-items: flex-start;
+    /* align-items: flex-start; */
     padding: 1rem;
     gap: 1rem;
     width: 100%;

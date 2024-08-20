@@ -1,6 +1,6 @@
-.login-form {
+.loginForm_container {
   background-color: #ffffff;
-  padding: 20px;
+  padding: 2rem 3rem 2rem;
   margin: auto auto;
   width: 100%;
   /* height: 60vh; */
@@ -8,28 +8,59 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-radius: 10px;
+}
+
+.loginForm__close {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: white;
+  border-radius: 50%;
+}
+.loginForm_image_container {
+  display: flex; /* 中央揃えのための設定 */
+  justify-content: center; /* 水平方向の中央揃え */
+  align-items: center; /* 垂直方向の中央揃え */
+  width: 3rem;
+  margin-bottom: 1rem;
+}
+
+.loginForm_title_container {
+  width: 100%;
+}
+
+.loginForm_title_container h1 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .loginForm_errMsg {
+  font-size: 0.8rem;
   margin-bottom: 10px;
 }
 
 .loginForm_loginButton_container {
   display: flex;
   justify-content: center;
+  width: 100%;
+  box-sizing: border-box; /* パディングやボーダーを含めて幅を計算 */
 }
 
-.login-form h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
+.loginForm_input_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
-
 .loginForm_input-group {
   margin-bottom: 15px;
+  width: 100%;
 }
 
 .loginForm_input-group input {
-  /* width: 100%; */
+  width: 100%; /* 横幅を親要素いっぱいに広げる */
+  box-sizing: border-box; /* パディングやボーダーを含めて幅を計算 */
   padding: 10px;
   font-size: 14px;
   border: 1px solid #ccd6dd;

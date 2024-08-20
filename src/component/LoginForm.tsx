@@ -2,6 +2,8 @@ import "../style/LoginForm.css";
 import useLogin from "../hooks/useLogin";
 import PrimaryButton from "./PrimaryButton";
 import { useForm } from "react-hook-form";
+import CloseIcon from "@mui/icons-material/Close";
+import { IconButton } from "@mui/material";
 
 type Props = {
   signUpFlag: boolean;
@@ -35,13 +37,30 @@ const LoginForm = ({ signUpFlag, handleClose }: Props) => {
 
   return (
     <>
-      <div className="login-form">
-        {signUpFlag ? (
-          <h1>Create your account</h1>
-        ) : (
-          <h1>Log in to KarukanSNS</h1>
-        )}
-        <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="loginForm_container">
+        <span className="loginForm__close">
+          <IconButton onClick={handleClose} aria-label="delete">
+            <CloseIcon />
+          </IconButton>
+        </span>
+        <div className="loginForm_image_container">
+          <img
+            src="/assets/karukan_icon.svg"
+            className="responsive-img"
+            alt="icon"
+          />
+        </div>
+        <div className="loginForm_title_container">
+          {signUpFlag ? (
+            <h1>Create your account</h1>
+          ) : (
+            <h1>Log in to KarukanSNS</h1>
+          )}
+        </div>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="loginForm_input_container"
+        >
           {signUpFlag ? (
             <>
               {errorMsg && (
