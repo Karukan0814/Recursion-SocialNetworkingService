@@ -3,61 +3,147 @@
   justify-content: space-between;
   align-items: center;
   height: 100vh;
-  gap: 10rem;
+  /* gap: 10rem; */
   /* background-color: #f5f8fa; */
 }
 
 .loginPage_image_container {
-  width: 400px;
-  height: 400px;
-  overflow: hidden; /* はみ出した部分を隠す */
+  width: 45vw;
+  /* overflow: hidden; はみ出した部分を隠す */
   display: flex; /* 中央揃えのための設定 */
   justify-content: center; /* 水平方向の中央揃え */
   align-items: center; /* 垂直方向の中央揃え */
 }
 
 .responsive-img {
-  max-width: 100%;
-  max-height: 100%;
+  /* max-width: 100%; */
+  max-height: 500px;
+  /* height: 50%; */
   object-fit: contain; /* コンテナに収まるように調整しつつアスペクト比を保持 */
 }
 
+.loginPage_contents_container {
+  min-width: 45vw;
+  display: flex; /* 中央揃えのための設定 */
+  justify-content: center; /* 水平方向の中央揃え */
+  align-items: center; /* 垂直方向の中央揃え */
+  flex-direction: column;
+  padding: 16px;
+}
+
+.loginPage_titles_container {
+  display: flex; /* 中央揃えのための設定 */
+  justify-content: start; /* 水平方向の中央揃え */
+  align-items: center; /* 垂直方向の中央揃え */
+  flex-direction: column;
+  width: 100%;
+}
+
 .loginPage_title {
-  font-size: 4rem;
-  margin: 3rem 0;
+  line-height: 84px;
+  letter-spacing: -1.2px;
+  font-size: 64px;
+  word-wrap: break-word;
+  font-weight: 700;
+  margin-bottom: 48px;
+  margin-top: 48px;
+  width: 100%;
 }
 
 .loginPage_subtitle {
-  font-size: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 32px;
+  line-height: 36px;
+  word-wrap: break-word;
+  font-weight: 700;
+  font-size: 31px;
+  width: 100%;
 }
 
+.loginPage_caution_container {
+  width: 100%;
+}
+
+.loginPage_caution {
+  line-height: 20px;
+  word-wrap: break-word;
+  font-size: 0.8rem;
+}
+
+.loginPage_caution_link {
+  color: var(--twitter-color);
+}
+
+.loginPage_buttons_container {
+  display: flex; /* 中央揃えのための設定 */
+  justify-content: start; /* 水平方向の中央揃え */
+  align-items: center; /* 垂直方向の中央揃え */
+  flex-direction: column;
+  width: 100%;
+  margin-top: 4rem;
+}
+.loginPage_button_container {
+  width: 100%;
+}
+.loginPage_signup_button {
+  background-color: var(--twitter-color) !important;
+
+  max-width: 380px;
+
+  margin-bottom: 8px;
+
+  height: 40px;
+  transition-duration: 0.2s;
+
+  color: #ffff !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  border-radius: 20px !important;
+}
+.loginPage_text_container {
+  width: 100%;
+}
 .loginPage_text {
+  max-width: 380px;
+  line-height: 20px;
+  word-wrap: break-word;
   font-size: 1rem;
-  margin: 3rem 0 1rem;
+  font-weight: 700;
+  margin: 4rem 0 1rem;
 }
 
-@media (max-width: 768px) {
+.loginPage_signin_button {
+  max-width: 380px;
+
+  margin-bottom: 8px;
+
+  height: 40px;
+  transition-duration: 0.2s;
+
+  /* color: #ffff !important; */
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  border-radius: 20px !important;
+}
+
+@media (max-width: 1024px) {
   .loginPage_container {
     justify-content: flex-start;
     flex-direction: column;
-    gap: 2rem;
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 1rem;
+    width: 100%;
   }
 
   .loginPage_image_container {
-    width: 300px;
-    height: 300px;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 0 0;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
+
   .loginPage_title {
-    font-size: 2rem;
-  }
-
-  .loginPage_subtitle {
-    font-size: 1.5rem;
-  }
-
-  .loginPage_text {
-    font-size: 0.875rem;
-    margin: 1rem 0;
+    margin-top: 1rem;
   }
 }

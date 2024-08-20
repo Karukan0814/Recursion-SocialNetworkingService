@@ -30,18 +30,51 @@ const LoginPage = () => {
           alt="icon"
         />
       </div>
-      <div>
-        <h1 className="loginPage_title">Happening now</h1>
-        <h3 className="loginPage_subtitle">Join today.</h3>
-        <Button onClick={() => handleLoginPopup(true)} variant="contained">
-          Create Account
-        </Button>
-
-        <p className="loginPage_text">Already have an account?</p>
-
-        <Button onClick={() => handleLoginPopup(false)} variant="outlined">
-          Sign In
-        </Button>
+      <div className="loginPage_contents_container">
+        <div className="loginPage_titles_container">
+          <h1 className="loginPage_title">Happening now</h1>
+          <h3 className="loginPage_subtitle">Join today.</h3>
+        </div>
+        <div className="loginPage_caution_container">
+          <p className="loginPage_caution">
+            ※こちらは
+            <a
+              className="loginPage_caution_link"
+              href="https://karukan0814.github.io/Recursion-ResumeWebsite/"
+              target="_blank"
+            >
+              Karukan
+            </a>
+            が作成した疑似SNSアプリです。
+            <br />
+            Web開発の勉強目的のため、予告なく変更・サーバーの停止を行うことがあります。
+            <br />
+            ご了承ください。
+          </p>
+        </div>
+        <div className="loginPage_buttons_container">
+          <div className="loginPage_button_container">
+            <Button
+              className="loginPage_signup_button"
+              onClick={() => handleLoginPopup(true)}
+              variant="contained"
+            >
+              Create Account
+            </Button>
+          </div>
+          <div className="loginPage_text_container">
+            <p className="loginPage_text">Already have an account?</p>
+          </div>
+          <div className="loginPage_button_container">
+            <Button
+              className="loginPage_signin_button"
+              onClick={() => handleLoginPopup(false)}
+              variant="outlined"
+            >
+              Sign In
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );
