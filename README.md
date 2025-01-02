@@ -25,8 +25,7 @@ https://github.com/Karukan0814/Recursion-SocialNetworkingService_back
 
 https://karukan-practice.site/
 
-※2024/07/30~　サーバー停止中。9月に復活させる予定
-※
+※2025/01/01~ サーバー停止中。→サービス停止
 
 レスポンシブ対応済。※実機確認は手元にデバイスがないため行っておらず、GoogleChrome の開発者ツールでレスポンシブ確認を行った。
 
